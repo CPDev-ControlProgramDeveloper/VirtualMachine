@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CPSIM version="1.0">
+  <WINDOW>
+    <WATCH type="BOOL" location="243,61">Blinking_light.ONOFF</WATCH>
+    <WATCH type="BOOL" location="154,179">Blinking_light.LIGHT</WATCH>
+    <PANEL name="Panel" location="39,26" type="control">
+      <WATCH type="BOOL">Blinking_light.ONOFF</WATCH>
+      <WATCH type="BOOL">Blinking_light.LIGHT</WATCH>
+    </PANEL>
+  </WINDOW>
+  <REFERENCES>
+    <FILE type="dcp" time="23.10.2018 16:57:29">blink.dcp</FILE>
+  </REFERENCES>
+  <SETTINGS>
+    <CHECK UseInputFile="False" UseOutputFile="False" UseSystemTime="False" OutputFrequency="250" />
+    <VM_CONNECTION Type="CPWinController.CPTarget" />
+  </SETTINGS>
+  <STATE TIME="120000">
+    <Connection>
+      <UseHTTP>false</UseHTTP>
+      <Controller>Blinking_light</Controller>
+    </Connection>
+  </STATE>
+</CPSIM>
