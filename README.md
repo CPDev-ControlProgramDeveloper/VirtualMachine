@@ -1,7 +1,7 @@
 # CPDev Virtual Machine
 
 The repository contains public sources of the CPDev (Control Program Developer) virtual machine runtime (VM).
-The environment is available for download at https://cpdev.kia.prz.edu.pl 
+The environment is available for download at https://cpdev.kia.prz.edu.pl/instructions/ 
 
 ## Arduino and ESP32 library
 
