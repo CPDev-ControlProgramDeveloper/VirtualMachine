@@ -1,0 +1,61 @@
+(*$LIBRARY Blinking_light*)
+(*$IMPORT IEC_61131
+filename: 'C:\Program Files (x86)\CPDev\Biblioteki\IEC 61131-3.lcp'
+version: '0.2.0.1'
+timestamp: '2018-05-22-17:51:18.473'
+fblks: CTD, CTU, CTUD, F_TRIG, R_TRIG, RS, SEMA, SR, TOF, TON, TP
+*)
+(*$IMPORT Basic_blocks
+filename: 'C:\Program Files (x86)\CPDev\Biblioteki\Basic_blocks.lcp'
+version: '0.3.1.0'
+timestamp: '2018-05-22-17:51:20.770'
+funs: RND
+fblks: AMEM, ASWI, BMEM, BSWI, COMP, DEBA, DELS, DFF, DIFR, DIVI, FILT, GENR, JKFF, LIMT, MAT, MIT, PDUR, RAND, RSFF, SQR, SRFF, TFF, TOTI
+*)
+(* GLOBAL VARIABLES *)
+VAR_GLOBAL 
+ ONOFF : BOOL := TRUE;
+END_VAR
+
+VAR_GLOBAL 
+ LIGHT  : BOOL;
+END_VAR
+
+VAR_GLOBAL 
+ COUNT  : INT;
+END_VAR
+
+(* USER POUs *)
+PROGRAM Blinking_light
+
+VAR_EXTERNAL
+   ONOFF: BOOL;
+   LIGHT: BOOL;
+END_VAR
+
+VAR
+   out_and1 (*$HIDDENONLINE*) : BOOL;
+   ton1: IEC_61131.TON;
+   out_ton1_Q (*$HIDDENONLINE*) : BOOL;
+   ton2: IEC_61131.TON;
+   out_ton2_Q (*$HIDDENONLINE*) : BOOL;
+   tff1: Basic_blocks.TFF;
+   out_tff1_Q (*$HIDDENONLINE*) : BOOL;
+END_VAR
+
+ton1(IN:=NOT out_ton2_Q,PT:=T#1s,Q=>out_ton1_Q);
+ton2(IN:=out_ton1_Q,PT:=T#2s,Q=>out_ton2_Q);
+tff1(T:=TRUE,CLK:=ONOFF,R:=FALSE,Q=>out_tff1_Q);
+out_and1 := AND(out_ton1_Q, out_tff1_Q);
+LIGHT := out_and1;
+
+END_PROGRAM
+
+
+(*$TASKS 
+.TASK TASK_LD
+.LOOPPARAM 0 50
+Blinking_light
+.END_TASK
+*)
+(*$END_LIBRARY*)
