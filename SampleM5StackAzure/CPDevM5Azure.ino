@@ -127,6 +127,8 @@ void setup() {
     while (1);
   } 
 
+
+#ifdef USE_SD_XCP
   if (!dcpInfo.Load("/WeJeStSt.dcp"))
   {
     Serial.println("DCP ok");
@@ -141,6 +143,13 @@ void setup() {
     Serial.println("Cannot load DCP ");
     while (1);
   }
+#else
+    out0 = new VMVariable("OUT0", 0, 1); 
+    out1 = new VMVariable("OUT1", 1, 1);
+    out2 = new VMVariable("OUT2", 2, 1);
+    out3 = new VMVariable("OUT3", 3, 1);
+    onof = new VMVariable("ONOF", 4, 1);  
+#endif 
     
   xTaskCreate(
     cpdev_task,    // Function that should be called
