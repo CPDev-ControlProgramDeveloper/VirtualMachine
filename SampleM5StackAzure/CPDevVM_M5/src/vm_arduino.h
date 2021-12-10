@@ -1,4 +1,5 @@
 // enable loading XCP from SD card (not for UNO, too large)
+#define USE_SD_XCP
 
 #ifdef ARDUINO_AVR_UNO
 #ifdef USE_SD_XCP

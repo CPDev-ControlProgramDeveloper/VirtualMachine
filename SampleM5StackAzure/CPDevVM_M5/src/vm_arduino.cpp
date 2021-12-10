@@ -1,6 +1,6 @@
 #include "vm_arduino.h"
 
-#include <arduino.h>
+#include <M5Stack.h>
 
 #ifdef USE_SD_XCP
 

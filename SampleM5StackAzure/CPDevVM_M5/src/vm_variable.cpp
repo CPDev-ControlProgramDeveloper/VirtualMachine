@@ -1,6 +1,6 @@
 #include "vm_variable.h"
 
-#include <arduino.h>
+#include <M5Stack.h>
 
 #ifdef DCP_SUPPORT
 using namespace tinyxml2;

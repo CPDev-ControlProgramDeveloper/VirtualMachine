@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <PROJECT name="WWJ">
+    <METRIC>
+      <COMPANY><![CDATA[Politechnika Rzeszowska / Katedra Informatyki i Automatyki]]></COMPANY>
+      <MANAGER><![CDATA[prof. dr hab. inż. Leszek Trybus, dr hab. inż. Zbigniew Świder prof. PRz]]></MANAGER>
+      <VERSION><![CDATA[1.0]]></VERSION>
+      <CREATED year="2007" month="12" day="7" hour="10" minutes="51" seconds="31" milisec="849" />
+    </METRIC>
+    <OPTIONS>
+      <PV value="00000003" />
+      <II value="0000003F" />
+      <CPVis used="0" />
+      <LC year="2016" month="6" day="13" hour="14" minutes="27" seconds="15" milisec="405" />
+      <LCF>
+        <ABSOLUTE>D:\Zlecone\hsvn_dev\CPDev_root\src\VM\vmspec\VM-Praxis.xml</ABSOLUTE>
+        <APPVARS>D:\Zlecone\hsvn_dev\CPDev_root\src\VM\vmspec\VM-Praxis.xml</APPVARS>
+        <ENVVARS>D:\Zlecone\hsvn_dev\CPDev_root\src\VM\vmspec\VM-Praxis.xml</ENVVARS>
+      </LCF>
+      <CREATOR>1.0</CREATOR>
+      <LASTSAVEDWITH>1.1.3.31</LASTSAVEDWITH>
+      <DCP>
+        <ABSOLUTE>D:\Zlecone\Test\WeJeStSt\WeJeStSt.dcp</ABSOLUTE>
+        <APPVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.dcp</APPVARS>
+        <ENVVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.dcp</ENVVARS>
+      </DCP>
+      <XCP>
+        <ABSOLUTE>D:\Zlecone\Test\WeJeStSt\WeJeStSt.xcp</ABSOLUTE>
+        <APPVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.xcp</APPVARS>
+        <ENVVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.xcp</ENVVARS>
+      </XCP>
+      <HCP>
+        <ABSOLUTE>D:\Zlecone\Test\WeJeStSt\WeJeStSt.hcp</ABSOLUTE>
+        <APPVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.hcp</APPVARS>
+        <ENVVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.hcp</ENVVARS>
+      </HCP>
+      <CST>
+        <ABSOLUTE>D:\Zlecone\Test\WeJeStSt\WeJeStSt.cst</ABSOLUTE>
+        <APPVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.cst</APPVARS>
+        <ENVVARS>D:\Zlecone\Test\WeJeStSt\WeJeStSt.cst</ENVVARS>
+      </CST>
+      <HCPFlags enabled="0" />
+      <OverrideDefaultPaths enabled="0" />
+    </OPTIONS>
+    <LIBRARY />
+    <POU>
+      <ITEM lang="ST" type="PRG" name="GLOWNY" editor="CPDev.ST"><![CDATA[PROGRAM GLOWNY
+VAR
+    Licznik: INT := 0;              (* Wybór aktywnego wyjścia       *)
+    sTime: TIME := t#0s;            (* Czas początkowy cyklu         *)
+    pONOF: BOOL := TRUE;
+    bCOUNT : BOOL := TRUE;
+END_VAR
+
+VAR_EXTERNAL
+    OUT0 : BOOL;
+    OUT1 : BOOL;
+    OUT2 : BOOL;
+    OUT3 : BOOL;
+    ONOF : BOOL;
+END_VAR
+
+IF ONOF AND NOT pONOF THEN bCOUNT := NOT bCOUNT; END_IF;
+pONOF := ONOF;
+
+IF bCOUNT THEN
+IF Licznik = 0 THEN                 (* Pierwszy cykl obliczeniowy    *)
+    sTime := CUR_TIME();            (* Zapamiętaj czas systemowy     *)
+    Licznik := 1;                   (* Aktywacja wyjścia             *)
+END_IF
+IF CUR_TIME()-sTime >= t#2s THEN    (* Jeśli upłynął zadany czas     *)
+    sTime := CUR_TIME();            (* Czas początkowy               *)
+    IF Licznik < 8 THEN             (* Jeśli nie czwarty bit         *)
+        Licznik := Licznik * 2;     (*   to ustaw następny           *)
+    ELSE                            (* W przeciwnym wypadku          *)
+        Licznik := 1;               (*   ustaw najmłodszy bit        *)
+    END_IF
+END_IF
+END_IF;
+
+OUT0 := Licznik = 1;
+OUT1 := Licznik = 2;
+OUT2 := Licznik = 4;
+OUT3 := Licznik = 8;
+
+END_PROGRAM]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+    </POU>
+    <GLOBAL>
+      <ITEM type="VAR" name="OUT0" flags="00004008"><![CDATA[VAR_GLOBAL 
+ OUT0 AT %0000 (*$COMMENT Wyjście diody 0*) : BOOL;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="OUT1" flags="00004008"><![CDATA[VAR_GLOBAL 
+ OUT1 AT %0001 (*$COMMENT Wyjście diody 1*) : BOOL;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="OUT2" flags="00004008"><![CDATA[VAR_GLOBAL 
+ OUT2 AT %0002 (*$COMMENT Wyjście diody 2*) : BOOL;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="OUT3" flags="00004008"><![CDATA[VAR_GLOBAL 
+ OUT3 AT %0003 (*$COMMENT Wyjście diody 3*) : BOOL;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="ONOF" flags="00004008"><![CDATA[VAR_GLOBAL 
+ ONOF AT %0004 (*$COMMENT Wejście przełącznika*) : BOOL;
+END_VAR]]></ITEM>
+    </GLOBAL>
+    <TASK>
+      <ITEM type="TSK" name="Task0001" loop_kind="0" interval="200"><![CDATA[GLOWNY
+]]></ITEM>
+    </TASK>
+  </PROJECT>
+</CPDEV>

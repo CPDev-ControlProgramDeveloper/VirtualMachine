@@ -1,6 +1,8 @@
 #ifndef VM_VARIABLE_H
 #define VM_VARIABLE_H
 
+#define DCP_SUPPORT
+
 #include "VM\vmtaskclass.h"
 #ifdef DCP_SUPPORT
 #include <tinyxml2.h>
