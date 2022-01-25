@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <PROJECT name="TEST_Blink">
+    <METRIC>
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <SUBJECT><![CDATA[]]></SUBJECT>
+      <DESCRIPTION><![CDATA[]]></DESCRIPTION>
+      <CREATED year="2021" month="12" day="12" hour="10" minutes="22" seconds="16" milisec="11" />
+    </METRIC>
+    <OPTIONS>
+      <PV value="00000013" />
+      <II value="00000038" />
+      <CPVis used="0" />
+      <LC year="2021" month="12" day="14" hour="19" minutes="43" seconds="16" milisec="411" />
+      <LCF>
+        <ABSOLUTE>C:\Program Files (x86)\CPDevFBD\VM\VM-Praxis.xml</ABSOLUTE>
+        <APPVARS>$VMsDir\VM-Praxis.xml</APPVARS>
+        <ENVVARS>%ProgramFiles(x86)%\CPDevFBD\VM\VM-Praxis.xml</ENVVARS>
+      </LCF>
+      <CREATOR>1.2.5.4</CREATOR>
+      <LASTSAVEDWITH>1.2.5.4</LASTSAVEDWITH>
+      <DCP>
+        <ABSOLUTE>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.dcp</ABSOLUTE>
+        <APPVARS>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.dcp</APPVARS>
+        <ENVVARS>%OneDriveConsumer%\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.dcp</ENVVARS>
+      </DCP>
+      <XCP>
+        <ABSOLUTE>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.xcp</ABSOLUTE>
+        <APPVARS>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.xcp</APPVARS>
+        <ENVVARS>%OneDriveConsumer%\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.xcp</ENVVARS>
+      </XCP>
+      <HCP>
+        <ABSOLUTE>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.hcp</ABSOLUTE>
+        <APPVARS>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.hcp</APPVARS>
+        <ENVVARS>%OneDriveConsumer%\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.hcp</ENVVARS>
+      </HCP>
+      <CST>
+        <ABSOLUTE>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.cst</ABSOLUTE>
+        <APPVARS>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.cst</APPVARS>
+        <ENVVARS>%OneDriveConsumer%\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.cst</ENVVARS>
+      </CST>
+      <HCPFlags enabled="1" />
+      <OverrideDefaultPaths enabled="0" />
+      <COMPILER>
+        <DEFINE><![CDATA[]]></DEFINE>
+        <UNDEF><![CDATA[]]></UNDEF>
+      </COMPILER>
+    </OPTIONS>
+    <LIBRARY>
+      <PKG name="IEC_61131" version="131073" filename="C:\Program Files (x86)\CPDevFBD\Biblioteki\IEC 61131-3.lcp">
+        <CREATED year="2021" month="3" day="9" hour="21" minutes="58" seconds="41" milisec="409" />
+        <APPVARS>$LibDir\IEC 61131-3.lcp</APPVARS>
+        <ENVVARS>%ProgramFiles(x86)%\CPDevFBD\Biblioteki\IEC 61131-3.lcp</ENVVARS>
+        <IMP name="CTD" type="FBLK" />
+        <IMP name="CTU" type="FBLK" />
+        <IMP name="CTUD" type="FBLK" />
+        <IMP name="F_TRIG" type="FBLK" />
+        <IMP name="R_TRIG" type="FBLK" />
+        <IMP name="RS" type="FBLK" />
+        <IMP name="SEMA" type="FBLK" />
+        <IMP name="SR" type="FBLK" />
+        <IMP name="TOF" type="FBLK" />
+        <IMP name="TON" type="FBLK" />
+        <IMP name="TP" type="FBLK" />
+      </PKG>
+      <PKG name="Basic_blocks" version="196864" filename="C:\Program Files (x86)\CPDevFBD\Biblioteki\Basic_blocks.lcp">
+        <CREATED year="2021" month="3" day="9" hour="21" minutes="58" seconds="44" milisec="358" />
+        <APPVARS>$LibDir\Basic_blocks.lcp</APPVARS>
+        <ENVVARS>%ProgramFiles(x86)%\CPDevFBD\Biblioteki\Basic_blocks.lcp</ENVVARS>
+        <IMP name="RND" type="FUN" />
+        <IMP name="AMEM" type="FBLK" />
+        <IMP name="ASWI" type="FBLK" />
+        <IMP name="BMEM" type="FBLK" />
+        <IMP name="BSWI" type="FBLK" />
+        <IMP name="COMP" type="FBLK" />
+        <IMP name="DEBA" type="FBLK" />
+        <IMP name="DELS" type="FBLK" />
+        <IMP name="DFF" type="FBLK" />
+        <IMP name="DIFR" type="FBLK" />
+        <IMP name="DIVI" type="FBLK" />
+        <IMP name="FILT" type="FBLK" />
+        <IMP name="GENR" type="FBLK" />
+        <IMP name="JKFF" type="FBLK" />
+        <IMP name="LIMT" type="FBLK" />
+        <IMP name="MAT" type="FBLK" />
+        <IMP name="MIT" type="FBLK" />
+        <IMP name="PDUR" type="FBLK" />
+        <IMP name="RAND" type="FBLK" />
+        <IMP name="RSFF" type="FBLK" />
+        <IMP name="SQR" type="FBLK" />
+        <IMP name="SRFF" type="FBLK" />
+        <IMP name="TFF" type="FBLK" />
+        <IMP name="TOTI" type="FBLK" />
+      </PKG>
+    </LIBRARY>
+    <POU>
+      <ITEM lang="ST" disabled="0" type="PRG" name="MAIN" editor="CPDev.ST" virtualFolder=""><![CDATA[PROGRAM MAIN
+ VAR_EXTERNAL (*$AUTO*) END_VAR
+ 
+ VAR
+
+ END_VAR
+ 
+ OUT := NOT OUT;
+ 
+ 
+
+END_PROGRAM]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+    </POU>
+    <GLOBAL>
+      <ITEM type="VAR" name="OUT" flags="00004000" disabled="0" virtualFolder=""><![CDATA[VAR_GLOBAL 
+ OUT : BOOL;
+END_VAR]]></ITEM>
+    </GLOBAL>
+    <TASK>
+      <ITEM type="TSK" name="TASK" loop_kind="0" interval="600"><![CDATA[MAIN
+]]></ITEM>
+    </TASK>
+    <USER_TYPES><![CDATA[]]></USER_TYPES>
+  </PROJECT>
+</CPDEV>

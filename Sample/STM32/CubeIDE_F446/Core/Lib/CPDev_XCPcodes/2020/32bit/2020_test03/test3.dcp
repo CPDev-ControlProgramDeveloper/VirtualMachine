@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <TARGET AddressSize="8" RawCompilerVersion="00040e4d" StringCompilerVersion="0.4.14.77" CF="00000131" SF="000000b0" OP="00000005" LF="00000001" DC="0000000c">
+    <GLOBAL />
+    <VMACH>
+      <FILE_LOC>D:\Zlecone\hsvn_dev\CPDev_root\src\VM\vmspec\VM-Praxis32.xml</FILE_LOC>
+    </VMACH>
+    <TASKS>
+      <TASK LName="TASK" PName="benchmark3.TASK" LoopType="0" Cycle="200" CycleUnit="ms" BodyCodeAddres="0000000a" TaskFlags="00000000" />
+    </TASKS>
+    <MEMORY_MAP Type="code">
+      <file LoadAddr="0" Size="1003">test3.xcp</file>
+      <file_FullName>D:\Zlecone\Grant_FPGA\testy\2\test3.xcp</file_FullName>
+    </MEMORY_MAP>
+    <MEMORY_MAP Type="data">
+      <file LoadAddr="0" Size="148">#dummy</file>
+    </MEMORY_MAP>
+    <MNEMONIC_MAP Type="code">
+:00000000|                                   | :?benchmark3.TASK?TSKSTR                                                        
+:00000000| 1C16 00000000 1A000000            | $VMSYS.CALB #00000000, :?benchmark3.BINARY_OP_TEST?INIT                         
+:0000000a|                                   | :?benchmark3.TASK?TSKLOOP                                                       
+:0000000a| 1C16 00000000 D8000000            | $VMSYS.CALB #00000000, :?benchmark3.BINARY_OP_TEST?CODE                         
+:00000014| 1C1D 0A000000                     | $VMSYS.TRML :?benchmark3.TASK?TSKLOOP                                           
+:0000001a|                                   | :?benchmark3.BINARY_OP_TEST?INIT                                                
+:0000001a| 1C15 00000000 04 E8030000         | $VMSYS.MCD MAX_NUM, #04, #E8030000                                              
+:00000025| 1C15 04000000 04 00000000         | $VMSYS.MCD I, #04, #00000000                                                    
+:00000030| 1C15 08000000 04 00000000         | $VMSYS.MCD S, #04, #00000000                                                    
+:0000003b| 1C15 0C000000 04 00000000         | $VMSYS.MCD F, #04, #00000000                                                    
+:00000046| 1C15 10000000 02 0000             | $VMSYS.MCD J, #02, #0000                                                        
+:0000004f| 1C23 14000000 00 20               | $VMSYS.FPAT BUF, #00, #20                                                       
+:00000057| 1C15 34000000 04 00000000         | $VMSYS.MCD START_TIME, #04, #00000000                                           
+:00000062| 1C15 38000000 04 00000000         | $VMSYS.MCD STOP_TIME, #04, #00000000                                            
+:0000006d| 1C23 3C000000 00 28               | $VMSYS.FPAT BCD, #00, #28                                                       
+:00000075| 1C15 64000000 04 00000000         | $VMSYS.MCD CZAS_OBLICZEN, #04, #00000000                                        
+:00000080| 1C15 12000000 02 0000             | $VMSYS.MCD K, #02, #0000                                                        
+:00000089| 1C15 68000000 02 0000             | $VMSYS.MCD L, #02, #0000                                                        
+:00000092| 1C15 6A000000 01 00               | $VMSYS.MCD ERR, #01, #00                                                        
+:0000009a| 1C15 6C000000 04 01000000         | $VMSYS.MCD ?FOR_INC03DA, #04, #01000000                                         
+:000000a5| 1C15 70000000 02 0100             | $VMSYS.MCD ?FOR_INC03DF, #02, #0100                                             
+:000000ae| 1C15 72000000 02 1F00             | $VMSYS.MCD ?L?CST03E2, #02, #1F00                                               
+:000000b7| 1C15 74000000 04 00000000         | $VMSYS.MCD ?L?CST03E6, #04, #00000000                                           
+:000000c2| 1C15 80000000 02 0000             | $VMSYS.MCD ?L?CST03EB, #02, #0000                                               
+:000000cb| 1C15 88000000 04 01000000         | $VMSYS.MCD ?L?CST0419, #04, #01000000                                           
+:000000d6| 1C13                              | $VMSYS.RETURN                                                                   
+:000000d8|                                   | :?benchmark3.BINARY_OP_TEST?CODE                                                
+;;;;;;;;;|                                   | {B:3!34!860}                                                                    
+;!!!!!!!!|                                   |  ■start_time:=CUR_TIME()■;                                                      
+:000000d8| 1C17 34000000                     | $DEFAULT.CUR_TIME START_TIME                                                    
+;;;;;;;;;|                                   | {E:3!34!882}                                                                    
+;;;;;;;;;|                                   | {B:3!36!888}                                                                    
+;!!!!!!!!|                                   |  ■err:=FALSE■;                                                                  
+:000000de| 1C15 6A000000 01 00               | $VMSYS.MCD ERR, #01, #00                                                        
+;;;;;;;;;|                                   | {E:3!36!898}                                                                    
+:000000e6| 1C15 04000000 04 02000000         | $VMSYS.MCD I, #04, #02000000                                                    
+:000000f1|                                   | :?benchmark3.BINARY_OP_TESTFOR?C03DB                                            
+:000000f1| 1307 6B000000 04000000 00000000   | $DEFAULT.LE ?IF?CTL, I, MAX_NUM                                                 
+:000000ff| 1C02 6B000000 CB030000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTFOR?L03DC                         
+;;;;;;;;;|                                   | {B:3!39!931}                                                                    
+;!!!!!!!!|                                   |   ■f:=1■;                                                                       
+:00000109| 1C15 0C000000 04 01000000         | $VMSYS.MCD F, #04, #01000000                                                    
+;;;;;;;;;|                                   | {E:3!39!935}                                                                    
+:00000114| 1C15 10000000 02 0000             | $VMSYS.MCD J, #02, #0000                                                        
+:0000011d|                                   | :?benchmark3.BINARY_OP_TESTFOR?C03E0                                            
+:0000011d| 1302 6B000000 10000000 72000000   | $DEFAULT.LE ?IF?CTL, J, ?L?CST03E2                                              
+:0000012b| 1C02 6B000000 E3010000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTFOR?L03E1                         
+;;;;;;;;;|                                   | {B:1!41!962}                                                                    
+;!!!!!!!!|                                   |    ■IF (i AND f)&lt;&gt;DWORD#0 THEN ■buf[j]:=TRUE;                                   
+:00000135| 0823 78000000 04000000 0C000000   | $DEFAULT.AND ?F?AND03E7, I, F                                                   
+:00000143| 1507 6B000000 78000000 74000000   | $DEFAULT.NE ?IF?CTL, ?F?AND03E7, ?L?CST03E6                                     
+:00000151| 1C02 6B000000 91010000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTIF?B03E4                          
+;;;;;;;;;|                                   | {E:1!41!989}                                                                    
+;;;;;;;;;|                                   | {B:65537!41!989}                                                                
+;;;;;;;;;|                                   | {B:3!41!989}                                                                    
+;!!!!!!!!|                                   |    IF (i AND f)&lt;&gt;DWORD#0 THEN ■buf[j]:=TRUE■;                                   
+:0000015b| 1C15 7C000000 01 01               | $VMSYS.MCD ?TEMP?03E9, #01, #01                                                 
+:00000163| 1C1F 7E000000 10000000 0200       | $VMSYS.MEMCP ?LAC??TEMP?03E903EA, J, #0200                                      
+:0000016f| 1C2E 7E000000 80000000 72000000   | $VMSYS.CEAC ?LAC??TEMP?03E903EA, ?L?CST03EB, ?L?CST03E2                         
+:0000017d| 1C27 7C000000 14000000 7E000000   | $VMSYS.AOWR ?TEMP?03E9, BUF, ?LAC??TEMP?03E903EA                                
+;;;;;;;;;|                                   | {E:3!41!1001}                                                                   
+;;;;;;;;;|                                   | {E:65537!42!1009}                                                               
+:0000018b| 1C00 C1010000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTIF?E03EC                                  
+:00000191|                                   | :?benchmark3.BINARY_OP_TESTIF?B03E4                                             
+;;;;;;;;;|                                   | {B:131073!42!1014}                                                              
+;;;;;;;;;|                                   | {B:3!42!1014}                                                                   
+;!!!!!!!!|                                   |     ELSE ■buf[j]:=FALSE■;                                                       
+:00000191| 1C15 7D000000 01 00               | $VMSYS.MCD ?TEMP?03ED, #01, #00                                                 
+:00000199| 1C1F 82000000 10000000 0200       | $VMSYS.MEMCP ?LAC??TEMP?03ED03EE, J, #0200                                      
+:000001a5| 1C2E 82000000 80000000 72000000   | $VMSYS.CEAC ?LAC??TEMP?03ED03EE, ?L?CST03EB, ?L?CST03E2                         
+:000001b3| 1C27 7D000000 14000000 82000000   | $VMSYS.AOWR ?TEMP?03ED, BUF, ?LAC??TEMP?03ED03EE                                
+;;;;;;;;;|                                   | {E:3!42!1027}                                                                   
+;;;;;;;;;|                                   | {E:131073!43!1033}                                                              
+:000001c1|                                   | :?benchmark3.BINARY_OP_TESTIF?E03EC                                             
+;;;;;;;;;|                                   | {B:3!44!1045}                                                                   
+;!!!!!!!!|                                   |     ■f:=SHL(f,1)■;                                                              
+:000001c1| 0B03 0C000000 0C000000 70000000   | $DEFAULT.SHL F, F, ?FOR_INC03DF                                                 
+;;;;;;;;;|                                   | {E:3!44!1056}                                                                   
+:000001cf| 0122 10000000 10000000 70000000   | $DEFAULT.ADD J, J, ?FOR_INC03DF                                                 
+:000001dd| 1C00 1D010000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTFOR?C03E0                                 
+:000001e3|                                   | :?benchmark3.BINARY_OP_TESTFOR?L03E1                                            
+;;;;;;;;;|                                   | {B:3!46!1075}                                                                   
+;!!!!!!!!|                                   |   ■s:=0■; f:=1;                                                                 
+:000001e3| 1C15 08000000 04 00000000         | $VMSYS.MCD S, #04, #00000000                                                    
+;;;;;;;;;|                                   | {E:3!46!1079}                                                                   
+;;;;;;;;;|                                   | {B:3!46!1081}                                                                   
+;!!!!!!!!|                                   |   s:=0; ■f:=1■;                                                                 
+:000001ee| 1C15 0C000000 04 01000000         | $VMSYS.MCD F, #04, #01000000                                                    
+;;;;;;;;;|                                   | {E:3!46!1085}                                                                   
+:000001f9| 1C15 10000000 02 0000             | $VMSYS.MCD J, #02, #0000                                                        
+:00000202|                                   | :?benchmark3.BINARY_OP_TESTFOR?C03F5                                            
+:00000202| 1302 6B000000 10000000 72000000   | $DEFAULT.LE ?IF?CTL, J, ?L?CST03E2                                              
+:00000210| 1C02 6B000000 7C020000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTFOR?L03F6                         
+;;;;;;;;;|                                   | {B:1!48!1113}                                                                   
+;!!!!!!!!|                                   |     ■IF buf[j] THEN ■s:=(s OR f); END_IF                                        
+:0000021a| 1C1F 84000000 10000000 0200       | $VMSYS.MEMCP ?LAC?BUF03F9, J, #0200                                             
+:00000226| 1C2E 84000000 80000000 72000000   | $VMSYS.CEAC ?LAC?BUF03F9, ?L?CST03EB, ?L?CST03E2                                
+:00000234| 1C26 6B000000 14000000 84000000   | $VMSYS.AORD ?IF?CTL, BUF, ?LAC?BUF03F9                                          
+:00000242| 1C02 6B000000 5A020000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTIF?B03F8                          
+;;;;;;;;;|                                   | {E:1!48!1128}                                                                   
+;;;;;;;;;|                                   | {B:65537!48!1128}                                                               
+;;;;;;;;;|                                   | {B:3!48!1128}                                                                   
+;!!!!!!!!|                                   |     IF buf[j] THEN ■s:=(s OR f)■; END_IF                                        
+:0000024c| 0923 08000000 08000000 0C000000   | $DEFAULT.OR S, S, F                                                             
+;;;;;;;;;|                                   | {E:3!48!1139}                                                                   
+;;;;;;;;;|                                   | {E:65537!48!1141}                                                               
+:0000025a|                                   | :?benchmark3.BINARY_OP_TESTIF?B03F8                                             
+;;;;;;;;;|                                   | {B:3!49!1153}                                                                   
+;!!!!!!!!|                                   |     ■f:=SHL(f,1)■;                                                              
+:0000025a| 0B03 0C000000 0C000000 70000000   | $DEFAULT.SHL F, F, ?FOR_INC03DF                                                 
+;;;;;;;;;|                                   | {E:3!49!1164}                                                                   
+:00000268| 0122 10000000 10000000 70000000   | $DEFAULT.ADD J, J, ?FOR_INC03DF                                                 
+:00000276| 1C00 02020000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTFOR?C03F5                                 
+:0000027c|                                   | :?benchmark3.BINARY_OP_TESTFOR?L03F6                                            
+;;;;;;;;;|                                   | {B:1!51!1180}                                                                   
+;!!!!!!!!|                                   |   ■IF s&lt;&gt;i THEN ■err:=TRUE; EXIT; END_IF                                        
+:0000027c| 1507 6B000000 08000000 04000000   | $DEFAULT.NE ?IF?CTL, S, I                                                       
+:0000028a| 1C02 6B000000 A2020000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTIF?B0401                          
+;;;;;;;;;|                                   | {E:1!51!1193}                                                                   
+;;;;;;;;;|                                   | {B:65537!51!1193}                                                               
+;;;;;;;;;|                                   | {B:3!51!1193}                                                                   
+;!!!!!!!!|                                   |   IF s&lt;&gt;i THEN ■err:=TRUE■; EXIT; END_IF                                        
+:00000294| 1C15 6A000000 01 01               | $VMSYS.MCD ERR, #01, #01                                                        
+;;;;;;;;;|                                   | {E:3!51!1202}                                                                   
+;;;;;;;;;|                                   | {B:7!51!1204}                                                                   
+;!!!!!!!!|                                   |   IF s&lt;&gt;i THEN err:=TRUE; ■EXIT; ■END_IF                                        
+:0000029c| 1C00 CB030000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTFOR?L03DC                                 
+;;;;;;;;;|                                   | {E:7!51!1210}                                                                   
+;;;;;;;;;|                                   | {E:65537!51!1210}                                                               
+:000002a2|                                   | :?benchmark3.BINARY_OP_TESTIF?B0401                                             
+;;;;;;;;;|                                   | {B:3!53!1223}                                                                   
+;!!!!!!!!|                                   |   ■s:=0■;                                                                       
+:000002a2| 1C15 08000000 04 00000000         | $VMSYS.MCD S, #04, #00000000                                                    
+;;;;;;;;;|                                   | {E:3!53!1227}                                                                   
+:000002ad| 1C15 12000000 02 0000             | $VMSYS.MCD K, #02, #0000                                                        
+:000002b6|                                   | :?benchmark3.BINARY_OP_TESTFOR?C0406                                            
+:000002b6| 1302 6B000000 12000000 72000000   | $DEFAULT.LE ?IF?CTL, K, ?L?CST03E2                                              
+:000002c4| 1C02 6B000000 91030000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTFOR?L0407                         
+;;;;;;;;;|                                   | {B:3!55!1254}                                                                   
+;!!!!!!!!|                                   |    ■f:=i XOR i■;                                                                
+:000002ce| 0A24 0C000000 04000000 04000000   | $DEFAULT.XOR F, I, I                                                            
+;;;;;;;;;|                                   | {E:3!55!1264}                                                                   
+;;;;;;;;;|                                   | {B:3!56!1270}                                                                   
+;!!!!!!!!|                                   |    ■f:=f XOR i■;                                                                
+:000002dc| 0A24 0C000000 0C000000 04000000   | $DEFAULT.XOR F, F, I                                                            
+;;;;;;;;;|                                   | {E:3!56!1280}                                                                   
+:000002ea| 1C15 10000000 02 0100             | $VMSYS.MCD J, #02, #0100                                                        
+:000002f3|                                   | :?benchmark3.BINARY_OP_TESTFOR?C040E                                            
+:000002f3| 0202 86000000 72000000 12000000   | $DEFAULT.SUB ?F?$DEFAULT_SUB0410, ?L?CST03E2, K                                 
+:00000301| 1302 6B000000 10000000 86000000   | $DEFAULT.LE ?IF?CTL, J, ?F?$DEFAULT_SUB0410                                     
+:0000030f| 1C02 6B000000 3B030000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTFOR?L040F                         
+;;;;;;;;;|                                   | {B:3!57!1306}                                                                   
+;!!!!!!!!|                                   |    FOR j:=1 TO 31-k DO ■f:=SHR(f,1)■; END_FOR                                   
+:00000319| 0B13 0C000000 0C000000 70000000   | $DEFAULT.SHR F, F, ?FOR_INC03DF                                                 
+;;;;;;;;;|                                   | {E:3!57!1317}                                                                   
+:00000327| 0122 10000000 10000000 70000000   | $DEFAULT.ADD J, J, ?FOR_INC03DF                                                 
+:00000335| 1C00 F3020000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTFOR?C040E                                 
+:0000033b|                                   | :?benchmark3.BINARY_OP_TESTFOR?L040F                                            
+;;;;;;;;;|                                   | {B:3!58!1331}                                                                   
+;!!!!!!!!|                                   |    ■s:=SHL(s,1)■;                                                               
+:0000033b| 0B03 08000000 08000000 70000000   | $DEFAULT.SHL S, S, ?FOR_INC03DF                                                 
+;;;;;;;;;|                                   | {E:3!58!1342}                                                                   
+;;;;;;;;;|                                   | {B:1!59!1348}                                                                   
+;!!!!!!!!|                                   |    ■IF (f AND DWORD#1)&lt;&gt;DWORD#0 THEN                                            
+;!!!!!!!!|                                   |     ■s:=s OR DWORD#1;                                                           
+:00000349| 0823 8C000000 0C000000 88000000   | $DEFAULT.AND ?F?AND041A, F, ?L?CST0419                                          
+:00000357| 1507 6B000000 8C000000 74000000   | $DEFAULT.NE ?IF?CTL, ?F?AND041A, ?L?CST03E6                                     
+:00000365| 1C02 6B000000 7D030000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTIF?B0417                          
+;;;;;;;;;|                                   | {E:1!60!1386}                                                                   
+;;;;;;;;;|                                   | {B:65537!60!1386}                                                               
+;;;;;;;;;|                                   | {B:3!60!1386}                                                                   
+;!!!!!!!!|                                   |     ■s:=s OR DWORD#1■;                                                          
+:0000036f| 0923 08000000 08000000 88000000   | $DEFAULT.OR S, S, ?L?CST0419                                                    
+;;;;;;;;;|                                   | {E:3!60!1401}                                                                   
+;;;;;;;;;|                                   | {E:65537!61!1407}                                                               
+:0000037d|                                   | :?benchmark3.BINARY_OP_TESTIF?B0417                                             
+:0000037d| 0122 12000000 12000000 70000000   | $DEFAULT.ADD K, K, ?FOR_INC03DF                                                 
+:0000038b| 1C00 B6020000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTFOR?C0406                                 
+:00000391|                                   | :?benchmark3.BINARY_OP_TESTFOR?L0407                                            
+;;;;;;;;;|                                   | {B:1!63!1430}                                                                   
+;!!!!!!!!|                                   |   ■IF s&lt;&gt;i THEN ■err:=TRUE; EXIT; END_IF                                        
+:00000391| 1507 6B000000 08000000 04000000   | $DEFAULT.NE ?IF?CTL, S, I                                                       
+:0000039f| 1C02 6B000000 B7030000            | $VMSYS.JZ ?IF?CTL, :?benchmark3.BINARY_OP_TESTIF?B0420                          
+;;;;;;;;;|                                   | {E:1!63!1443}                                                                   
+;;;;;;;;;|                                   | {B:65537!63!1443}                                                               
+;;;;;;;;;|                                   | {B:3!63!1443}                                                                   
+;!!!!!!!!|                                   |   IF s&lt;&gt;i THEN ■err:=TRUE■; EXIT; END_IF                                        
+:000003a9| 1C15 6A000000 01 01               | $VMSYS.MCD ERR, #01, #01                                                        
+;;;;;;;;;|                                   | {E:3!63!1452}                                                                   
+;;;;;;;;;|                                   | {B:7!63!1454}                                                                   
+;!!!!!!!!|                                   |   IF s&lt;&gt;i THEN err:=TRUE; ■EXIT; ■END_IF                                        
+:000003b1| 1C00 CB030000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTFOR?L03DC                                 
+;;;;;;;;;|                                   | {E:7!63!1460}                                                                   
+;;;;;;;;;|                                   | {E:65537!63!1460}                                                               
+:000003b7|                                   | :?benchmark3.BINARY_OP_TESTIF?B0420                                             
+:000003b7| 0127 04000000 04000000 6C000000   | $DEFAULT.ADD I, I, ?FOR_INC03DA                                                 
+:000003c5| 1C00 F1000000                     | $VMSYS.JMP :?benchmark3.BINARY_OP_TESTFOR?C03DB                                 
+:000003cb|                                   | :?benchmark3.BINARY_OP_TESTFOR?L03DC                                            
+;;;;;;;;;|                                   | {B:3!66!1488}                                                                   
+;!!!!!!!!|                                   |  ■stop_time:=CUR_TIME()■;                                                       
+:000003cb| 1C17 38000000                     | $DEFAULT.CUR_TIME STOP_TIME                                                     
+;;;;;;;;;|                                   | {E:3!66!1509}                                                                   
+;;;;;;;;;|                                   | {B:3!69!1579}                                                                   
+;!!!!!!!!|                                   |  ■czas_obliczen:=TIME_TO_DINT(stop_time - start_time)■;                         
+:000003d1| 020B 90000000 38000000 34000000   | $DEFAULT.SUB ?F?$DEFAULT_SUB0427, STOP_TIME, START_TIME                         
+:000003df| 1902 64000000 90000000            | $DEFAULT.TIME_TO_DINT CZAS_OBLICZEN, ?F?$DEFAULT_SUB0427                        
+;;;;;;;;;|                                   | {E:3!69!1630}                                                                   
+:000003e9| 1C13                              | $VMSYS.RETURN                                                                   
+:000003eb 
+</MNEMONIC_MAP>
+    <DATA_MAP>
+      <OBJ ObjType="TASK" LName="TASK" PName="benchmark3.TASK" Addr="00000000" AdrType="gdlabel" Size="148">
+        <OBJ ObjType="VAR" LName="BINARY_OP_TEST_01" PName="benchmark3.TASK.BINARY_OP_TEST_01" Addr="00000000" AdrType="rdlabel" CAddr="00000000" CAdrType="gdlabel" Size="148" Type="BINARY_OP_TEST" PType="benchmark3.BINARY_OP_TEST" TypeStatus="program" VFlags="00000000">
+          <OBJ ObjType="VAR" LName="MAX_NUM" PName="benchmark3.TASK.BINARY_OP_TEST_01.MAX_NUM" Addr="00000000" AdrType="rdlabel" CAddr="00000000" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000004" ConstValue="DWORD#1000" />
+          <OBJ ObjType="VAR" LName="I" PName="benchmark3.TASK.BINARY_OP_TEST_01.I" Addr="00000004" AdrType="rdlabel" CAddr="00000004" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="S" PName="benchmark3.TASK.BINARY_OP_TEST_01.S" Addr="00000008" AdrType="rdlabel" CAddr="00000008" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="F" PName="benchmark3.TASK.BINARY_OP_TEST_01.F" Addr="0000000c" AdrType="rdlabel" CAddr="0000000c" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="J" PName="benchmark3.TASK.BINARY_OP_TEST_01.J" Addr="00000010" AdrType="rdlabel" CAddr="00000010" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="BUF" PName="benchmark3.TASK.BINARY_OP_TEST_01.BUF" Addr="00000014" AdrType="rdlabel" CAddr="00000014" CAdrType="gdlabel" Size="32" Type="?BUF?ARRAY?03D5" PType="benchmark3.BINARY_OP_TEST.?BUF?ARRAY?03D5" TypeStatus="array" VFlags="00000000" ArrayBase="BOOL" ArrayBaseP="$DEFAULT.BOOL">
+            <DIMENSIONS>
+              <LEVEL No="0" LoBound="0" UpBound="31" />
+            </DIMENSIONS>
+            <OBJ ObjType="VAR" LName="?BUF?ARRAY?03D5?LOW?00" PName="benchmark3.TASK.BINARY_OP_TEST_01.BUF.?BUF?ARRAY?03D5?LOW?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="0" />
+            <OBJ ObjType="VAR" LName="?BUF?ARRAY?03D5?UPR?00" PName="benchmark3.TASK.BINARY_OP_TEST_01.BUF.?BUF?ARRAY?03D5?UPR?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="31" />
+          </OBJ>
+          <OBJ ObjType="VAR" LName="START_TIME" PName="benchmark3.TASK.BINARY_OP_TEST_01.START_TIME" Addr="00000034" AdrType="rdlabel" CAddr="00000034" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="STOP_TIME" PName="benchmark3.TASK.BINARY_OP_TEST_01.STOP_TIME" Addr="00000038" AdrType="rdlabel" CAddr="00000038" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="BCD" PName="benchmark3.TASK.BINARY_OP_TEST_01.BCD" Addr="0000003c" AdrType="rdlabel" CAddr="0000003c" CAdrType="gdlabel" Size="40" Type="?BCD?ARRAY?03D6" PType="benchmark3.BINARY_OP_TEST.?BCD?ARRAY?03D6" TypeStatus="array" VFlags="00000000" ArrayBase="DINT" ArrayBaseP="$DEFAULT.DINT">
+            <DIMENSIONS>
+              <LEVEL No="0" LoBound="0" UpBound="9" />
+            </DIMENSIONS>
+            <OBJ ObjType="VAR" LName="?BCD?ARRAY?03D6?LOW?00" PName="benchmark3.TASK.BINARY_OP_TEST_01.BCD.?BCD?ARRAY?03D6?LOW?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="0" />
+            <OBJ ObjType="VAR" LName="?BCD?ARRAY?03D6?UPR?00" PName="benchmark3.TASK.BINARY_OP_TEST_01.BCD.?BCD?ARRAY?03D6?UPR?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="9" />
+          </OBJ>
+          <OBJ ObjType="VAR" LName="CZAS_OBLICZEN" PName="benchmark3.TASK.BINARY_OP_TEST_01.CZAS_OBLICZEN" Addr="00000064" AdrType="rdlabel" CAddr="00000064" CAdrType="gdlabel" Size="4" Type="DINT" PType="$DEFAULT.DINT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="K" PName="benchmark3.TASK.BINARY_OP_TEST_01.K" Addr="00000012" AdrType="rdlabel" CAddr="00000012" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="L" PName="benchmark3.TASK.BINARY_OP_TEST_01.L" Addr="00000068" AdrType="rdlabel" CAddr="00000068" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="ERR" PName="benchmark3.TASK.BINARY_OP_TEST_01.ERR" Addr="0000006a" AdrType="rdlabel" CAddr="0000006a" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?FOR_INC03DA" PName="benchmark3.TASK.BINARY_OP_TEST_01.?FOR_INC03DA" Addr="0000006c" AdrType="rdlabel" CAddr="0000006c" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100004" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?IF?CTL" PName="benchmark3.TASK.BINARY_OP_TEST_01.?IF?CTL" Addr="0000006b" AdrType="rdlabel" CAddr="0000006b" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?FOR_INC03DF" PName="benchmark3.TASK.BINARY_OP_TEST_01.?FOR_INC03DF" Addr="00000070" AdrType="rdlabel" CAddr="00000070" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?L?CST03E2" PName="benchmark3.TASK.BINARY_OP_TEST_01.?L?CST03E2" Addr="00000072" AdrType="rdlabel" CAddr="00000072" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="31" />
+          <OBJ ObjType="VAR" LName="?L?CST03E6" PName="benchmark3.TASK.BINARY_OP_TEST_01.?L?CST03E6" Addr="00000074" AdrType="rdlabel" CAddr="00000074" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100000" ConstValue="DWORD#0" />
+          <OBJ ObjType="VAR" LName="?F?AND03E7" PName="benchmark3.TASK.BINARY_OP_TEST_01.?F?AND03E7" Addr="00000078" AdrType="rdlabel" CAddr="00000078" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?TEMP?03E9" PName="benchmark3.TASK.BINARY_OP_TEST_01.?TEMP?03E9" Addr="0000007c" AdrType="rdlabel" CAddr="0000007c" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?LAC??TEMP?03E903EA" PName="benchmark3.TASK.BINARY_OP_TEST_01.?LAC??TEMP?03E903EA" Addr="0000007e" AdrType="rdlabel" CAddr="0000007e" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?L?CST03EB" PName="benchmark3.TASK.BINARY_OP_TEST_01.?L?CST03EB" Addr="00000080" AdrType="rdlabel" CAddr="00000080" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="0" />
+          <OBJ ObjType="VAR" LName="?TEMP?03ED" PName="benchmark3.TASK.BINARY_OP_TEST_01.?TEMP?03ED" Addr="0000007d" AdrType="rdlabel" CAddr="0000007d" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?LAC??TEMP?03ED03EE" PName="benchmark3.TASK.BINARY_OP_TEST_01.?LAC??TEMP?03ED03EE" Addr="00000082" AdrType="rdlabel" CAddr="00000082" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?LAC?BUF03F9" PName="benchmark3.TASK.BINARY_OP_TEST_01.?LAC?BUF03F9" Addr="00000084" AdrType="rdlabel" CAddr="00000084" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?F?$DEFAULT_SUB0410" PName="benchmark3.TASK.BINARY_OP_TEST_01.?F?$DEFAULT_SUB0410" Addr="00000086" AdrType="rdlabel" CAddr="00000086" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?L?CST0419" PName="benchmark3.TASK.BINARY_OP_TEST_01.?L?CST0419" Addr="00000088" AdrType="rdlabel" CAddr="00000088" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100000" ConstValue="DWORD#1" />
+          <OBJ ObjType="VAR" LName="?F?AND041A" PName="benchmark3.TASK.BINARY_OP_TEST_01.?F?AND041A" Addr="0000008c" AdrType="rdlabel" CAddr="0000008c" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?F?$DEFAULT_SUB0427" PName="benchmark3.TASK.BINARY_OP_TEST_01.?F?$DEFAULT_SUB0427" Addr="00000090" AdrType="rdlabel" CAddr="00000090" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00200000" />
+        </OBJ>
+      </OBJ>
+    </DATA_MAP>
+    <INFO>
+      <DT_EXPORT year="2020" month="2" day="13" hour="9" minutes="46" seconds="56" milisec="153" />
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2009" month="10" day="3" hour="16" minutes="42" seconds="9" milisec="281" />
+      <PHYSVER value="120" />
+      <LAST_COMPILED year="2020" month="2" day="13" hour="9" minutes="46" seconds="55" milisec="812" />
+    </INFO>
+  </TARGET>
+</CPDEV>

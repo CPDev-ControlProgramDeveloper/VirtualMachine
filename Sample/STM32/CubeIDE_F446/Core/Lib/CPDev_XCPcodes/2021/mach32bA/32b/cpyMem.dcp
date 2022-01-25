@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <TARGET AddressSize="8" RawCompilerVersion="00041116" StringCompilerVersion="0.4.17.22" CF="00004131" SF="000002b0" OP="00000005" LF="00000001" DC="0000002c">
+    <GLOBAL />
+    <VMACH>
+      <FILE_LOC>VM\VM-Praxis32ARM.xml</FILE_LOC>
+    </VMACH>
+    <TASKS>
+      <TASK LName="TASK" PName="CpyMem.TASK" LoopType="0" Cycle="250" CycleUnit="ms" BodyCodeAddres="0000000c" TaskFlags="00000000" />
+    </TASKS>
+    <MEMORY_MAP Type="code">
+      <file LoadAddr="0" Size="436">cpyMem.xcp</file>
+      <file_FullName>C:\Users\bartek\source\repos\VMLinux\VMLinux\xcp\2021\mach32bA\32b\cpyMem.xcp</file_FullName>
+    </MEMORY_MAP>
+    <MEMORY_MAP Type="data">
+      <file LoadAddr="0" Size="198">#dummy</file>
+    </MEMORY_MAP>
+    <MNEMONIC_MAP Type="code">
+:00000000|                                   | :?CpyMem.TASK?TSKSTR                                                            
+:00000000| 1C160000 00000000 20000000        | $VMSYS.CALB #00000000, :?CpyMem.CPYMEM_DWORD?INIT                               
+:0000000c|                                   | :?CpyMem.TASK?TSKLOOP                                                           
+:0000000c| 1C160000 00000000 8C000000        | $VMSYS.CALB #00000000, :?CpyMem.CPYMEM_DWORD?CODE                               
+:00000018| 1C1D0000 0C000000                 | $VMSYS.TRML :?CpyMem.TASK?TSKLOOP                                               
+:00000020|                                   | :?CpyMem.CPYMEM_DWORD?INIT                                                      
+:00000020| 1C380000 00000000 0000 5000       | $VMSYS.FPAT4A BUF1, #0000, #5000                                                
+:0000002c| 1C380000 50000000 0000 5000       | $VMSYS.FPAT4A BUF2, #0000, #5000                                                
+:00000038| 1C370000 A0000000 02000000 0000F… | $VMSYS.MCD4A I, #02000000, #0000FFFF                                            
+:00000038| FFF                               |                                                                                 
+:00000048| 1C370000 A2000000 02000000 0100F… | $VMSYS.MCD4A ?FOR_INC0009, #02000000, #0100FFFF                                 
+:00000048| FFF                               |                                                                                 
+:00000058| 1C370000 A6000000 02000000 1300F… | $VMSYS.MCD4A ?L?CST000C, #02000000, #1300FFFF                                   
+:00000058| FFF                               |                                                                                 
+:00000068| 1C370000 AC000000 04000000 03000… | $VMSYS.MCD4A ?L?CST000F, #04000000, #03000000                                   
+:00000068| 000                               |                                                                                 
+:00000078| 1C370000 B2000000 02000000 0000F… | $VMSYS.MCD4A ?L?CST0011, #02000000, #0000FFFF                                   
+:00000078| FFF                               |                                                                                 
+:00000088| 1C130000                          | $VMSYS.RETURN                                                                   
+:0000008c|                                   | :?CpyMem.CPYMEM_DWORD?CODE                                                      
+:0000008c| 1C370000 A0000000 02000000 0000F… | $VMSYS.MCD4A I, #02000000, #0000FFFF                                            
+:0000008c| FFF                               |                                                                                 
+:0000009c|                                   | :?CpyMem.CPYMEM_DWORDFOR?C000A                                                  
+:0000009c| 13020000 A4000000 A0000000 A6000… | $DEFAULT.LE ?IF?CTL, I, ?L?CST000C                                              
+:0000009c| 000                               |                                                                                 
+:000000ac| 1C020000 A4000000 B0010000        | $VMSYS.JZ ?IF?CTL, :?CpyMem.CPYMEM_DWORDFOR?L000B                               
+;;;;;;;;;|                                   | {B:3!12!205}                                                                    
+;!!!!!!!!|                                   |      ■buf1[i] := (buf2[i] + DWORD#3)■;                                          
+:000000b8| 1C390000 B0000000 A0000000 02000… | $VMSYS.MEMCP4A ?LAC?BUF20010, I, #02000000                                      
+:000000b8| 000                               |                                                                                 
+:000000c8| 1C2E0000 B0000000 B2000000 A6000… | $VMSYS.CEAC ?LAC?BUF20010, ?L?CST0011, ?L?CST000C                               
+:000000c8| 000                               |                                                                                 
+:000000d8| 1C2A0000 B4000000 50000000 B0000… | $VMSYS.AFRD ?LRDA?BUF20012, BUF2, ?LAC?BUF20010                                 
+:000000d8| 000                               |                                                                                 
+:000000e8| 01270000 A8000000 B4000000 AC000… | $DEFAULT.ADD ?TEMP?000E, ?LRDA?BUF20012, ?L?CST000F                             
+:000000e8| 000                               |                                                                                 
+:000000f8| 1C390000 B8000000 A0000000 02000… | $VMSYS.MEMCP4A ?LAC?BUF10014, I, #02000000                                      
+:000000f8| 000                               |                                                                                 
+:00000108| 1C2E0000 B8000000 B2000000 A6000… | $VMSYS.CEAC ?LAC?BUF10014, ?L?CST0011, ?L?CST000C                               
+:00000108| 000                               |                                                                                 
+:00000118| 1C2B0000 A8000000 00000000 B8000… | $VMSYS.AFWR ?TEMP?000E, BUF1, ?LAC?BUF10014                                     
+:00000118| 000                               |                                                                                 
+;;;;;;;;;|                                   | {E:3!12!235}                                                                    
+;;;;;;;;;|                                   | {B:3!13!243}                                                                    
+;!!!!!!!!|                                   |      ■buf2[i] := (buf1[i] mod DWORD#3)■;                                        
+:00000128| 1C390000 BA000000 A0000000 02000… | $VMSYS.MEMCP4A ?LAC?BUF10016, I, #02000000                                      
+:00000128| 000                               |                                                                                 
+:00000138| 1C2E0000 BA000000 B2000000 A6000… | $VMSYS.CEAC ?LAC?BUF10016, ?L?CST0011, ?L?CST000C                               
+:00000138| 000                               |                                                                                 
+:00000148| 1C2A0000 C0000000 00000000 BA000… | $VMSYS.AFRD ?LRDA?BUF10017, BUF1, ?LAC?BUF10016                                 
+:00000148| 000                               |                                                                                 
+:00000158| 04170000 BC000000 C0000000 AC000… | $DEFAULT.MOD ?TEMP?0015, ?LRDA?BUF10017, ?L?CST000F                             
+:00000158| 000                               |                                                                                 
+:00000168| 1C390000 C4000000 A0000000 02000… | $VMSYS.MEMCP4A ?LAC?BUF20019, I, #02000000                                      
+:00000168| 000                               |                                                                                 
+:00000178| 1C2E0000 C4000000 B2000000 A6000… | $VMSYS.CEAC ?LAC?BUF20019, ?L?CST0011, ?L?CST000C                               
+:00000178| 000                               |                                                                                 
+:00000188| 1C2B0000 BC000000 50000000 C4000… | $VMSYS.AFWR ?TEMP?0015, BUF2, ?LAC?BUF20019                                     
+:00000188| 000                               |                                                                                 
+;;;;;;;;;|                                   | {E:3!13!275}                                                                    
+:00000198| 01220000 A0000000 A0000000 A2000… | $DEFAULT.ADD I, I, ?FOR_INC0009                                                 
+:00000198| 000                               |                                                                                 
+:000001a8| 1C000000 9C000000                 | $VMSYS.JMP :?CpyMem.CPYMEM_DWORDFOR?C000A                                       
+:000001b0|                                   | :?CpyMem.CPYMEM_DWORDFOR?L000B                                                  
+:000001b0| 1C130000                          | $VMSYS.RETURN                                                                   
+:000001b4 
+</MNEMONIC_MAP>
+    <DATA_MAP>
+      <OBJ ObjType="TASK" LName="TASK" PName="CpyMem.TASK" Addr="00000000" AdrType="gdlabel" Size="197">
+        <OBJ ObjType="VAR" LName="CPYMEM_DWORD_01" PName="CpyMem.TASK.CPYMEM_DWORD_01" Addr="00000000" AdrType="rdlabel" CAddr="00000000" CAdrType="gdlabel" Size="197" Type="CPYMEM_DWORD" PType="CpyMem.CPYMEM_DWORD" TypeStatus="program" VFlags="00000000" TypeCRC="70CB0974">
+          <OBJ ObjType="VAR" LName="BUF1" PName="CpyMem.TASK.CPYMEM_DWORD_01.BUF1" Addr="00000000" AdrType="rdlabel" CAddr="00000000" CAdrType="gdlabel" Size="80" Type="?BUF1?ARRAY?0001" PType="CpyMem.CPYMEM_DWORD.?BUF1?ARRAY?0001" TypeStatus="array" VFlags="00000000" TypeCRC="514C07C1" ArrayBase="DWORD" ArrayBaseP="$DEFAULT.DWORD">
+            <DIMENSIONS>
+              <LEVEL No="0" LoBound="0" UpBound="19" />
+            </DIMENSIONS>
+            <OBJ ObjType="VAR" LName="?BUF1?ARRAY?0001?LOW?00" PName="CpyMem.TASK.CPYMEM_DWORD_01.BUF1.?BUF1?ARRAY?0001?LOW?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" TypeCRC="DC550720" ConstValue="0" />
+            <OBJ ObjType="VAR" LName="?BUF1?ARRAY?0001?UPR?00" PName="CpyMem.TASK.CPYMEM_DWORD_01.BUF1.?BUF1?ARRAY?0001?UPR?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" TypeCRC="DC550720" ConstValue="19" />
+          </OBJ>
+          <OBJ ObjType="VAR" LName="BUF2" PName="CpyMem.TASK.CPYMEM_DWORD_01.BUF2" Addr="00000050" AdrType="rdlabel" CAddr="00000050" CAdrType="gdlabel" Size="80" Type="?BUF2?ARRAY?0002" PType="CpyMem.CPYMEM_DWORD.?BUF2?ARRAY?0002" TypeStatus="array" VFlags="00000000" TypeCRC="9F52CD4D" ArrayBase="DWORD" ArrayBaseP="$DEFAULT.DWORD">
+            <DIMENSIONS>
+              <LEVEL No="0" LoBound="0" UpBound="19" />
+            </DIMENSIONS>
+            <OBJ ObjType="VAR" LName="?BUF2?ARRAY?0002?LOW?00" PName="CpyMem.TASK.CPYMEM_DWORD_01.BUF2.?BUF2?ARRAY?0002?LOW?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" TypeCRC="DC550720" ConstValue="0" />
+            <OBJ ObjType="VAR" LName="?BUF2?ARRAY?0002?UPR?00" PName="CpyMem.TASK.CPYMEM_DWORD_01.BUF2.?BUF2?ARRAY?0002?UPR?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" TypeCRC="DC550720" ConstValue="19" />
+          </OBJ>
+          <OBJ ObjType="VAR" LName="I" PName="CpyMem.TASK.CPYMEM_DWORD_01.I" Addr="000000a0" AdrType="rdlabel" CAddr="000000a0" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" TypeCRC="DC550720" />
+          <OBJ ObjType="VAR" LName="?FOR_INC0009" PName="CpyMem.TASK.CPYMEM_DWORD_01.?FOR_INC0009" Addr="000000a2" AdrType="rdlabel" CAddr="000000a2" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" TypeCRC="DC550720" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?IF?CTL" PName="CpyMem.TASK.CPYMEM_DWORD_01.?IF?CTL" Addr="000000a4" AdrType="rdlabel" CAddr="000000a4" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" TypeCRC="D275EFCD" />
+          <OBJ ObjType="VAR" LName="?L?CST000C" PName="CpyMem.TASK.CPYMEM_DWORD_01.?L?CST000C" Addr="000000a6" AdrType="rdlabel" CAddr="000000a6" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="19" />
+          <OBJ ObjType="VAR" LName="?TEMP?000E" PName="CpyMem.TASK.CPYMEM_DWORD_01.?TEMP?000E" Addr="000000a8" AdrType="rdlabel" CAddr="000000a8" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C017F217" />
+          <OBJ ObjType="VAR" LName="?L?CST000F" PName="CpyMem.TASK.CPYMEM_DWORD_01.?L?CST000F" Addr="000000ac" AdrType="rdlabel" CAddr="000000ac" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100000" TypeCRC="C017F217" ConstValue="DWORD#3" />
+          <OBJ ObjType="VAR" LName="?LAC?BUF20010" PName="CpyMem.TASK.CPYMEM_DWORD_01.?LAC?BUF20010" Addr="000000b0" AdrType="rdlabel" CAddr="000000b0" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" TypeCRC="DC550720" />
+          <OBJ ObjType="VAR" LName="?L?CST0011" PName="CpyMem.TASK.CPYMEM_DWORD_01.?L?CST0011" Addr="000000b2" AdrType="rdlabel" CAddr="000000b2" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="0" />
+          <OBJ ObjType="VAR" LName="?LRDA?BUF20012" PName="CpyMem.TASK.CPYMEM_DWORD_01.?LRDA?BUF20012" Addr="000000b4" AdrType="rdlabel" CAddr="000000b4" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C017F217" />
+          <OBJ ObjType="VAR" LName="?LAC?BUF10014" PName="CpyMem.TASK.CPYMEM_DWORD_01.?LAC?BUF10014" Addr="000000b8" AdrType="rdlabel" CAddr="000000b8" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" TypeCRC="DC550720" />
+          <OBJ ObjType="VAR" LName="?TEMP?0015" PName="CpyMem.TASK.CPYMEM_DWORD_01.?TEMP?0015" Addr="000000bc" AdrType="rdlabel" CAddr="000000bc" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C017F217" />
+          <OBJ ObjType="VAR" LName="?LAC?BUF10016" PName="CpyMem.TASK.CPYMEM_DWORD_01.?LAC?BUF10016" Addr="000000ba" AdrType="rdlabel" CAddr="000000ba" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" TypeCRC="DC550720" />
+          <OBJ ObjType="VAR" LName="?LRDA?BUF10017" PName="CpyMem.TASK.CPYMEM_DWORD_01.?LRDA?BUF10017" Addr="000000c0" AdrType="rdlabel" CAddr="000000c0" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C017F217" />
+          <OBJ ObjType="VAR" LName="?LAC?BUF20019" PName="CpyMem.TASK.CPYMEM_DWORD_01.?LAC?BUF20019" Addr="000000c4" AdrType="rdlabel" CAddr="000000c4" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" TypeCRC="DC550720" />
+        </OBJ>
+      </OBJ>
+    </DATA_MAP>
+    <INFO>
+      <DT_EXPORT year="2021" month="12" day="17" hour="18" minutes="27" seconds="6" milisec="732" />
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2021" month="12" day="15" hour="9" minutes="13" seconds="1" milisec="60" />
+      <PHYSVER value="37" />
+      <LAST_COMPILED year="2021" month="12" day="17" hour="18" minutes="27" seconds="6" milisec="308" />
+    </INFO>
+  </TARGET>
+</CPDEV>

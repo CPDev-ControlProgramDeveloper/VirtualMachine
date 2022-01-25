@@ -1,0 +1,52 @@
+(*$LIBRARY benchmark1*)
+(*$IMPORT IEC_61131
+filename: 'C:\Program Files (x86)\CPDevFBD\Biblioteki\IEC 61131-3.lcp'
+version: '0.2.0.1'
+timestamp: '2020-01-18-11:51:22.648'
+fblks: CTD, CTU, CTUD, F_TRIG, R_TRIG, RS, SEMA, SR, TOF, TON, TP
+*)
+(* GLOBAL VARIABLES *)
+(* USER POUs *)
+(* Wyliczania liczb doskona³ych *)
+PROGRAM PERFECT_NUMBERS
+ VAR CONSTANT
+  MAX_NUM : DWORD := DWORD#1000; (* górna granica zakresu poszukiwania liczb doskona³ych *)
+ END_VAR
+
+ VAR
+  i,j,s:DWORD;
+  p_numbers: ARRAY [0..7] OF DWORD;
+  indx: INT;
+  start_time,stop_time : TIME;
+  czas_obliczen : DINT;
+ END_VAR
+
+(* zasadnicza czêœæ testu - nie nale¿y modyfikowaæ *)
+ start_time:=CUR_TIME();
+ indx:=0;
+ FOR i:=3 TO MAX_NUM DO
+  s:=1; j:=2;
+   
+  WHILE j<i DO
+    IF(i MOD j)=DWORD#0 THEN s:=s+j; END_IF
+    j:=j+DWORD#1;
+  END_WHILE
+    
+  IF s=i THEN p_numbers[indx]:=i; indx:=indx+1; END_IF      
+ END_FOR
+ stop_time:=CUR_TIME();
+ (* koniec pêtli pomiarowej *)
+ 
+ czas_obliczen:=TIME_TO_DINT(stop_time - start_time);
+ (* trzeba jakos wyprowadziæ tê zmienn¹... *)
+
+
+END_PROGRAM
+
+(*$TASKS 
+.TASK TASK
+.LOOPPARAM 0 200
+PERFECT_NUMBERS
+.END_TASK
+*)
+(*$END_LIBRARY*)

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <PROJECT name="benchmark1">
+    <METRIC>
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2009" month="10" day="3" hour="16" minutes="42" seconds="9" milisec="281" />
+    </METRIC>
+    <OPTIONS>
+      <PV value="00000022" />
+      <II value="00000038" />
+      <LC year="2010" month="3" day="10" hour="22" minutes="18" seconds="23" milisec="812" />
+      <LCF>
+        <ABSOLUTE>C:\Program Files\CPDev\VM\VM-FPGA.xml</ABSOLUTE>
+        <APPVARS>$VMsDir\VM-FPGA.xml</APPVARS>
+        <ENVVARS>%ProgramFiles%\CPDev\VM\VM-FPGA.xml</ENVVARS>
+      </LCF>
+    </OPTIONS>
+    <LIBRARY>
+      <PKG name="IEC_61131" version="131072" filename="C:\Program Files\CPDev\Biblioteki\IEC 61131-3.lcp">
+        <CREATED year="2010" month="1" day="28" hour="11" minutes="51" seconds="36" milisec="500" />
+        <APPVARS>$LibDir\IEC 61131-3.lcp</APPVARS>
+        <ENVVARS>%ProgramFiles%\CPDev\Biblioteki\IEC 61131-3.lcp</ENVVARS>
+        <IMP name="CTD" type="FBLK" />
+        <IMP name="CTU" type="FBLK" />
+        <IMP name="CTUD" type="FBLK" />
+        <IMP name="F_TRIG" type="FBLK" />
+        <IMP name="R_TRIG" type="FBLK" />
+        <IMP name="RS" type="FBLK" />
+        <IMP name="SEMA" type="FBLK" />
+        <IMP name="SR" type="FBLK" />
+        <IMP name="TOF" type="FBLK" />
+        <IMP name="TON" type="FBLK" />
+        <IMP name="TP" type="FBLK" />
+      </PKG>
+    </LIBRARY>
+    <POU>
+      <ITEM lang="ST" type="PRG" name="PERFECT_NUMBERS"><![CDATA[(* Wyliczania liczb doskonałych *)
+PROGRAM PERFECT_NUMBERS
+ VAR CONSTANT
+  MAX_NUM : DWORD := DWORD#1000; (* górna granica zakresu poszukiwania liczb doskonałych *)
+ END_VAR
+
+ VAR
+  i,j,s:DWORD;
+  p_numbers: ARRAY [0..7] OF DWORD;
+  indx: INT;
+  start_time,stop_time : TIME;
+  czas_obliczen : DINT;
+ END_VAR
+
+(* zasadnicza część testu - nie należy modyfikować *)
+ start_time:=CUR_TIME();
+ indx:=0;
+ FOR i:=3 TO MAX_NUM DO
+  s:=1; j:=2;
+   
+  WHILE j<i DO
+    IF(i MOD j)=DWORD#0 THEN s:=s+j; END_IF
+    j:=j+DWORD#1;
+  END_WHILE
+    
+  IF s=i THEN p_numbers[indx]:=i; indx:=indx+1; END_IF      
+ END_FOR
+ stop_time:=CUR_TIME();
+ (* koniec pętli pomiarowej *)
+ 
+ czas_obliczen:=TIME_TO_DINT(stop_time - start_time);
+ (* trzeba jakos wyprowadzić tę zmienną... *)
+
+
+END_PROGRAM]]></ITEM>
+    </POU>
+    <GLOBAL />
+    <TASK>
+      <ITEM type="TSK" name="TASK" loop_kind="0" interval="200"><![CDATA[PERFECT_NUMBERS
+]]></ITEM>
+    </TASK>
+  </PROJECT>
+</CPDEV>

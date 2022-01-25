@@ -1,0 +1,79 @@
+(*$LIBRARY CpyMem*)
+(*$IMPORT IEC_61131
+filename: 'C:\Program Files (x86)\CPDevFBD\Biblioteki\IEC 61131-3.lcp'
+version: '0.2.0.1'
+timestamp: '2021-03-09-21:58:41.409'
+fblks: CTD, CTU, CTUD, F_TRIG, R_TRIG, RS, SEMA, SR, TOF, TON, TP
+*)
+(*$IMPORT Basic_blocks
+filename: 'C:\Program Files (x86)\CPDevFBD\Biblioteki\Basic_blocks.lcp'
+version: '0.3.1.0'
+timestamp: '2021-03-09-21:58:44.358'
+funs: RND
+fblks: AMEM, ASWI, BMEM, BSWI, COMP, DEBA, DELS, DFF, DIFR, DIVI, FILT, GENR, JKFF, LIMT, MAT, MIT, PDUR, RAND, RSFF, SQR, SRFF, TFF, TOTI
+*)
+(* GLOBAL VARIABLES *)
+(* USER POUs *)
+PROGRAM CPYMEM_DWORD
+ VAR
+ buf1 : ARRAY [0..19] OF DWORD;
+ buf2 : ARRAY [0..19] OF DWORD;
+ i:INT;
+ END_VAR
+ 
+ FOR i:=0 TO 19 DO  
+     buf1[i] := (buf2[i] + DWORD#3);
+     buf2[i] := (buf1[i] mod DWORD#3);  
+ END_FOR
+ 
+END_PROGRAM
+
+PROGRAM CPYMEM_WORD
+ VAR
+ buf1 : ARRAY [0..19] OF WORD;
+ buf2 : ARRAY [0..19] OF WORD;
+ i:INT;
+ END_VAR
+ 
+ FOR i:=0 TO 19 DO  
+     buf1[i] := (buf2[i] + WORD#3);
+     buf2[i] := (buf1[i] mod WORD#3);  
+ END_FOR
+ 
+END_PROGRAM
+
+PROGRAM CPYMEM_BYTE
+ VAR
+ buf1 : ARRAY [0..19] OF BYTE;
+ buf2 : ARRAY [0..19] OF BYTE;
+ i:INT;
+ END_VAR
+ 
+ FOR i:=0 TO 19 DO  
+     buf1[i] := (buf2[i] + BYTE#3);
+     buf2[i] := (buf1[i] mod BYTE#3);  
+ END_FOR
+ 
+END_PROGRAM
+
+PROGRAM CPYMEM_LWORD
+ VAR
+ buf1 : ARRAY [0..19] OF LWORD;
+ buf2 : ARRAY [0..19] OF LWORD;
+ i:INT;
+ END_VAR
+ 
+ FOR i:=0 TO 19 DO  
+     buf1[i] := (buf2[i] + LWORD#3);
+     buf2[i] := (buf1[i] mod LWORD#3);  
+ END_FOR
+ 
+END_PROGRAM
+
+(*$TASKS 
+.TASK TASK
+.LOOPPARAM 0 250
+CPYMEM_DWORD
+.END_TASK
+*)
+(*$END_LIBRARY*)

@@ -1,0 +1,989 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <PROJECT name="ShipSim">
+    <METRIC>
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <SUBJECT><![CDATA[]]></SUBJECT>
+      <CREATED year="2015" month="4" day="26" hour="3" minutes="57" seconds="19" milisec="998" />
+    </METRIC>
+    <OPTIONS>
+      <PV value="0000017A" />
+      <II value="00000038" />
+      <CPVis used="1" />
+      <LC year="2018" month="12" day="6" hour="2" minutes="42" seconds="22" milisec="147" />
+      <LCF>
+        <ABSOLUTE>C:\Program Files (x86)\CPDevPraxis\VM\VM-Praxis32.xml</ABSOLUTE>
+        <APPVARS>$VMsDir\VM-Praxis32.xml</APPVARS>
+        <ENVVARS>%ProgramFiles(x86)%\CPDevPraxis\VM\VM-Praxis32.xml</ENVVARS>
+      </LCF>
+      <CREATOR>1.1.1.10</CREATOR>
+      <LASTSAVEDWITH>1.1.4.27</LASTSAVEDWITH>
+      <HCPFlags enabled="0" />
+      <OverrideDefaultPaths enabled="0" />
+    </OPTIONS>
+    <LIBRARY>
+      <PKG name="IEC_61131" version="131073" filename="C:\Program Files (x86)\CPDevPraxis\Biblioteki\IEC 61131-3.lcp">
+        <CREATED year="2018" month="11" day="26" hour="18" minutes="51" seconds="29" milisec="747" />
+        <APPVARS>$LibDir\IEC 61131-3.lcp</APPVARS>
+        <ENVVARS>%ProgramFiles(x86)%\CPDevPraxis\Biblioteki\IEC 61131-3.lcp</ENVVARS>
+        <IMP name="CTD" type="FBLK" />
+        <IMP name="CTU" type="FBLK" />
+        <IMP name="CTUD" type="FBLK" />
+        <IMP name="F_TRIG" type="FBLK" />
+        <IMP name="R_TRIG" type="FBLK" />
+        <IMP name="RS" type="FBLK" />
+        <IMP name="SEMA" type="FBLK" />
+        <IMP name="SR" type="FBLK" />
+        <IMP name="TOF" type="FBLK" />
+        <IMP name="TON" type="FBLK" />
+        <IMP name="TP" type="FBLK" />
+      </PKG>
+    </LIBRARY>
+    <POU>
+      <ITEM lang="ST" disabled="0" type="PRG" name="SHIP_MODEL" editor="CPDev.ST" virtualFolder=""><![CDATA[PROGRAM SHIP_MODEL
+
+VAR_EXTERNAL (*$AUTO*) END_VAR
+ 
+VAR
+  (*----- General  ----- *)
+  cycle1 : CYCLE;           (* Cycle time calculation                      *)
+  Tc     : REAL;            (* Cycle time                              [s] *)
+  t      : REAL;            (* Current time                            [s] *)
+  init   : BOOL := TRUE;    (* Internal flag of initialization             *)
+
+  (*----- Ship model ----- *)
+  ship1   : SHIP;           (* Ship model                                  *)
+  shp_sta : INT;            (* Status of the ship model                    *)
+  shp_xs1 : REAL:=6.0;      (* u     - surge speed                   [m/s] *)
+  shp_xs2 : REAL;           (* v     - sway speed                    [m/s] *)
+  shp_xs3 : REAL;           (* w     - heave speed                   [m/s] *)
+  shp_xs4 : REAL;           (* p     - roll speed                  [rad/s] *)
+  shp_xs5 : REAL;           (* q     - pitch speed                 [rad/s] *)
+  shp_xs6 : REAL;           (* r     - yaw speed                   [rad/s] *)
+  shp_xs7 : REAL;           (* x     - surge position                  [m] *)
+  shp_xs8 : REAL;           (* y     - sway position                   [m] *)
+  shp_xs9 : REAL;           (* z     - heave position                  [m] *)
+  shp_xs10: REAL;           (* phi   - roll angle                    [rad] *)
+  shp_xs11: REAL;           (* theta - pitch angle                   [rad] *)
+  shp_xs12: REAL;           (* psi   - yaw angle                     [rad] *)
+  shp_xs13: REAL;           (* delta - rudder angle                  [rad] *)
+  shp_xs14: REAL:=60.0;     (* n     - propeller speed               [rps] *)
+
+  (*----- Waves ----- *)
+  rand2  : RANDOM;          (* Random number generation                    *)
+  bpf4   : BANDPASS_FILTER; (* Bandpass filter 4                           *)
+  bpf5   : BANDPASS_FILTER; (* Bandpass filter 5                           *)
+  lpf1   : LOWPASS_FILTER;  (* Lowpass filter 1                            *)
+  lpf2   : LOWPASS_FILTER;  (* Lowpass filter 2                            *)
+  wave_B : REAL;            (* Sea state (Beaufort scale)                  *)
+  wind_V : REAL;            (* Wind current                          [m/s] *)
+  Hs     : REAL;            (* Significant wave height                 [m] *)
+  om_w   : REAL;            (* calculated angular frequency of waves [rad/s]*)
+  y      : REAL;            (* falowanie morza (pomocnicza)                *)
+
+  (*----- Ocean current ----- *)
+  env_crv : REAL:=0.0;      (* Ocean current speed                   [m/s] *)
+  env_crd : REAL:=90.0;     (* Ocean current direction over ground   [deg] *)
+  env_crx : REAL;           (* drift: X-direction                      [m] *)
+  env_cry : REAL;           (* drift: Y-direction                      [m] *)
+
+  (*----- Measurement  ----- *)
+  rot     : REAL;           (* heading rate                        [rad/s] *)
+  gyro    : REAL;           (* heading angle + waves                 [rad] *)
+  pos_x   : REAL:=0.0;      (* X-coordinate (over ground)              [m] *)
+  pos_y   : REAL:=0.0;      (* Y-coordinate (over ground)              [m] *)
+END_VAR
+
+VAR CONSTANT
+  PI : REAL:=3.141592653589793;
+END_VAR
+
+cycle1();                   (* Cycle time calculation - performance check  *)
+
+(*=========================================================================*)
+(*                           Initialization                                *)
+(*=========================================================================*)
+init := SHP_INIT;           (* initialization on demand                    *)
+IF init THEN
+  SHP_INIT := FALSE;        (* clear external flag of initialization       *)
+  Tc := 0.2;                (* preset cycle time                       [s] *)
+  t  := 0.0;                (* current time (for simulation only)      [s] *)
+
+  (*---------- Ship state -------------------------------------------------*)
+  shp_xs1 := 6.0;           (* initial forward speed                 [m/s] *)
+  shp_xs14:= 60.0;          (* initial shaft speed (simulation)      [rpm] *)
+  shp_xs2 := 0.0; shp_xs3 := 0.0; shp_xs4 := 0.0; shp_xs5 := 0.0; 
+  shp_xs6 := 0.0; shp_xs7 := 0.0; shp_xs8 := 0.0; shp_xs9 := 0.0;  
+  shp_xs10:= 0.0; shp_xs11:= 0.0; shp_xs12:= 0.0; shp_xs13:= 0.0;
+
+  (*---------- Sea state --------------------------------------------------*)
+
+  (*---------- Model parameters of the Nomoto ship ------------------------*)
+  K0_NM:=(V0_NM/L0_NM)/RR_NM;                 (* ship model gain           *)
+  T0_NM:=(L0_NM/V0_NM)*CR_NM;                 (* ship model time constant  *)
+
+END_IF
+ 
+(*=========================================================================*)
+(*                              Ship Model                                 *)
+(*=========================================================================*)
+ 
+ship1(shp_model:=SHP_MODEL, delta_c:=SHP_SET_RUD*pi/180.0, n_c:=SHP_SET_SHAFT, Tc:=Tc, init:=init,
+      x1:=shp_xs1,x2:=shp_xs2,x3:=shp_xs3,x4:=shp_xs4,x5:=shp_xs5,x6:=shp_xs6,
+      x7:=shp_xs7,x8:=shp_xs8,x9:=shp_xs9,x10:=shp_xs10,x11:=shp_xs11,x12:=shp_xs12,
+      x13:=shp_xs13,x14:=shp_xs14,K0:=K0_NM, T0:=T0_NM, V0:=V0_NM);
+shp_sta  := ship1.sta;
+shp_xs1  := ship1.xs1;  shp_xs2  := ship1.xs2;  shp_xs3  := ship1.xs3;
+shp_xs4  := ship1.xs4;  shp_xs5  := ship1.xs5;  shp_xs6  := ship1.xs6;
+shp_xs7  := ship1.xs7;  shp_xs8  := ship1.xs8;  shp_xs9  := ship1.xs9;
+shp_xs10 := ship1.xs10; shp_xs11 := ship1.xs11; shp_xs12 := ship1.xs12;
+shp_xs13 := ship1.xs13; shp_xs14 := ship1.xs14; 
+
+(*------------------------- Simulated waves -----------------------------  *)
+wave_B := INT_TO_REAL(WAVE_BF);          (* sea state (Beaufort)           *)
+wind_V := 0.836*wave_B*SQRT(wave_B);     (* wind speed = 0.836*B^3/2 [m/s] *)
+Hs := 0.21*wind_V*wind_V / 9.81;         (* wave height Hs             [m] *)
+
+om_w := 2.0*pi/WAVE_PRD;             (* angular frequency of waves [rad/s] *)
+
+rand2();                                 (* Random number [0.0...1.0)      *)
+bpf4(in:=rand2.out, om_L:=0.90*om_w, om_H:=1.5*om_w, Tc:=Tc, init:=init);(*BP*)
+bpf5(in:=bpf4.out, om_L:=0.95*om_w, om_H:=1.1*om_w, Tc:=Tc, init:=init); (*BP*)
+lpf1(in:=20.0*Hs*bpf5.out, om:=1.2*om_w, Tc:=Tc, init:=init);            (*LP*)
+lpf2(in:=10.0*lpf1.out, om:=0.2, Tc:=Tc, init:=init);                    (*LP*)
+y := 0.3*lpf2.out+0.3*Hs*SIN(om_w*t);
+(* y:=0.2*Hs*SIN(om_w*t); *)                (* pure sinusoid - for testing   *)
+
+(*------------------------ Ocean current and wind -------------------------*)
+env_crv:= SEA_CR_SPD;                      (* ocean current speed    [m/s] *)
+env_crd:= SEA_CR_DIR;       (* ocean current direction (over ground) [deg] *)
+env_crx:=env_crx+Tc*env_crv*COS(env_crd*pi/180.0);   (* drift along x axis *)
+env_cry:=env_cry+Tc*env_crv*SIN(env_crd*pi/180.0);   (* drift along y axis *)
+
+(*------------------------ Navigation equipment ---------------------------*)
+RUD_IND:= ship1.xs13*180.0/pi;             (* rudder indication (delta) [deg]*)
+RUD_IND := LIMIT_PREC(RUD_IND,0.05);       (* limit precision              *)
+
+(* --- IMU --- *)
+rot := ((ship1.xs12+y*pi/180)-gyro)/Tc;    (* heading rate         [rad/s] *)
+gyro := ship1.xs12+y*pi/180;               (* heading angle + waves  [rad] *)
+//AS IMU_ROT := rot*180/pi;                (* heading rate         [deg/s] *)
+IMU_ROT := rot*180/pi*60;                  (* heading rate       [deg/min] *)
+IMU_ROT := LIMIT_PREC(IMU_ROT,0.05);       (* limit precision              *)
+//AS IMU_GYRO := gyro*180/pi;              (* GYRO without limits [0...360]*)
+IMU_GYRO := ANGLE_0_360(gyro*180/pi);      (* GYRO limited to [0...360]    *)
+IMU_GYRO := LIMIT_PREC(IMU_GYRO,0.05);     (* limit precision              *)
+
+(* --- Position (GPS) --- *)
+GPS_X := ship1.xs7 + env_crx;            (* X-coordinate (over ground) [m] *)
+GPS_X := LIMIT_PREC(GPS_X,0.5);          (* limit precision                *)
+GPS_Y := ship1.xs8 + env_cry;            (* Y-coordinate (over ground) [m] *)
+GPS_Y := LIMIT_PREC(GPS_Y,0.5);          (* limit precision                *)
+
+(* --- Speed Log --- *)
+SPL_SPEED:= SQRT(ship1.xs1*ship1.xs1 + ship1.xs2*ship1.xs2); (* Speed Through Water [m/s]*)
+SPL_SPEED := LIMIT_PREC(SPL_SPEED,0.05); (* simulated A/D conversion     *)
+SPL_SOGX := (GPS_X-pos_x)/Tc;          (* Speed Over Ground (X-direction) [m] *)
+SPL_SOGY := (GPS_Y-pos_y)/Tc;          (* Speed Over Ground (Y-direction) [m] *)
+SPL_SOGV := SQRT(SPL_SOGX*SPL_SOGX + SPL_SOGY*SPL_SOGY); (* Speed Over Ground  [m/s] *)
+pos_x := GPS_X;                          (* X-coordinate (over ground) [m] *)
+pos_y := GPS_Y;                          (* Y-coordinate (over ground) [m] *)
+
+t := t + Tc;                              (* current time (for simulation) *)
+SIM_TIME := t;                            (* simulation time           [s] *)
+TREND_TIME := REAL_TO_INT(t);             (* current time (for plots)      *)
+
+END_PROGRAM]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FUN" name="ANGLE_0_360" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION ANGLE_0_360 : REAL
+(*----------------------------------------  Angle rounding to 0.360 [deg]  *)
+VAR_INPUT 
+  angle : REAL;                           (* input angle             [deg] *)
+END_VAR
+
+IF angle<0.0 THEN
+  angle:=360.0+angle-INT_TO_REAL(REAL_TO_INT(angle/360.0)*360); (* angle>=0 *)
+END_IF
+IF angle>=360.0 THEN
+  angle:=angle-INT_TO_REAL(REAL_TO_INT(angle/360.0)*360);      (* angle<360 *)
+END_IF
+ANGLE_0_360 := angle;
+
+END_FUNCTION]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="BANDPASS_FILTER" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK BANDPASS_FILTER
+(*------------------------ Bandpass filter of 4th-order                    *)
+VAR_INPUT
+  in   : REAL;                   (* filter input                     [deg] *)
+  om_L : REAL;                   (* lower frequency                [rad/s] *)
+  om_H : REAL;                   (* upper frequency                [rad/s] *)
+  Tc   : REAL;                   (* cycle time                         [s] *)
+  init : BOOL:=FALSE;            (* initialization request                 *)
+END_VAR
+VAR_OUTPUT
+  out : REAL;                    (* filter output                    [deg] *)
+  sta : INT;                     (* filter status  (0=OK)                  *)
+END_VAR
+VAR
+  lpf : FILTER2;                 (* Low pass filter               *)
+  hpf : FILTER2;                 (* High pass filter              *)
+END_VAR
+
+  lpf(in:=in, b2:=1.0, b1:=0.0, b0:=0.0,                          (* LP filter *)
+              a2:=1.0, a1:=2.0*om_L, a0:=om_L*om_L, Tc:=Tc, init:=init);
+  hpf(in:=lpf.out, b2:=0.0, b1:=0.0, b0:=om_H*om_H,               (* HP filter *)
+              a2:=1.0, a1:=2.0*om_H, a0:=om_H*om_H, Tc:=Tc, init:=init);
+  out := hpf.out;                                                 (* output    *)
+  sta := 2*hpf.sta + lpf.sta;                                     (* status    *)
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="ST" disabled="0" type="FUN" name="LIMIT_PREC" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION LIMIT_PREC : REAL (*RET_TYPE*)
+(*--------------------------------------- analog to digital converter (A/D) *)
+VAR_INPUT
+  X  : REAL;                    (* input signal                             *)
+  EPS: REAL;                    (* precision                                *)
+END_VAR
+
+(*CONV_AD := DINT_TO_REAL(ROUND(X/EPS))*EPS; (*RET_VALUE*)*)
+LIMIT_PREC := DINT_TO_REAL(REAL_TO_DINT(X/EPS))*EPS; (*RET_VALUE*)
+END_FUNCTION]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FUN" name="CORR_PREV" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION CORR_PREV : REAL
+(*-------------------------------- correction 0/360 of prevoius angle value *)
+VAR_INPUT
+  vc : REAL;                    (* current value                      [deg] *)
+  vp : REAL;                    (* previous value                     [deg] *)
+END_VAR
+
+IF vc-vp>180.0 THEN vp:=vp+360.0;            (* 0/360 transition correction   *)
+ELSIF vc-vp<-180.0 THEN vp:=vp-360.0; END_IF
+CORR_PREV := vp; (*RET_VALUE*) 
+
+END_FUNCTION]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="CYCLE" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK CYCLE
+(*---------------- Cycle time monitoring (for testing only) *)
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+  cycleCount : DINT := 0;      (* cycles counter            *)
+  currTime : REAL := 0.0;      (* current system time   [s] *)
+  cycleTime : REAL := 0.2;     (* current cycle time    [s] *)
+END_VAR
+VAR
+  first_cycle : BOOL := TRUE;
+  prevTime : REAL := 0.0;      (* previous system time  [s] *)
+END_VAR
+
+  prevTime := currTime;
+  currTime := TIME_TO_REAL(CUR_TIME())/1000.0;
+  //currTime := cycleCount * 0.1;  (* for CoDeSys, in case of lack of CUR_TIME()*)
+  cycleCount := cycleCount + DINT#1;
+  IF first_cycle THEN
+    (* cycleTime := TIME_TO_REAL(TASK_CYCLE())/1000.0; *)
+    cycleTime := 0.1;    (* for CoDeSys, in case of lack of TASK_CYCLE() *)
+    first_cycle := FALSE;
+  ELSE
+    cycleTime:= currTime - prevTime;
+  END_IF
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="FILTER1" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK FILTER1
+(*------------------- First order filter:   G(s)=(b1*s + b0) / (a1*s + a0) *)
+VAR_INPUT
+  in : REAL;                  (* filter input                              *)
+  b1 : REAL;                  (* b1 coefficient                            *)
+  b0 : REAL;                  (* b0 coefficient                            *)
+  a1 : REAL:=1.0;             (* a1 coefficient                            *)
+  a0 : REAL:=1.0;             (* a0 coefficient                            *)
+  Tc : REAL;                  (* cycle time                            [s] *)
+END_VAR
+VAR_OUTPUT
+  out : REAL;                 (* filter output                             *)
+  STA : BYTE;                 (* filter status  (0=OK)                     *)
+END_VAR
+VAR
+  first_cycle : BOOL := TRUE;
+  out_: REAL;                 (* previous output                           *)
+  in_ : REAL;		          (* previous input                            *)
+END_VAR
+
+IF FIRST_CYCLE THEN
+  in_:=in;
+  IF a0 <> 0.0 THEN out_:=in*b0/a0; END_IF
+  FIRST_CYCLE := FALSE;
+END_IF
+
+IF a1 <> 0.0 THEN             (* if a1 coefficient <>0                                    *)
+  (*       a1   a0               b1         b1   b0                a1 *)
+  out := ((a1 - a0 * Tc) * out + b1 * in - (b1 - b0 * Tc) * in_) / a1;  (* I-order filter *)
+ELSE
+  IF b1 = 0.0 THEN
+    IF a0 <> 0.0 THEN
+      out := in * b0 / a0;    (* only gain (without filtering                             *)
+    ELSE
+      out := in;              (* ERROR!  - no filtering                                   *)
+      STA := BYTE#1;
+    END_IF
+  ELSE
+    out := in;                (* ERROR!  - no filtering                                   *)
+    STA := BYTE#1;
+  END_IF
+END_IF
+in_ := in;                    (* previous input                                           *)
+
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="FILTER2" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK FILTER2
+(*----------- Second order filter:  G(s)=(b2*s^2+b1*s+b0)/(a2*s^2+a1*s+a0) *)
+VAR_INPUT
+  in : REAL;                  (* filter input                              *)
+  b2 : REAL;                  (* b2 coefficient                            *)
+  b1 : REAL;                  (* b1 coefficient                            *)
+  b0 : REAL;                  (* b0 coefficient                            *)
+  a2 : REAL;                  (* a2 coefficient                            *)
+  a1 : REAL;                  (* a1 coefficient                            *)
+  a0 : REAL;                  (* a0 coefficient                            *)
+  Tc : REAL;                  (* cycle time                            [s] *)
+  init : BOOL:=FALSE;         (* initialization request                    *)
+END_VAR
+VAR_OUTPUT
+  out : REAL;                 (* filter output                             *)
+  sta : INT;                  (* filter status  (0=OK)                     *)
+END_VAR
+VAR
+  init2 : BOOL := TRUE;             (* initialization flag                 *)
+  out_, out_2 : REAL:=0.0;          (* previous inputs                     *)
+  in_, in_2   : REAL := 0.0;        (* previous outputs                    *)
+  b0x, b1x, b2x : REAL := 0.0;
+  a0x, a1x, a2x : REAL := 0.0;      (* coefficients                        *)
+END_VAR
+
+IF init OR init2 THEN           (* first cycle --> initoalization         *)
+  IF (a0 <> 0.0) THEN
+    out:=in*b0/a0;              (* first output (after initialization)    *)
+  ELSE
+    out:=0;
+  END_IF
+  out_:=out; out_2:=out_;       (* store as previous values               *)
+  in_:=in; in_2:=in_;
+  init2:=FALSE;                 (* clear flag                             *)
+ELSE
+  IF Tc > 0.0 THEN                          (* if propper cycle time      *)
+    a2x :=  4.0*a2/(Tc*Tc)+2.0*a1/Tc+a0;
+    IF a2x <> 0.0 THEN                             (* if II-odder filter  *)
+      a1x := (-8.0*a2/(Tc*Tc)+2.0*a0)      /a2x;
+      a0x := ( 4.0*a2/(Tc*Tc)-2.0*a1/Tc+a0)/a2x;   (* calculate....       *)
+      b2x := ( 4.0*b2/(Tc*Tc)+2.0*b1/Tc+b0)/a2x;   (* temporary values    *)
+      b1x := (-8.0*b2/(Tc*Tc)+2.0*b0)      /a2x;
+      b0x := ( 4.0*b2/(Tc*Tc)-2.0*b1/Tc+b0)/a2x;
+      (* a2x=a2x/a2x;            % a2x=1 *)
+
+      IF in-in_>180.0 THEN                      (* angle correction 0/360 *)
+        in_:=in_+360.0;
+        in_2:=in_2+360.0;
+      ELSIF in-in_<-180.0 THEN                  (* angle correction 0/360 *)
+        in_:=in_-360.0;
+        in_2:=in_2-360.0;
+      END_IF
+
+      out:=b2x*in+b1x*in_+b0x*in_2-a1x*out_-a0x*out_2;   (* output        *)
+      out_2:=out_; out_:=out; in_2:=in_; in_:=in;        (* previous      *)
+    ELSE
+        out:=in;                                    (* ERROR: divide by 0 *)
+        out_2:=out_; out_:=out; in_2:=in_; in_:=in;
+        sta:=sta+2;
+    END_IF
+  ELSE
+    out := in;                                  (* ERROR: cycle time Tc=0 *)
+    sta := sta+1;                               (* status                 *)
+  END_IF
+END_IF
+
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="LOWPASS_FILTER" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK LOWPASS_FILTER
+(*-------------------------------------- Lowpass filter of 2nd-order       *)
+VAR_INPUT
+  in : REAL;              (* filter input                                  *)
+  om : REAL;              (* angular frequency                     [rad/s] *)
+  Tc : REAL;              (* cycle time                                [s] *)
+  init: BOOL:=FALSE;      (* initialization request                        *)
+END_VAR
+VAR_OUTPUT
+  out : REAL;             (* filter output                                 *)
+  sta : INT;              (* filter status  (0=OK)                         *)
+END_VAR
+VAR
+  lpf : FILTER2;     (* Low pass filter *)
+END_VAR
+
+lpf(in:=in, b2:=0.0, b1:=0.0, b0:=om*om, a2:=1.0, a1:=SQRT(2.0)*om, a0:=om*om, Tc:=Tc);
+out := lpf.out;
+sta := lpf.sta;                        (* output and status *)
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FUN" name="RAD_2_PIPI" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION RAD_2_PIPI : REAL
+(* convert angle in radians to the interval [-pi, pi] *)
+VAR_INPUT
+  angle : REAL;  (* angle in radians *)
+END_VAR
+
+angle := angle/6.283185;
+angle := (angle - INT_TO_REAL(REAL_TO_INT(angle)))*6.283185;
+
+IF angle>3.14159 THEN angle:=-6.283185+angle;
+ELSIF angle<-3.14159 THEN angle:=6.283185+angle; END_IF
+
+RAD_2_PIPI := angle; (*RET_VALUE*) 
+
+END_FUNCTION]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="RANDOM" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK RANDOM
+(*$COMMENT Random number [0.0, 1.0) *)
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+    OUT (*$COMMENT Output*): REAL;
+END_VAR
+VAR
+  a : DINT := 1909;
+  b : DINT := 221571;
+  N : DINT := 1048576;   (*EXPT(2,20);*)
+  r_num : DINT;
+END_VAR
+
+(* --- In case of CoDeSys --- *)
+(*Generates a Pseudo random number using the mixed congrential method.
+Formula r(i+1) = (a r + b) MOD N
+This will generate a random number between 0 & N-1 with N = 2 ^ 20 = 1048576 a = 1909 b = 221571
+The MOD operation is the integer*)
+
+r_num := (a * r_num + b) MOD N;
+OUT := DINT_TO_REAL(r_num) / DINT_TO_REAL(N);
+
+(* --- In case of CPDev --- *)
+(* OUT := RANDOML(); *)
+
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="SHIP" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK SHIP
+(*-----------------------  Ship simulation  -------------------- *)
+VAR_INPUT
+  shp_model: INT;           (* ship model: 0=Nomoto, 1=container *)
+  delta_c : REAL;           (* rudder position             [rad] *)
+  n_c : REAL;               (* propeller speed             [rps] *)
+  Tc  : REAL:=0.1;          (* time cycle                    [s] *)
+  init : BOOL:=FALSE;       (* initialization flag               *)
+  x1  : REAL:=0.0;          (* u     [m/s]   - surge speed       *)
+  x2  : REAL:=0.0;          (* v     [m/s]   - sway speed        *)
+  x3  : REAL:=0.0;          (* w     [m/s]   - heave speed       *)
+  x4  : REAL:=0.0;          (* p     [rad/s] - roll speed        *)
+  x5  : REAL:=0.0;          (* q     [rad/s] - pitch speed       *)
+  x6  : REAL:=0.0;          (* rr    [rad/s] - yaw speed (ROT)   *)
+  x7  : REAL:=0.0;          (* x     [m]     - surge position    *)
+  x8  : REAL:=0.0;          (* y     [m]     - sway position     *)
+  x9  : REAL:=0.0;          (* z     [m]     - heave position    *)
+  x10 : REAL:=0.0;          (* phi   [rad]   - roll angle        *)
+  x11 : REAL:=0.0;          (* theta [rad]   - pitch angle       *)
+  x12 : REAL:=0.0;          (* psi   [rad]   - yaw angle (HDG)   *)
+  x13 : REAL:=0.0;          (* delta [rad]   - rudder angle      *)
+  x14 : REAL:=0.0;          (* n     [rps]   - propeller speed   *)
+  K0  : REAL:=0.06;         (* Nomoto ship gain  K0              *)
+  T0  : REAL:=60.0;         (* Nomoto ship time constant T0  [s] *)
+  V0  : REAL:=6.0;          (* Nomoto ship nominal speed   [m/s] *)
+END_VAR
+VAR_OUTPUT
+  xs1 : REAL;               (* u     [m/s]   - surge speed       *)
+  xs2 : REAL;               (* v     [m/s]   - sway speed        *)
+  xs3 : REAL;               (* w     [m/s]   - heave speed       *)
+  xs4 : REAL;               (* p     [rad/s] - roll speed        *)
+  xs5 : REAL;               (* q     [rad/s] - pitch speed       *)
+  xs6 : REAL;               (* r     [rad/s] - yaw speed         *)
+  xs7 : REAL;               (* x     [m]     - surge position    *)
+  xs8 : REAL;               (* y     [m]     - sway position     *)
+  xs9 : REAL;               (* z     [m]     - heave position    *)
+  xs10: REAL;               (* phi   [rad]   - roll angle        *)
+  xs11: REAL;               (* theta [rad]   - pitch angle       *)
+  xs12: REAL;               (* psi   [rad]   - heave angle       *)
+  xs13: REAL;               (* delta [rad]   - rudder angle      *)
+  xs14: REAL;               (* n     [rps]   - propeller speed   *)
+  sta : INT;                (* status flag                       *)
+END_VAR
+VAR
+  ship1 : SHIP_CONT;        (* container model function block    *)
+  ship2 : SHIP_NOMOTO;      (* Nomoto model function block       *)
+  shp_model_: INT:=0;       (* previous ship model               *)
+  T     : REAL:=60.0;       (* Nomoto ship time constant     [s] *)
+  K     : REAL:=0.06;       (* Nomoto ship gain              [-] *)
+  CVmax : REAL:=35;         (* rudder output limit         [deg] *)
+  dCVmax: REAL:=15;         (* rudder ratio limit        [deg/s] *)
+  V     : REAL;             (* ship speed                  [m/s] *)
+  pi    : REAL:=3.14159;    (* pi constant                       *)
+END_VAR
+
+IF shp_model <> shp_model_ THEN
+  init := TRUE;                    (* model switch -->  set flag *)
+END_IF
+
+IF init THEN
+  (* --- CPDev --- *)
+  xs1:=x1; xs2:=x2; xs3:=x3; xs4:=x4; xs5:=x5; xs6:=x6; xs7:=x7;
+  xs8:=x8; xs9:=x9; xs10:=x10; xs11:=x11; xs12:=x12; xs13:=x13; xs14:=x14;
+(*
+  xs1:=0; xs2:=0; xs3:=0; xs4:=0; xs5:=0; xs6:=0; xs7:=0;
+  xs8:=0; xs9:=0; xs10:=0; xs11:=0; xs12:=0; xs13:=0; xs14:=0;
+*)
+  pi := 4.0*ATAN(1.0);
+END_IF
+
+(* ------------------------- ship model ------------------------- *)
+CASE shp_model OF
+  0:                                 (* CASE 0  --->  Nomoto ship *)
+     V := 15.0/150.0 *n_c;
+     K:=K0*V/V0;                    (* speed, gain, time constant *)
+     T:=T0*V0/V;
+     ship2(delta_c:=delta_c, K0:=K, T0:=T, angle_lim:=CVmax*pi/180.0,
+           rate_lim:=dCVmax*pi/180.0, Tc:=Tc, init:=init,
+           x6:=x6, x12:=x12, x13:=x13);
+     xs1  := V*COS(ship2.xs12); (* u     [m/s]   - surge speed     *)
+     xs2  := V*SIN(ship2.xs12); (* v     [m/s]   - sway speed      *)
+     xs3  := 0.0;               (* w     [m/s]   - heave speed     *)
+     xs4  := 0.0;               (* p     [rad/s] - roll speed      *)
+     xs5  := 0.0;               (* q     [rad/s] - pitch speed     *)
+     xs6  := ship2.rr;          (* rr    [rad/s] - yaw speed (ROT) *)
+     xs7  := xs7+Tc*xs1;        (* x     [m]     - surge position  *)
+     xs8  := xs8+Tc*xs2;        (* y     [m]     - sway position   *)
+     xs9  := 0.0;               (* z     [m]     - heave position  *)
+     xs10 := 0.0;               (* phi   [rad]   - roll angle      *)
+     xs11 := 0.0;               (* theta [rad]   - pitch angle     *)
+     xs12 := ship2.psi;         (* psi   [rad]   - yaw angle (HDG) *)
+     xs13 := ship2.delta;       (* delta [rad]   - rudder angle    *)
+     xs14 := n_c;               (* n     [rps]   - propeller speed *)
+
+  1:                                  (* CASE 1 --> container ship *)
+     ship1(delta_c:=delta_c, n_c:=n_c, Tc:=Tc, init:=init,
+           x1:=x1,x2:=x2,x3:=x6,x4:=x7, x5:=x8, x6:=x12, x7:=x4,
+           x8:=x10, x9:=x13, x10:=x14);
+     xs1  := ship1.xs1;         (* u     [m/s]   - surge speed     *)
+     xs2  := ship1.xs2;         (* v     [m/s]   - sway speed      *)
+     xs4  := ship1.xs7;         (* p     [rad/s] - roll speed      *)
+     xs6  := ship1.xs3;         (* r     [rad/s] - yaw speed (ROT) *)
+     xs7  := ship1.xs4;         (* x     [m]     - surge position  *)
+     xs8  := ship1.xs5;         (* y     [m]     - sway position   *)
+     xs10 := ship1.xs8;         (* phi   [rad]   - roll angle      *)
+     xs12 := ship1.xs6;         (* psi   [rad]   - yaw angle (HDG) *)
+     xs14 := ship1.xs10;        (* n     [rps]   - propeller speed *)
+     xs13:=delta_c;
+
+END_CASE
+sta:=0;                         (* status = OK                     *)
+
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="SHIP_CONT" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK SHIP_CONT
+(*-------------------------- Container ship simulation ----*)
+VAR_INPUT
+  delta_c : REAL;            (* rudder position      [rad] *)
+  n_c : REAL;                (* ship speed           [m/s] *)
+  Tc  : REAL:=0.1;           (* cycle time             [s] *)
+  init: BOOL:=FALSE;         (* initialization flag        *)
+  x1  : REAL:=0.0;
+  x2  : REAL:=0.0;           (* ship state variables       *)
+  x3  : REAL:=0.0;
+  x4  : REAL:=0.0;
+  x5  : REAL:=0.0;
+  x6  : REAL:=0.0;
+  x7  : REAL:=0.0;
+  x8  : REAL:=0.0;
+  x9  : REAL:=0.0;
+  x10 : REAL:=0.0;
+END_VAR
+VAR_OUTPUT
+  xs1 : REAL;               (* u     [m/s]   - surge speed     *)
+  xs2 : REAL;               (* v     [m/s]   - sway speed      *)
+  xs3 : REAL;               (* rr     [rad/s] - yaw speed      *)
+  xs4 : REAL;               (* x     [m]     - X-position      *)
+  xs5 : REAL;               (* y     [m]     - Y-position      *)
+  xs6 : REAL;               (* psi   [rad]   - heave angle     *)
+  xs7 : REAL;               (* p     [rad/s] - roll speed      *)
+  xs8 : REAL;               (* phi   [rad]   - surge angle     *)
+  xs9 : REAL;               (* delta [rad]   - rudder angle    *)
+  xs10: REAL;               (* n     [rps]   - propeller speed *)
+  UU  : REAL;               (* U     [m/s]   - ship speed      *)
+  STA : INT;                (* status                          *)
+END_VAR
+VAR
+  L : REAL := 175.0;             (* length of the ship (m)     *)
+  delta_max  : REAL := 35.0;     (* max rudder angle (deg)     *)
+  Ddelta_max : REAL := 15.0;     (* max rudder rate (deg/s)    *)
+  n_max      : REAL := 160.0;    (* max shaft velocity (rpm)   *)
+  delta_dot  : REAL;
+  n_dot      : REAL;
+  Tm         : REAL; 
+
+  vR : REAL;
+  uP : REAL;
+   J : REAL;
+  KT : REAL; 
+  uR : REAL;
+  alphaR : REAL;
+  FN  : REAL;
+  detM : REAL;
+
+  u, v, p, rr, phi, psi, delta, n_a : REAL; 
+
+  m      : REAL := 0.00792;    
+  mx     : REAL := 0.000238;   
+  my     : REAL := 0.007049;
+  alphay : REAL := 0.05;       
+  lx     : REAL := 0.0313;
+  ly     : REAL := 0.0313;     
+  Ix     : REAL := 0.0000176;  
+  Iz     : REAL := 0.000456;
+  Jx     : REAL := 0.0000034;  
+  Jz     : REAL := 0.000419;   
+  xG     : REAL := 0.0;
+
+  B      : REAL := 25.40;   
+  dF     : REAL := 8.00;    
+  g      : REAL := 9.81;
+  dA     : REAL := 9.00;    
+  nabla  : REAL := 21222; 
+  KM     : REAL := 10.39;   
+  KB     : REAL := 4.6154;  
+  AR     : REAL := 33.0376;
+  Delta2 : REAL := 1.8219;  
+  D      : REAL := 6.533;   
+  GM     : REAL;  (* := 0.3/L; *)
+  rho    : REAL := 1025;    
+  tt      : REAL := 0.175;   
+  T      : REAL := 0.0005; 
+ 
+  W      : REAL;  (* := rho*g*nabla/(rho*L^2*U^2/2); *)
+
+  Xuu    : REAL := -0.0004226;  
+  Xvr    : REAL := -0.00311;    
+  Xrr    : REAL := 0.00020; 
+  Xphiphi: REAL := -0.00020;    
+  Xvv    : REAL := -0.00386;
+
+  Kv     : REAL :=  0.0003026;  
+  Kr     : REAL := -0.000063;   
+  Kp     : REAL := -0.0000075; 
+  Kphi   : REAL := -0.000021;   
+  Kvvv   : REAL :=  0.002843;   
+  Krrr   : REAL := -0.0000462; 
+  Kvvr   : REAL := -0.000588;   
+  Kvrr   : REAL :=  0.0010565;  
+  Kvvphi : REAL := -0.0012012; 
+  Kvphiphi: REAL := -0.0000793;  
+  Krrphi : REAL := -0.000243;   
+  Krphiphi: REAL :=  0.00003569;
+
+  Yv     : REAL := -0.0116;     
+  Yr     : REAL :=  0.00242;    
+  Yp     : REAL :=  0.0; 
+  Yphi   : REAL := -0.000063;   
+  Yvvv   : REAL := -0.109;      
+  Yrrr   : REAL :=  0.00177; 
+  Yvvr   : REAL :=  0.0214;     
+  Yvrr   : REAL := -0.0405;     
+  Yvvphi : REAL :=  0.04605;
+  Yvphiphi: REAL :=  0.00304;    
+  Yrrphi : REAL :=  0.009325;   
+  Yrphiphi: REAL := -0.001368;
+
+  Nv     : REAL := -0.0038545;  
+  Nr     : REAL := -0.00222;    
+  Np     : REAL :=  0.000213; 
+  Nphi   : REAL := -0.0001424;  
+  Nvvv   : REAL :=  0.001492;   
+  Nrrr   : REAL := -0.00229; 
+  Nvvr   : REAL := -0.0424;     
+  Nvrr   : REAL :=  0.00156;    
+  Nvvphi : REAL := -0.019058; 
+  Nvphiphi: REAL := -0.0053766;  
+  Nrrphi : REAL := -0.0038592;  
+  Nrphiphi: REAL :=  0.0024195;
+
+  kk     : REAL :=  0.631;  
+  epsilon: REAL :=  0.921;  
+  xR     : REAL := -0.5;
+  wp     : REAL :=  0.184;  
+  tau    : REAL :=  1.09;   
+  xp     : REAL := -0.526; 
+  cpv    : REAL :=  0.0;    
+  cpr    : REAL :=  0.0;    
+  ga     : REAL :=  0.088; 
+  cRr    : REAL := -0.156;  
+  cRrrr  : REAL := -0.275;  
+  cRrrv  : REAL :=  1.96; 
+  cRX    : REAL :=  0.71;   
+  aH     : REAL :=  0.237;  
+  zR     : REAL :=  0.033;
+  xH     : REAL := -0.48;
+  m11, m22, m32, m42, m33, m44 : REAL;
+  
+  X, Y, K, N : REAL;
+  pi : REAL:=3.14159;  
+  
+END_VAR
+
+(* @END_DECLARATION := '0' *)
+IF init THEN
+  xs1 := x1;
+  xs2 := x2;
+  xs3 := x3;
+  xs4 := x4;
+  xs5 := x5;
+  xs6 := x6;
+  xs7 := x7;
+  xs8 := x8;
+  xs9 := x9;
+  xs10:= x10;
+(*
+  xs1 := 0;
+  xs2 := 0;
+  xs3 := 0;
+  xs4 := 0;
+  xs5 := 0;
+  xs6 := 0;
+  xs7 := 0;
+  xs8 := 0;
+  xs9 := 0;
+  xs10:= 0;
+*)
+END_IF
+
+(* Check service speed *)
+IF xs1<=0.1 THEN xs1:=0.1; STA:=1; END_IF
+IF xs10<=0.1 THEN xs10:=0.1; STA:=STA+2; END_IF
+
+(* Normalization variables *)
+UU := SQRT(xs1*xs1 + xs2*xs2);   (*% service speed (m/s) *)
+
+(* Non-dimensional states and inputs *)
+n_c     := n_c/60.0*L/UU;
+
+u     := xs1/UU;   v   := xs2/UU;
+p     := xs7*L/UU; rr   := xs3*L/UU;
+phi   := xs8;      psi := xs6;
+delta := xs9;      n_a   := xs10/60.0*L/UU;
+
+(* Parameters, hydrodynamic derivatives and main dimensions *)
+GM    := 0.3/L;
+W     := rho*g*nabla/(rho*L*L*UU*UU/2.0);
+(* Masses and moments of inertia *)
+m11 := (m+mx);
+m22 := (m+my);
+m32 := -my*ly;
+m42 := my*alphay;
+m33 := (Ix+Jx);
+m44 := (Iz+Jz);
+
+(* Rudder saturation and dynamics *)
+IF delta_c > delta_max*pi/180.0 THEN
+   delta_c := delta_max*pi/180.0;
+ELSIF delta_c < -delta_max*pi/180.0 THEN
+   delta_c := -delta_max*pi/180.0;
+END_IF
+
+delta_dot := delta_c - delta;
+
+(* Shaft velocity saturation and dynamics *)
+n_c := n_c*UU/L;
+n_a   := n_a*UU/L;
+IF n_c > n_max/60.0 THEN
+   n_c := n_max/60.0;
+ELSIF n_c < -n_max/60.0 THEN
+   n_c := -n_max/60.0;
+END_IF
+
+IF n_a > 0.3 THEN Tm:=5.65/n_a; ELSE Tm:=18.83; END_IF
+n_dot := 1.0/Tm*(n_c-n_a)*60.0;
+
+(* Calculation of state derivatives *)
+  vR     := ga*v + cRr*rr + cRrrr*rr*rr*rr + cRrrv*rr*rr*v;
+  uP     := COS(v)*((1.0 - wp) + tau*((v + xp*rr)*(v + xp*rr) + cpv*v + cpr*rr));
+   J     := uP*UU/(n_a*D);
+  KT     := 0.527 - 0.455*J;
+  uR     := uP*epsilon*SQRT(1.0 + 8.0*kk*KT/(pi*J*J));
+  alphaR := delta + ATAN(vR/uR);
+  FN     := - ((6.13*Delta2)/(Delta2 + 2.25))*(AR/(L*L))*(uR*uR + vR*vR)*SIN(alphaR);
+  T      := 2.0*rho*D*D*D*D/(UU*UU*L*L*rho)*KT*n_a*ABS(n_a);
+
+(* Forces and moments *)
+  X    := Xuu*u*u + (1.0-tt)*T + Xvr*v*rr + Xvv*v*v + Xrr*rr*rr + Xphiphi*phi*phi +
+         cRX*FN*SIN(delta) + (m + my)*v*rr;
+
+  Y    := Yv*v + Yr*rr + Yp*p + Yphi*phi + Yvvv*v*v*v + Yrrr*rr*rr*rr + Yvvr*v*v*rr +
+         Yvrr*v*rr*rr + Yvvphi*v*v*phi + Yvphiphi*v*phi*phi + Yrrphi*rr*rr*phi +
+         Yrphiphi*rr*phi*phi + (1.0 + aH)*FN*COS(delta) - (m + mx)*u*rr;
+
+  K    := Kv*v + Kr*rr + Kp*p + Kphi*phi + Kvvv*v*v*v + Krrr*rr*rr*rr + Kvvr*v*v*rr +
+         Kvrr*v*rr*rr + Kvvphi*v*v*phi + Kvphiphi*v*phi*phi + Krrphi*rr*rr*phi +
+         Krphiphi*rr*phi*phi - (1.0 + aH)*zR*FN*COS(delta) + mx*lx*u*rr - W*GM*phi;
+
+  N    := Nv*v + Nr*rr + Np*p + Nphi*phi + Nvvv*v*v*v + Nrrr*rr*rr*rr + Nvvr*v*v*rr +
+         Nvrr*v*rr*rr + Nvvphi*v*v*phi + Nvphiphi*v*phi*phi + Nrrphi*rr*rr*phi +
+         Nrphiphi*rr*phi*phi + (xR + aH*xH)*FN*COS(delta);
+
+(* Dimensional state derivatives  xdot = [ u v rr x y psi p phi delta n ]' *)
+detM := m22*m33*m44-m32*m32*m44-m42*m42*m33;
+
+xs1 := xs1 + Tc*(X*(UU*UU/L)/m11);
+xs2 := xs2 + Tc*(-((-m33*m44*Y+m32*m44*K+m42*m33*N)/detM)*(UU*UU/L));
+xs3 := xs3 + Tc*(((-m42*m33*Y+m32*m42*K+N*m22*m33-N*m32*m32)/detM)*(UU*UU/(L*L)));
+xs4 := xs4 + Tc*((COS(psi)*u-SIN(psi)*COS(phi)*v)*UU);
+xs5 := xs5 + Tc*((SIN(psi)*u+COS(psi)*COS(phi)*v)*UU);
+xs6 := xs6 + Tc*(COS(phi)*rr*(UU/L));
+xs7 := xs7 + Tc*(((-m32*m44*Y+K*m22*m44-K*m42*m42+m32*m42*N)/detM)*(UU*UU/(L*L)));
+xs8 := xs8 + Tc*(p*(UU/L));
+xs9 := xs9 + Tc*delta_dot;
+xs10:= xs10 + Tc*n_dot;
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+      <ITEM lang="0" disabled="0" type="FBLK" name="SHIP_NOMOTO" editor="CPDev.ST" virtualFolder=""><![CDATA[FUNCTION_BLOCK SHIP_NOMOTO
+(* ----------------------------------- Nomoto ship simulation --- *)
+(* Date: 2014.09.12 *)
+VAR_INPUT
+  delta_c  : REAL;                  (* rudder position      [rad] *)
+  K0       : REAL;                  (* model gain             [-] *)
+  T0       : REAL;                  (* model time constant    [s] *)
+  angle_lim: REAL := 35.0;          (* rudder output limit  [rad] *)
+  rate_lim : REAL := 15.0;          (* rudder ratio limit [rad/s] *)
+  Tc       : REAL;                  (* time cycle             [s] *)
+  init     : BOOL:=FALSE;
+  x6       : REAL:=0.0;        (* r     [rad/s] - yaw speed (ROT) *)
+  x12      : REAL:=0.0;        (* psi   [rad]   - yaw angle (HDG) *)
+  x13      : REAL:=0.0;        (* delta [rad]   - rudder angle    *)
+END_VAR
+VAR_OUTPUT
+  rr     : REAL;               (* yaw speed (ROT)         [rad/s] *)
+  psi   : REAL;                (* yaw angle (HDG)           [rad] *)
+  delta : REAL;                (* rudder angle [rad]              *)
+END_VAR
+VAR
+  xs6  : REAL;                 (* rr    [rad/s] - yaw speed (ROT) *)
+  xs12 : REAL;                 (* psi   [rad]   - yaw angle (HDG) *)
+  xs13 : REAL;                 (* delta [rad]   - rudder angle    *)
+END_VAR
+
+IF init THEN
+  xs6 := x6;                           (* initial values      *)
+  xs12 := x12;
+  xs13 := x13;
+(*
+  xs6 := 0;                           (* initial values      *)
+  xs12 := 0;
+  xs13 := 0;
+*)
+END_IF
+
+                                       (* rudder limit         *)
+IF delta_c>angle_lim THEN delta_c:=angle_lim;
+ELSIF delta_c<-angle_lim THEN delta_c:=-angle_lim; END_IF
+
+                                       (* ratio limit          *)
+IF delta_c-xs13>rate_lim*Tc THEN
+  xs13 := xs13+rate_lim*Tc;                             (* (+) *)
+ELSIF delta_c-xs13<-rate_lim*Tc THEN
+  xs13 := xs13-rate_lim*Tc;                             (* (-) *)
+ELSE
+  xs13 := delta_c;                                (* no limits *)
+END_IF
+
+                                             (* ship new state *)
+xs6 := (1.0 - Tc/T0)*xs6 + K0*Tc/T0*xs13;               (* ROT *)
+xs12 := xs12 + Tc*xs6;                                  (* HGD *)
+
+rr:=xs6;
+psi:=xs12;                                   (* outputs        *)
+delta:=xs13;
+
+END_FUNCTION_BLOCK]]><EDITOR><![CDATA[]]></EDITOR></ITEM>
+    </POU>
+    <GLOBAL>
+      <ITEM type="VAR" name="IMU_GYRO" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ IMU_GYRO (*$COMMENT Measured ship gyro heading              [deg]*) : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="GPS_X" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ GPS_X (*$COMMENT Ship X position (from GPS) [m]*) : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="GPS_Y" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ GPS_Y (*$COMMENT Ship Y position (from GPS) [m]*) : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="IMU_ROT" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ IMU_ROT (*$COMMENT Measured ship Rate of Turn          [deg/min]*) : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="RUD_IND" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ RUD_IND  : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SPL_SOGX" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ SPL_SOGX  : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SPL_SOGY" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ SPL_SOGY  : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SPL_SOGV" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ SPL_SOGV  : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SPL_SPEED" flags="00004000" disabled="0" virtualFolder="\Output"><![CDATA[VAR_GLOBAL 
+ SPL_SPEED (*$COMMENT Measured ship speed                     [m/s]*) : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="K0_NM" flags="00004000" disabled="0" virtualFolder="Nomoto_ship_simulation"><![CDATA[VAR_GLOBAL 
+ K0_NM (*$COMMENT Ship Nomoto gain (K0) for simulation         *) : REAL := 0.06;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="L0_NM" flags="00004000" disabled="0" virtualFolder="\Nomoto_ship_simulation"><![CDATA[VAR_GLOBAL 
+ L0_NM  : REAL := 160.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="T0_NM" flags="00004000" disabled="0" virtualFolder="Nomoto_ship_simulation"><![CDATA[VAR_GLOBAL 
+ T0_NM (*$COMMENT Ship Nomoto time const. (T0) for simulation  *) : REAL := 60.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="V0_NM" flags="00004000" disabled="0" virtualFolder="\Nomoto_ship_simulation"><![CDATA[VAR_GLOBAL 
+ V0_NM  : REAL := 6.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="RR_NM" flags="00004000" disabled="0" virtualFolder="\Nomoto_ship_simulation"><![CDATA[VAR_GLOBAL 
+ RR_NM (*$COMMENT Rudder ratio   (Nomoto) [-]*) : REAL := 0.5;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="CR_NM" flags="00004000" disabled="0" virtualFolder="\Nomoto_ship_simulation"><![CDATA[VAR_GLOBAL 
+ CR_NM  : REAL;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SEA_CR_DIR" flags="00004000" disabled="0" virtualFolder="\Environment"><![CDATA[VAR_GLOBAL 
+ SEA_CR_DIR (*$COMMENT Sea current direction - for simulation  [deg]*) : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SEA_CR_SPD" flags="00004000" disabled="0" virtualFolder="\Environment"><![CDATA[VAR_GLOBAL 
+ SEA_CR_SPD (*$COMMENT Sea current speed - for simulation      [m/s]*) : REAL := 0.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SHP_MODEL" flags="00004000" disabled="0" virtualFolder=""><![CDATA[VAR_GLOBAL 
+ SHP_MODEL (*$COMMENT Ship simulation model: 0=Nomoto, 1=Container *) : INT := 1;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SHP_SET_RUD" flags="00004000" disabled="0" virtualFolder="\Ship_control"><![CDATA[VAR_GLOBAL 
+ SHP_SET_RUD (*$COMMENT Set Rudder (from HC)*) : REAL := 20.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SHP_SET_SHAFT" flags="00004000" disabled="0" virtualFolder="\Ship_control"><![CDATA[VAR_GLOBAL 
+ SHP_SET_SHAFT (*$COMMENT Propeller speed, for simulation (shaft) [rpm]*) : REAL := 60.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="WAVE_BF" flags="00004000" disabled="0" virtualFolder="\Environment"><![CDATA[VAR_GLOBAL 
+ WAVE_BF (*$COMMENT Beaufort (sea state) - for simulation    [BF]*) : INT := 0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="WAVE_PRD" flags="00004000" disabled="0" virtualFolder="\Environment"><![CDATA[VAR_GLOBAL 
+ WAVE_PRD (*$COMMENT Sae wave period - for simulation          [s]*) : REAL := 20.0;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="CDISPLAY" flags="00004000" disabled="0" virtualFolder="\Visualisation"><![CDATA[VAR_GLOBAL 
+ CDISPLAY  : INT;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="TREND_TIME" flags="00004000" disabled="0" virtualFolder="\Visualisation"><![CDATA[VAR_GLOBAL 
+ TREND_TIME  : REAL;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SHP_INIT" flags="00004000" disabled="0" virtualFolder="\Simulation"><![CDATA[VAR_GLOBAL 
+ SHP_INIT  : BOOL := TRUE;
+END_VAR]]></ITEM>
+      <ITEM type="VAR" name="SIM_TIME" flags="00004000" disabled="0" virtualFolder="\Simulation"><![CDATA[VAR_GLOBAL 
+ SIM_TIME  : REAL;
+END_VAR]]></ITEM>
+    </GLOBAL>
+    <TASK>
+      <ITEM type="TSK" name="TASK" loop_kind="0" interval="200"><![CDATA[SHIP_MODEL
+]]></ITEM>
+    </TASK>
+  </PROJECT>
+</CPDEV>

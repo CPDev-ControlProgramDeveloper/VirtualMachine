@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CPWIN>
+  <IOMAPPINGS>
+    <EXTERNAL LocalVariable="ShipSim.SHP_SET_RUD" Controller="AUTOPILOT" ExternalVariable="AUTOPILOT.SET_RUD" />
+    <EXTERNAL LocalVariable="ShipSim.SHP_SET_SHAFT" Controller="AUTOPILOT" ExternalVariable="AUTOPILOT.SHAFT" />
+  </IOMAPPINGS>
+</CPWIN>

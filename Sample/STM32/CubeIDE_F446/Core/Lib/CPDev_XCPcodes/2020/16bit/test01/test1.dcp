@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <TARGET RawCompilerVersion="00040e4d" StringCompilerVersion="0.4.14.77" CF="00000131" SF="000000b0" OP="00000005" LF="00000001" DC="0000000c">
+    <GLOBAL />
+    <VMACH>
+      <FILE_LOC>D:\Zlecone\hsvn_dev\CPDev_root\src\VM\vmspec\VM-Praxis.xml</FILE_LOC>
+    </VMACH>
+    <TASKS>
+      <TASK LName="TASK" PName="benchmark1.TASK" LoopType="0" Cycle="200" CycleUnit="ms" BodyCodeAddres="0006" TaskFlags="00000000" />
+    </TASKS>
+    <MEMORY_MAP Type="code">
+      <file LoadAddr="0" Size="328">test1.xcp</file>
+      <file_FullName>D:\Zlecone\Grant_FPGA\testy\2\test1.xcp</file_FullName>
+    </MEMORY_MAP>
+    <MEMORY_MAP Type="data">
+      <file LoadAddr="0" Size="92">#dummy</file>
+    </MEMORY_MAP>
+    <MNEMONIC_MAP Type="code">
+:0000|                                   | :?benchmark1.TASK?TSKSTR                                                        
+:0000| 1C16 0000 1000                    | $VMSYS.CALB #0000, :?benchmark1.PERFECT_NUMBERS?INIT                            
+:0006|                                   | :?benchmark1.TASK?TSKLOOP                                                       
+:0006| 1C16 0000 8E00                    | $VMSYS.CALB #0000, :?benchmark1.PERFECT_NUMBERS?CODE                            
+:000c| 1C1D 0600                         | $VMSYS.TRML :?benchmark1.TASK?TSKLOOP                                           
+:0010|                                   | :?benchmark1.PERFECT_NUMBERS?INIT                                               
+:0010| 1C15 0000 04 E8030000             | $VMSYS.MCD MAX_NUM, #04, #E8030000                                              
+:0019| 1C15 0400 04 00000000             | $VMSYS.MCD I, #04, #00000000                                                    
+:0022| 1C15 0800 04 00000000             | $VMSYS.MCD J, #04, #00000000                                                    
+:002b| 1C15 0C00 04 00000000             | $VMSYS.MCD S, #04, #00000000                                                    
+:0034| 1C23 1000 00 20                   | $VMSYS.FPAT P_NUMBERS, #00, #20                                                 
+:003a| 1C15 3000 02 0000                 | $VMSYS.MCD INDX, #02, #0000                                                     
+:0041| 1C15 3400 04 00000000             | $VMSYS.MCD START_TIME, #04, #00000000                                           
+:004a| 1C15 3800 04 00000000             | $VMSYS.MCD STOP_TIME, #04, #00000000                                            
+:0053| 1C15 3C00 04 00000000             | $VMSYS.MCD CZAS_OBLICZEN, #04, #00000000                                        
+:005c| 1C15 4000 04 01000000             | $VMSYS.MCD ?FOR_INC029C, #04, #01000000                                         
+:0065| 1C15 4400 04 00000000             | $VMSYS.MCD ?L?CST02A6, #04, #00000000                                           
+:006e| 1C15 4C00 04 01000000             | $VMSYS.MCD ?L?CST02AC, #04, #01000000                                           
+:0077| 1C15 5200 02 0000                 | $VMSYS.MCD ?L?CST02B2, #02, #0000                                               
+:007e| 1C15 5400 02 0700                 | $VMSYS.MCD ?L?CST02B3, #02, #0700                                               
+:0085| 1C15 5600 02 0100                 | $VMSYS.MCD ?L?CST02B5, #02, #0100                                               
+:008c| 1C13                              | $VMSYS.RETURN                                                                   
+:008e|                                   | :?benchmark1.PERFECT_NUMBERS?CODE                                               
+;;;;;|                                   | {B:3!25!667}                                                                    
+;!!!!|                                   |  ■start_time:=CUR_TIME()■;                                                      
+:008e| 1C17 3400                         | $DEFAULT.CUR_TIME START_TIME                                                    
+;;;;;|                                   | {E:3!25!689}                                                                    
+;;;;;|                                   | {B:3!26!693}                                                                    
+;!!!!|                                   |  ■indx:=0■;                                                                     
+:0092| 1C15 3000 02 0000                 | $VMSYS.MCD INDX, #02, #0000                                                     
+;;;;;|                                   | {E:3!26!700}                                                                    
+:0099| 1C15 0400 04 03000000             | $VMSYS.MCD I, #04, #03000000                                                    
+:00a2|                                   | :?benchmark1.PERFECT_NUMBERSFOR?C029D                                           
+:00a2| 1307 3200 0400 0000               | $DEFAULT.LE ?IF?CTL, I, MAX_NUM                                                 
+:00aa| 1C02 3200 3401                    | $VMSYS.JZ ?IF?CTL, :?benchmark1.PERFECT_NUMBERSFOR?L029E                        
+;;;;;|                                   | {B:3!28!730}                                                                    
+;!!!!|                                   |   ■s:=1■; j:=2;                                                                 
+:00b0| 1C15 0C00 04 01000000             | $VMSYS.MCD S, #04, #01000000                                                    
+;;;;;|                                   | {E:3!28!734}                                                                    
+;;;;;|                                   | {B:3!28!736}                                                                    
+;!!!!|                                   |   s:=1; ■j:=2■;                                                                 
+:00b9| 1C15 0800 04 02000000             | $VMSYS.MCD J, #04, #02000000                                                    
+;;;;;|                                   | {E:3!28!740}                                                                    
+;;;;;|                                   | {B:8!30!750}                                                                    
+;!!!!|                                   |   ■WHILE j&lt;i ■DO                                                                
+:00c2|                                   | :?benchmark1.PERFECT_NUMBERSWHILE?C02A2                                         
+:00c2| 1407 3200 0800 0400               | $DEFAULT.LT ?IF?CTL, J, I                                                       
+;;;;;|                                   | {E:8!30!760}                                                                    
+;;;;;|                                   | {B:65544!31!768}                                                                
+:00ca| 1C02 3200 FA00                    | $VMSYS.JZ ?IF?CTL, :?benchmark1.PERFECT_NUMBERSWHILE?E02A3                      
+;;;;;|                                   | {B:1!31!768}                                                                    
+;!!!!|                                   |     ■IF(i MOD j)=DWORD#0 THEN ■s:=s+j; END_IF                                   
+:00d0| 0417 4800 0400 0800               | $DEFAULT.MOD ?F?MOD02A7, I, J                                                   
+:00d8| 1207 3200 4800 4400               | $DEFAULT.EQ ?IF?CTL, ?F?MOD02A7, ?L?CST02A6                                     
+:00e0| 1C02 3200 EE00                    | $VMSYS.JZ ?IF?CTL, :?benchmark1.PERFECT_NUMBERSIF?B02A5                         
+;;;;;|                                   | {E:1!31!793}                                                                    
+;;;;;|                                   | {B:65537!31!793}                                                                
+;;;;;|                                   | {B:3!31!793}                                                                    
+;!!!!|                                   |     IF(i MOD j)=DWORD#0 THEN ■s:=s+j■; END_IF                                   
+:00e6| 0127 0C00 0C00 0800               | $DEFAULT.ADD S, S, J                                                            
+;;;;;|                                   | {E:3!31!799}                                                                    
+;;;;;|                                   | {E:65537!31!801}                                                                
+:00ee|                                   | :?benchmark1.PERFECT_NUMBERSIF?B02A5                                            
+;;;;;|                                   | {B:3!32!813}                                                                    
+;!!!!|                                   |     ■j:=j+DWORD#1■;                                                             
+:00ee| 0127 0800 0800 4C00               | $DEFAULT.ADD J, J, ?L?CST02AC                                                   
+;;;;;|                                   | {E:3!32!825}                                                                    
+:00f6| 1C00 C200                         | $VMSYS.JMP :?benchmark1.PERFECT_NUMBERSWHILE?C02A2                              
+:00fa|                                   | :?benchmark1.PERFECT_NUMBERSWHILE?E02A3                                         
+;;;;;|                                   | {E:65544!35!849}                                                                
+;;;;;|                                   | {B:1!35!849}                                                                    
+;!!!!|                                   |   ■IF s=i THEN ■p_numbers[indx]:=i; indx:=indx+1; END_IF                        
+:00fa| 1207 3200 0C00 0400               | $DEFAULT.EQ ?IF?CTL, S, I                                                       
+:0102| 1C02 3200 2801                    | $VMSYS.JZ ?IF?CTL, :?benchmark1.PERFECT_NUMBERSIF?B02AE                         
+;;;;;|                                   | {E:1!35!861}                                                                    
+;;;;;|                                   | {B:65537!35!861}                                                                
+;;;;;|                                   | {B:3!35!861}                                                                    
+;!!!!|                                   |   IF s=i THEN ■p_numbers[indx]:=i■; indx:=indx+1; END_IF                        
+:0108| 1C1F 5000 3000 0200               | $VMSYS.MEMCP ?LAC?I02B1, INDX, #0200                                            
+:0110| 1C2E 5000 5200 5400               | $VMSYS.CEAC ?LAC?I02B1, ?L?CST02B2, ?L?CST02B3                                  
+:0118| 1C2B 0400 1000 5000               | $VMSYS.AFWR I, P_NUMBERS, ?LAC?I02B1                                            
+;;;;;|                                   | {E:3!35!879}                                                                    
+;;;;;|                                   | {B:3!35!881}                                                                    
+;!!!!|                                   |   IF s=i THEN p_numbers[indx]:=i; ■indx:=indx+1■; END_IF                        
+:0120| 0122 3000 3000 5600               | $DEFAULT.ADD INDX, INDX, ?L?CST02B5                                             
+;;;;;|                                   | {E:3!35!893}                                                                    
+;;;;;|                                   | {E:65537!35!895}                                                                
+:0128|                                   | :?benchmark1.PERFECT_NUMBERSIF?B02AE                                            
+:0128| 0127 0400 0400 4000               | $DEFAULT.ADD I, I, ?FOR_INC029C                                                 
+:0130| 1C00 A200                         | $VMSYS.JMP :?benchmark1.PERFECT_NUMBERSFOR?C029D                                
+:0134|                                   | :?benchmark1.PERFECT_NUMBERSFOR?L029E                                           
+;;;;;|                                   | {B:3!37!920}                                                                    
+;!!!!|                                   |  ■stop_time:=CUR_TIME()■;                                                       
+:0134| 1C17 3800                         | $DEFAULT.CUR_TIME STOP_TIME                                                     
+;;;;;|                                   | {E:3!37!941}                                                                    
+;;;;;|                                   | {B:3!40!980}                                                                    
+;!!!!|                                   |  ■czas_obliczen:=TIME_TO_DINT(stop_time - start_time)■;                         
+:0138| 020B 5800 3800 3400               | $DEFAULT.SUB ?F?$DEFAULT_SUB02BB, STOP_TIME, START_TIME                         
+:0140| 1902 3C00 5800                    | $DEFAULT.TIME_TO_DINT CZAS_OBLICZEN, ?F?$DEFAULT_SUB02BB                        
+;;;;;|                                   | {E:3!40!1031}                                                                   
+:0146| 1C13                              | $VMSYS.RETURN                                                                   
+:0148 
+</MNEMONIC_MAP>
+    <DATA_MAP>
+      <OBJ ObjType="TASK" LName="TASK" PName="benchmark1.TASK" Addr="0000" AdrType="gdlabel" Size="91">
+        <OBJ ObjType="VAR" LName="PERFECT_NUMBERS_01" PName="benchmark1.TASK.PERFECT_NUMBERS_01" Addr="0000" AdrType="rdlabel" CAddr="0000" CAdrType="gdlabel" Size="91" Type="PERFECT_NUMBERS" PType="benchmark1.PERFECT_NUMBERS" TypeStatus="program" VFlags="00000000">
+          <OBJ ObjType="VAR" LName="MAX_NUM" PName="benchmark1.TASK.PERFECT_NUMBERS_01.MAX_NUM" Addr="0000" AdrType="rdlabel" CAddr="0000" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000004" ConstValue="DWORD#1000" />
+          <OBJ ObjType="VAR" LName="I" PName="benchmark1.TASK.PERFECT_NUMBERS_01.I" Addr="0004" AdrType="rdlabel" CAddr="0004" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="J" PName="benchmark1.TASK.PERFECT_NUMBERS_01.J" Addr="0008" AdrType="rdlabel" CAddr="0008" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="S" PName="benchmark1.TASK.PERFECT_NUMBERS_01.S" Addr="000c" AdrType="rdlabel" CAddr="000c" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="P_NUMBERS" PName="benchmark1.TASK.PERFECT_NUMBERS_01.P_NUMBERS" Addr="0010" AdrType="rdlabel" CAddr="0010" CAdrType="gdlabel" Size="32" Type="?P_NUMBERS?ARRAY?0298" PType="benchmark1.PERFECT_NUMBERS.?P_NUMBERS?ARRAY?0298" TypeStatus="array" VFlags="00000000" ArrayBase="DWORD" ArrayBaseP="$DEFAULT.DWORD">
+            <DIMENSIONS>
+              <LEVEL No="0" LoBound="0" UpBound="7" />
+            </DIMENSIONS>
+            <OBJ ObjType="VAR" LName="?P_NUMBERS?ARRAY?0298?LOW?00" PName="benchmark1.TASK.PERFECT_NUMBERS_01.P_NUMBERS.?P_NUMBERS?ARRAY?0298?LOW?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="0" />
+            <OBJ ObjType="VAR" LName="?P_NUMBERS?ARRAY?0298?UPR?00" PName="benchmark1.TASK.PERFECT_NUMBERS_01.P_NUMBERS.?P_NUMBERS?ARRAY?0298?UPR?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="7" />
+          </OBJ>
+          <OBJ ObjType="VAR" LName="INDX" PName="benchmark1.TASK.PERFECT_NUMBERS_01.INDX" Addr="0030" AdrType="rdlabel" CAddr="0030" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="START_TIME" PName="benchmark1.TASK.PERFECT_NUMBERS_01.START_TIME" Addr="0034" AdrType="rdlabel" CAddr="0034" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="STOP_TIME" PName="benchmark1.TASK.PERFECT_NUMBERS_01.STOP_TIME" Addr="0038" AdrType="rdlabel" CAddr="0038" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="CZAS_OBLICZEN" PName="benchmark1.TASK.PERFECT_NUMBERS_01.CZAS_OBLICZEN" Addr="003c" AdrType="rdlabel" CAddr="003c" CAdrType="gdlabel" Size="4" Type="DINT" PType="$DEFAULT.DINT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?FOR_INC029C" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?FOR_INC029C" Addr="0040" AdrType="rdlabel" CAddr="0040" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100004" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?IF?CTL" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?IF?CTL" Addr="0032" AdrType="rdlabel" CAddr="0032" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?L?CST02A6" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?L?CST02A6" Addr="0044" AdrType="rdlabel" CAddr="0044" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100000" ConstValue="DWORD#0" />
+          <OBJ ObjType="VAR" LName="?F?MOD02A7" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?F?MOD02A7" Addr="0048" AdrType="rdlabel" CAddr="0048" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?L?CST02AC" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?L?CST02AC" Addr="004c" AdrType="rdlabel" CAddr="004c" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100000" ConstValue="DWORD#1" />
+          <OBJ ObjType="VAR" LName="?LAC?I02B1" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?LAC?I02B1" Addr="0050" AdrType="rdlabel" CAddr="0050" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?L?CST02B2" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?L?CST02B2" Addr="0052" AdrType="rdlabel" CAddr="0052" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="0" />
+          <OBJ ObjType="VAR" LName="?L?CST02B3" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?L?CST02B3" Addr="0054" AdrType="rdlabel" CAddr="0054" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="7" />
+          <OBJ ObjType="VAR" LName="?L?CST02B5" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?L?CST02B5" Addr="0056" AdrType="rdlabel" CAddr="0056" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?F?$DEFAULT_SUB02BB" PName="benchmark1.TASK.PERFECT_NUMBERS_01.?F?$DEFAULT_SUB02BB" Addr="0058" AdrType="rdlabel" CAddr="0058" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00200000" />
+        </OBJ>
+      </OBJ>
+    </DATA_MAP>
+    <INFO>
+      <DT_EXPORT year="2020" month="2" day="13" hour="9" minutes="45" seconds="35" milisec="460" />
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2009" month="10" day="3" hour="16" minutes="42" seconds="9" milisec="281" />
+      <PHYSVER value="35" />
+      <LAST_COMPILED year="2020" month="2" day="13" hour="9" minutes="45" seconds="35" milisec="272" />
+    </INFO>
+  </TARGET>
+</CPDEV>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <TARGET RawCompilerVersion="00041112" StringCompilerVersion="0.4.17.18" CF="00000131" SF="000002b0" OP="00000005" LF="00000001" DC="00000020">
+    <GLOBAL>
+      <VAR LName="OUT" PName="TEST_Blink.OUT" Addr="0000" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" VarFlags="00004000" TypeCRC="D275EFCD" />
+    </GLOBAL>
+    <VMACH>
+      <FILE_LOC>VM\VM-Praxis.xml</FILE_LOC>
+    </VMACH>
+    <TASKS>
+      <TASK LName="TASK" PName="TEST_Blink.TASK" LoopType="0" Cycle="600" CycleUnit="ms" BodyCodeAddres="000c" TaskFlags="00000000" />
+    </TASKS>
+    <MEMORY_MAP Type="code">
+      <file LoadAddr="0" Size="32">main.xcp</file>
+      <file_FullName>C:\Users\Marcin\OneDrive\PROJEKTY\12_EMBEDDED\140_CPDev_Test\01_TEST_Blink\main.xcp</file_FullName>
+    </MEMORY_MAP>
+    <MEMORY_MAP Type="data">
+      <file LoadAddr="0" Size="1">#dummy</file>
+    </MEMORY_MAP>
+    <MNEMONIC_MAP Type="code">
+:0000| 1C15 0000 01 00                   | $VMSYS.MCD TEST_Blink.OUT, #01, #00                                             
+:0006|                                   | :?TEST_Blink.TASK?TSKSTR                                                        
+:0006| 1C16 0000 1600                    | $VMSYS.CALB #0000, :?TEST_Blink.TEST11?INIT                                     
+:000c|                                   | :?TEST_Blink.TASK?TSKLOOP                                                       
+:000c| 1C16 0000 1800                    | $VMSYS.CALB #0000, :?TEST_Blink.TEST11?CODE                                     
+:0012| 1C1D 0C00                         | $VMSYS.TRML :?TEST_Blink.TASK?TSKLOOP                                           
+:0016|                                   | :?TEST_Blink.TEST11?INIT                                                        
+:0016| 1C13                              | $VMSYS.RETURN                                                                   
+:0018|                                   | :?TEST_Blink.TEST11?CODE                                                        
+:0018| 0510 0000 0000                    | $DEFAULT.NOT OUT, OUT                                                           
+:001e| 1C13                              | $VMSYS.RETURN                                                                   
+:0020 
+</MNEMONIC_MAP>
+    <DATA_MAP>
+      <OBJ ObjType="VAR" LName="OUT" PName="TEST_Blink.OUT" Addr="0000" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00004000" TypeCRC="D275EFCD" />
+      <OBJ ObjType="TASK" LName="TASK" PName="TEST_Blink.TASK" Addr="0000" AdrType="gdlabel" Size="1">
+        <OBJ ObjType="VAR" LName="TEST11_01" PName="TEST_Blink.TASK.TEST11_01" Addr="0000" AdrType="rdlabel" CAddr="0000" CAdrType="gdlabel" Size="1" Type="TEST11" PType="TEST_Blink.TEST11" TypeStatus="program" VFlags="00000000" TypeCRC="190D32CB" />
+      </OBJ>
+    </DATA_MAP>
+    <INFO>
+      <DT_EXPORT year="2021" month="12" day="14" hour="19" minutes="43" seconds="17" milisec="239" />
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2021" month="12" day="12" hour="10" minutes="22" seconds="16" milisec="11" />
+      <PHYSVER value="19" />
+      <LAST_COMPILED year="2021" month="12" day="14" hour="19" minutes="43" seconds="16" milisec="411" />
+    </INFO>
+  </TARGET>
+</CPDEV>

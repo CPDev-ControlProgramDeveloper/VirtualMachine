@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <PROJECT name="benchmark2">
+    <METRIC>
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2009" month="10" day="3" hour="16" minutes="42" seconds="9" milisec="281" />
+    </METRIC>
+    <OPTIONS>
+      <PV value="00000043" />
+      <II value="00000038" />
+      <LC year="2010" month="3" day="10" hour="22" minutes="24" seconds="17" milisec="718" />
+      <LCF>
+        <ABSOLUTE>C:\Program Files\CPDev\VM\VM-FPGA.xml</ABSOLUTE>
+        <APPVARS>$VMsDir\VM-FPGA.xml</APPVARS>
+        <ENVVARS>%ProgramFiles%\CPDev\VM\VM-FPGA.xml</ENVVARS>
+      </LCF>
+    </OPTIONS>
+    <LIBRARY>
+      <PKG name="IEC_61131" version="131072" filename="C:\Program Files\CPDev\Biblioteki\IEC 61131-3.lcp">
+        <CREATED year="2010" month="1" day="28" hour="11" minutes="51" seconds="36" milisec="500" />
+        <APPVARS>$LibDir\IEC 61131-3.lcp</APPVARS>
+        <ENVVARS>%ProgramFiles%\CPDev\Biblioteki\IEC 61131-3.lcp</ENVVARS>
+        <IMP name="CTD" type="FBLK" />
+        <IMP name="CTU" type="FBLK" />
+        <IMP name="CTUD" type="FBLK" />
+        <IMP name="F_TRIG" type="FBLK" />
+        <IMP name="R_TRIG" type="FBLK" />
+        <IMP name="RS" type="FBLK" />
+        <IMP name="SEMA" type="FBLK" />
+        <IMP name="SR" type="FBLK" />
+        <IMP name="TOF" type="FBLK" />
+        <IMP name="TON" type="FBLK" />
+        <IMP name="TP" type="FBLK" />
+      </PKG>
+    </LIBRARY>
+    <POU>
+      <ITEM lang="ST" type="PRG" name="PRIME_NUMBERS"><![CDATA[(* Wyliczanie liczb pierwszych *)
+PROGRAM PRIME_NUMBERS
+ VAR CONSTANT
+  PN_BUF_SIZE : INT := 5; (* rozmiar bufora dla liczb pierwszych obliczonych jako ostatnie *)
+  MAX_NUM : DWORD := DWORD#1000; (* przedział wyliczania liczb pierwszych 2..MAX_NUM *)
+ END_VAR
+
+ VAR
+  i,j,s:DWORD;
+  prime_numbers: ARRAY [0..9] OF DWORD;
+  buffer : ARRAY [0..19] OF DWORD;
+  start_time,stop_time : TIME;
+  k,l,wp,wn : INT;
+  czas_obliczen : DINT;
+     
+ END_VAR
+
+(* zasadnicza część testu - nie należy modyfikować *)
+ start_time:=CUR_TIME();
+
+ FOR i:=2 TO MAX_NUM DO 
+  j:=1;
+  wp:=0; wn:=1; buffer[wp]:=1; 
+  WHILE j<=i DO
+    IF(i MOD j)=DWORD#0 THEN 
+     buffer[wn]:=buffer[wp]*j;
+     wp:=wn; wn:=wn+1;
+     IF wn>19 THEN wn:=0; END_IF   
+    END_IF
+    j:=j+DWORD#1;
+  END_WHILE
+    
+  IF i=buffer[wp] THEN    
+    l:=PN_BUF_SIZE-1;
+    WHILE l>=1 DO
+     prime_numbers[l]:=prime_numbers[l-1];
+     l:=l-1;
+    END_WHILE 
+    prime_numbers[0]:=i;
+  END_IF      
+ END_FOR
+ stop_time:=CUR_TIME();
+(************************************************************)
+
+ czas_obliczen:=TIME_TO_DINT(stop_time - start_time);
+ (* trzeba jakos wyprowadzić tę zmienną... *)
+
+END_PROGRAM]]></ITEM>
+    </POU>
+    <GLOBAL />
+    <TASK>
+      <ITEM type="TSK" name="TASK" loop_kind="0" interval="200"><![CDATA[PRIME_NUMBERS
+]]></ITEM>
+    </TASK>
+  </PROJECT>
+</CPDEV>

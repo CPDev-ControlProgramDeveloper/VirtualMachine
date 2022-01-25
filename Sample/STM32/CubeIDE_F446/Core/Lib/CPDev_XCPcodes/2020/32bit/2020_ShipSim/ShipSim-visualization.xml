@@ -1,0 +1,2321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Name="AUTOPILOT2" VariableDisplayNumber="CDISPLAY">
+  <Libraries>
+    <Library Path="CPVis.Objects.Basic.xml" />
+    <Library Path="CPVis.Objects.Praxis.xml" />
+    <Library Path="CPVis.Objects.Trends.xml" />
+    <Library Path="CPVis.Objects.Autopilot.xml" />
+  </Libraries>
+  <Displays>
+    <Display Name="00_ADJUSTMENTS" Width="800" Height="600">
+      <Objects>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="70" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Minimum wave  [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM1_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="20" Width="520" Height="50" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="ADJUSTMENTS" Variable="" />
+            <Property Name="Font" Value="C-32" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="70" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="5" Variable="" />
+            <Property Name="Current Value" Value="0.1" Variable="V_MIN_WAVE" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM1_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="BACK" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B1_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ACCEPT" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B2_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B3_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="MAIN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B4_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TREND" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B5_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="XY" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B6_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="UP" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B7_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="DOWN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B8_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B9_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ADJUST" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B10_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TUNE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B11_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="SIMUL" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B12_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="100" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Trim [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM2_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="100" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-10" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_TRIM" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM2_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="130" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Rudder limit [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM3_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="130" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="5" Variable="" />
+            <Property Name="Maximum Range" Value="40" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_RUD_LIM" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM3_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="160" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Dead zone [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM4_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="160" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_DZ_HC" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM4_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="190" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TRACK leg reference [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM5_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="190" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="360" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_VV_NEW_TR_REF" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM5_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="220" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TRACK next leg" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM6_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="250" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="RAD/ROT radius [km]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM7_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="250" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_RADIUS" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM7_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="280" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="RAD/ROT rotation [deg/min]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM8_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="280" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="30" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_SET_ROT" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM8_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="310" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="RAD/ROT turn angle [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM9_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="310" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="520" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_SET_ANGLE" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM9_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="340" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="RAD/ROT direction" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM10_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="370" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Measurement filter: Gyro [s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM11_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="370" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_T_GYRO" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM11_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="400" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Measurement filter: ROT [s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM12_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="400" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_T_ROT" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM12_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="430" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Measurement filter: Speed [s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM13_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="430" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_T_SPEED" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM13_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="460" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Measurement filter: Track [s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="460" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_T_TRACK" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="570" Y="220" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Start" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM6_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="340" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="V_DIR_ID" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="&lt;&lt; PS" Variable="" />
+            <Property Name="Text (index = 1)" Value="SB &gt;&gt;" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM10_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="490" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Rudder activity [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="490" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="45" Variable="" />
+            <Property Name="Current Value" Value="0.0" Variable="V_RUD_ACT" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="23" Variable="" />
+            <Property Name="Low Color" Value="23" Variable="" />
+            <Property Name="Normal Color" Value="23" Variable="" />
+            <Property Name="High Color" Value="23" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+      </Objects>
+    </Display>
+    <Display Name="01_STATUS_TUNINGS" Width="800" Height="600">
+      <Objects>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="70" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Operating mode" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM1_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="20" Width="520" Height="50" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="STATUS / TUNINGS" Variable="" />
+            <Property Name="Font" Value="C-32" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="BACK" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B1_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ACCEPT" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B2_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B3_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="MAIN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B4_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TREND" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B5_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="XY" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B6_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="UP" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B7_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="DOWN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B8_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B9_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ADJUST" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B10_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TUNE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B11_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="SIMUL" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B12_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="100" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Wave tracker" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM2_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="130" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship speed" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM3_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="160" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Wave filter mode" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM4_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="190" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Tuning mode" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM5_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="220" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship length [m]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM6_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="220" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="50" Variable="" />
+            <Property Name="Maximum Range" Value="400" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_SH_LENGTH" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM6_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="250" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship cruising speed [m/s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM7_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="250" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="3" Variable="" />
+            <Property Name="Maximum Range" Value="15" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_SH_C_SPEED" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM7_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="280" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Controller sensitivity" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM8_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="280" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0.3" Variable="" />
+            <Property Name="Maximum Range" Value="5" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_RED_HC" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM8_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="310" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship identification done?" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM9_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="370" Width="340" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Adapt rudder ratio" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM11_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="370" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="RR_A" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="29" Variable="" />
+            <Property Name="Low Color" Value="29" Variable="" />
+            <Property Name="Normal Color" Value="29" Variable="" />
+            <Property Name="High Color" Value="29" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="400" Width="340" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Adapt counter rudder" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM12_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="400" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="CR_A" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="29" Variable="" />
+            <Property Name="Low Color" Value="29" Variable="" />
+            <Property Name="Normal Color" Value="29" Variable="" />
+            <Property Name="High Color" Value="29" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="430" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="User rudder ratio" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM13_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="430" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0.1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_RR_U" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM13_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="460" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="User counter rudder" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="460" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0.1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_CR_U" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="70" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="OPT_MODE" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="29" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Adapt" Variable="" />
+            <Property Name="Text (index = 1)" Value="Ad+Filt" Variable="" />
+            <Property Name="Text (index = 2)" Value="AdFilSl" Variable="" />
+            <Property Name="Text (index = 3)" Value="Ident" Variable="" />
+            <Property Name="Text (index = 4)" Value="Usr Tun" Variable="" />
+            <Property Name="Text (index = 5)" Value="Manual" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="100" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="WTR_STAT" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="29" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Off" Variable="" />
+            <Property Name="Text (index = 1)" Value="On" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="130" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="SPEED_STAT" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="29" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Too low" Variable="" />
+            <Property Name="Text (index = 1)" Value="Ok" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="160" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="V_WFL_MODE" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Off" Variable="" />
+            <Property Name="Text (index = 1)" Value="On" Variable="" />
+            <Property Name="Text (index = 2)" Value="On+Slow" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM4_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="190" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="V_TUN_SRC" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Adapt" Variable="" />
+            <Property Name="Text (index = 1)" Value="User" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM5_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="310" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="V_SHIP_ID_OK_INT" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="29" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="No" Variable="" />
+            <Property Name="Text (index = 1)" Value="Done" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="340" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship identification" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM10_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="340" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="V_SHIP_IDENT_BUTTON" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Start" Variable="" />
+            <Property Name="Text (index = 1)" Value="Stop" Variable="" />
+            <Property Name="Text (index = 2)" Value="Accept" Variable="" />
+            <Property Name="Text (index = 3)" Value="Discard" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM10_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="490" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Identification maneuver" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM15_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="520" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Rudder change" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM16_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="520" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="5" Variable="" />
+            <Property Name="Maximum Range" Value="20" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_RUD_CH" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM16_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="490" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="V_IDNT_MANVR" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Zig-zag" Variable="" />
+            <Property Name="Text (index = 1)" Value="Sinusoid" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM15_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="470" Y="370" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="RR_TMP_ID" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="175" Variable="" />
+            <Property Name="Low Color" Value="174" Variable="" />
+            <Property Name="Normal Color" Value="174" Variable="" />
+            <Property Name="High Color" Value="174" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="470" Y="400" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="CR_TMP_ID" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="174" Variable="" />
+            <Property Name="Low Color" Value="174" Variable="" />
+            <Property Name="Normal Color" Value="174" Variable="" />
+            <Property Name="High Color" Value="174" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+      </Objects>
+    </Display>
+    <Display Name="02_SIMULATIONS" Width="800" Height="600">
+      <Objects>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="70" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship class" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM1_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="20" Width="520" Height="50" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="SIMULATIONS" Variable="" />
+            <Property Name="Font" Value="C-32" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="BACK" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B1_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ACCEPT" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B2_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B3_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="MAIN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B4_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TREND" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B5_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="XY" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B6_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="UP" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B7_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="DOWN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B8_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B9_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ADJUST" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B10_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TUNE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B11_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="SIMUL" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B12_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="100" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Nomoto ship length [m]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM2_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="100" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="10" Variable="" />
+            <Property Name="Maximum Range" Value="400" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_L0_NM" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM2_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="130" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Nomoto ship speed [m/s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM3_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="130" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="5" Variable="" />
+            <Property Name="Maximum Range" Value="15" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_V0_NM" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM3_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="160" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Nomoto ship rudder ratio" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM4_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="160" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0.1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_RR_NM" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM4_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="190" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Nomoto ship counter rudder" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM5_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="190" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0.1" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_CR_NM" />
+            <Property Name="Decimals" Value="2" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM5_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="220" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Sea: Beaufort [BF]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM6_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="250" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Sea: wave direction [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM7_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="250" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="360" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_WAVE_DIR" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM7_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="280" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Sea: wave period [s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM8_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="280" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="5" Variable="" />
+            <Property Name="Maximum Range" Value="120" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_WAVE_PRD" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM8_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="310" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Sea: current speed [m/s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM9_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="310" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="5" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_SEA_CR_SPD" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM9_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="340" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Sea: current direction [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM10_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="340" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="360" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_SEA_CR_DIR" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM10_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="370" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship position: X [m]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM11_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="370" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="GPS_X" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="29" Variable="" />
+            <Property Name="Low Color" Value="29" Variable="" />
+            <Property Name="Normal Color" Value="29" Variable="" />
+            <Property Name="High Color" Value="29" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM11_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="400" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Ship position: Y [m]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM12_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="400" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="GPS_Y" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="29" Variable="" />
+            <Property Name="Low Color" Value="29" Variable="" />
+            <Property Name="Normal Color" Value="29" Variable="" />
+            <Property Name="High Color" Value="29" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM12_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="430" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Wave tracker: period [s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM13_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="430" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="WTR_PRD" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="29" Variable="" />
+            <Property Name="Low Color" Value="29" Variable="" />
+            <Property Name="Normal Color" Value="29" Variable="" />
+            <Property Name="High Color" Value="29" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM13_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="460" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Wave tracker: magnitude [deg]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="460" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="35" Variable="WTR_AMPL" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="29" Variable="" />
+            <Property Name="Low Color" Value="29" Variable="" />
+            <Property Name="Normal Color" Value="29" Variable="" />
+            <Property Name="High Color" Value="29" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM14_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Bindable Text Box" FullName="CPVis.Objects.Basic:Bindable Text Box" X="570" Y="70" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text Index" Value="" Variable="V_SHP_MODEL" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text (index = 0)" Value="Nomoto" Variable="" />
+            <Property Name="Text (index = 1)" Value="Cont." Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM1_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Counter Value" FullName="CPVis.Objects.Basic:Counter Value" X="570" Y="220" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Current Value" Value="0" Variable="V_WAVE_BF" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Text format" Value="%d" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM6_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="130" Y="490" Width="430" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Shaft [rpm]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM15_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="570" Y="490" Width="90" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="10" Variable="" />
+            <Property Name="Maximum Range" Value="200" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="V_SHAFT" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="" Variable="V_ITEM15_COLOR" />
+            <Property Name="Border Width" Value="2" Variable="" />
+            <Property Name="Border Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+      </Objects>
+    </Display>
+    <Display Name="03_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="04_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="05_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="06_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="07_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="08_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="09_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="10_EMPTY" Width="800" Height="600">
+      <Objects />
+    </Display>
+    <Display Name="11_CHART_XY" Width="800" Height="600">
+      <Objects>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="MAIN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B1_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B2_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="X MOVE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE0_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="XY SIZE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE1_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Y MOVE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE2_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE3_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="UP" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B7_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="DOWN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B8_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B9_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ADJUST" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B10_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TUNE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B11_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="SIMUL" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B12_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="120" Y="20" Width="520" Height="50" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="XY CHART" Variable="" />
+            <Property Name="Font" Value="C-32" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Scalable XY" FullName="CPVis.Objects.Trends:Scalable XY" X="120" Y="70" Width="560" Height="510" IsUpdatable="True">
+          <Properties>
+            <Property Name="Header Text" Value="Ship position" Variable="" />
+            <Property Name="Trend value 1" Value="" Variable="GPS_Y" />
+            <Property Name="Trend X 1" Value="" Variable="GPS_X" />
+            <Property Name="Current time" Value="" Variable="CURRENT_TIME" />
+            <Property Name="Time interval" Value="1" Variable="" />
+            <Property Name="Sample count" Value="10000" Variable="" />
+            <Property Name="Range X Min" Value="0" Variable="V_CHART2_X_MIN" />
+            <Property Name="Range X Max" Value="200" Variable="V_CHART2_X_MAX" />
+            <Property Name="Range Y Min" Value="" Variable="V_CHART2_Y_MIN" />
+            <Property Name="Range Y Max" Value="" Variable="V_CHART2_Y_MAX" />
+            <Property Name="Axis X divisions" Value="" Variable="V_X_DIVISIONS2" />
+            <Property Name="Axis Y divisions" Value="10" Variable="V_Y_DIVISIONS2" />
+            <Property Name="Trend Line 1 Color" Value="144" Variable="" />
+            <Property Name="Grid Color" Value="172" Variable="" />
+          </Properties>
+        </Object>
+      </Objects>
+    </Display>
+    <Display Name="12_DEFAULT" Width="800" Height="600">
+      <Objects>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="140" Y="10" Width="370" Height="40" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="RATE OF TURN  [°/min]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="HC" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_OPTION2_TEXT_COLOR" />
+            <Property Name="Box Color" Value="" Variable="V_MODE0_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TRACK" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_OPTION3_TEXT_COLOR" />
+            <Property Name="Box Color" Value="" Variable="V_MODE1_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="RAD" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_OPTION4_TEXT_COLOR" />
+            <Property Name="Box Color" Value="" Variable="V_MODE2_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ROT " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_OPTION5_TEXT_COLOR" />
+            <Property Name="Box Color" Value="" Variable="V_MODE3_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TREND" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B5_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="XY" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B6_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="UP" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_PLUS_MINUS_TEXT_COLOR" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B7_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="DOWN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_PLUS_MINUS_TEXT_COLOR" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B8_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B9_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ADJUST" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B10_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TUNE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B11_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="SIMUL" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B12_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="140" Y="110" Width="520" Height="40" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="GYRO  [°]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="350" Y="150" Width="120" Height="40" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="360" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="V_GYRO" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="" Variable="V_OPTION6_TEXT_COLOR" />
+            <Property Name="Low Range" Value="-1;-1" Variable="" />
+            <Property Name="Normal Range" Value="-1;-1" Variable="" />
+            <Property Name="High Range" Value="-1;-1" Variable="" />
+            <Property Name="Font Size" Value="C-32" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="140" Y="190" Width="370" Height="40" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="RUDDER  INDICATION  [°]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="140" Y="290" Width="520" Height="40" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="RUDDER  LIMIT  [°]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="370" Y="330" Width="70" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="5" Variable="" />
+            <Property Name="Maximum Range" Value="35" Variable="" />
+            <Property Name="Current Value" Value="25" Variable="RUD_LIM" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="30" Variable="" />
+            <Property Name="Low Range" Value="-1;-1" Variable="" />
+            <Property Name="Normal Range" Value="-1;-1" Variable="" />
+            <Property Name="High Range" Value="-1;-1" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="140" Y="360" Width="520" Height="40" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="SET  HEADING  [°]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="370" Y="400" Width="70" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="360" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="SET_HEAD" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="30" Variable="" />
+            <Property Name="Low Range" Value="-1;-1" Variable="" />
+            <Property Name="Normal Range" Value="-1;-1" Variable="" />
+            <Property Name="High Range" Value="-1;-1" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Center BarGraph Dot" FullName="CPVis.Objects.Autopilot:Center BarGraph Dot" X="140" Y="80" Width="520" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-50" Variable="" />
+            <Property Name="Maximum Range" Value="50" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="ROT_VIS" />
+            <Property Name="Alignment" Value="2" Variable="" />
+            <Property Name="Indicators Number" Value="10" Variable="" />
+            <Property Name="Deadband Color" Value="180" Variable="V_OPTION7_TEXT_COLOR" />
+            <Property Name="Deadband Bar Range" Value="-999;-20" Variable="" />
+            <Property Name="Negative Bar Color" Value="102" Variable="V_OPTION7_TEXT_COLOR" />
+            <Property Name="Negative Bar Range" Value="-20;20" Variable="" />
+            <Property Name="Positive Bar Color" Value="180" Variable="V_OPTION7_TEXT_COLOR" />
+            <Property Name="Positive Bar Range" Value="20;999" Variable="" />
+            <Property Name="Center Line Color" Value="67" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Center BarGraph Dot" FullName="CPVis.Objects.Autopilot:Center BarGraph Dot" X="140" Y="260" Width="520" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-40" Variable="" />
+            <Property Name="Maximum Range" Value="40" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="RUD_IND" />
+            <Property Name="Alignment" Value="2" Variable="" />
+            <Property Name="Indicators Number" Value="10" Variable="" />
+            <Property Name="Deadband Color" Value="180" Variable="" />
+            <Property Name="Deadband Bar Range" Value="-999;-40" Variable="" />
+            <Property Name="Negative Bar Color" Value="102" Variable="" />
+            <Property Name="Negative Bar Range" Value="-40;40" Variable="" />
+            <Property Name="Positive Bar Color" Value="180" Variable="" />
+            <Property Name="Positive Bar Range" Value="40;999" Variable="" />
+            <Property Name="Center Line Color" Value="67" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="140" Y="430" Width="520" Height="40" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="SPEED  [m/s]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="370" Y="470" Width="70" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="1" Variable="" />
+            <Property Name="Maximum Range" Value="15" Variable="" />
+            <Property Name="Current Value" Value="6" Variable="SPEED" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="" Variable="V_OPTION8_TEXT_COLOR" />
+            <Property Name="Low Range" Value="-1;-1" Variable="" />
+            <Property Name="Normal Range" Value="-1;-1" Variable="" />
+            <Property Name="High Range" Value="-1;-1" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="410" Y="500" Width="250" Height="40" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TRACK  DEVIATION  [m]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_OPTION9_TEXT_COLOR" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="140" Y="500" Width="260" Height="40" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TRACK  REFERENCE  [°]" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Text Color" Value="" Variable="V_OPTION9_TEXT_COLOR" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="240" Y="540" Width="70" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="0" Variable="" />
+            <Property Name="Maximum Range" Value="360" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="TRACK_REF" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="" Variable="V_OPTION9_TEXT_COLOR" />
+            <Property Name="Low Range" Value="-1;-1" Variable="" />
+            <Property Name="Normal Range" Value="-1;-1" Variable="" />
+            <Property Name="High Range" Value="-1;-1" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="500" Y="540" Width="70" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-10" Variable="" />
+            <Property Name="Maximum Range" Value="10" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="M_TRACK_DEV" />
+            <Property Name="Decimals" Value="0" Variable="" />
+            <Property Name="Default Color" Value="" Variable="V_OPTION9_TEXT_COLOR" />
+            <Property Name="Low Range" Value="-1;-1" Variable="" />
+            <Property Name="Normal Range" Value="-1;-1" Variable="" />
+            <Property Name="High Range" Value="-1;-1" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Center BarGraph" FullName="CPVis.Objects.Autopilot:Center BarGraph" X="140" Y="50" Width="520" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-50" Variable="" />
+            <Property Name="Maximum Range" Value="50" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="ROT_VIS" />
+            <Property Name="Alignment" Value="2" Variable="" />
+            <Property Name="Indicators Number" Value="10" Variable="" />
+            <Property Name="Deadband Color" Value="180" Variable="V_OPTION7_TEXT_COLOR" />
+            <Property Name="Deadband Bar Range" Value="-999;-20" Variable="" />
+            <Property Name="Negative Bar Color" Value="102" Variable="V_OPTION7_TEXT_COLOR" />
+            <Property Name="Negative Bar Range" Value="-20;20" Variable="" />
+            <Property Name="Positive Bar Color" Value="180" Variable="V_OPTION7_TEXT_COLOR" />
+            <Property Name="Positive Bar Range" Value="20;999" Variable="" />
+            <Property Name="Center Line Color" Value="66" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Center BarGraph" FullName="CPVis.Objects.Autopilot:Center BarGraph" X="140" Y="230" Width="520" Height="30" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-40" Variable="" />
+            <Property Name="Maximum Range" Value="40" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="RUD_IND" />
+            <Property Name="Alignment" Value="2" Variable="" />
+            <Property Name="Indicators Number" Value="10" Variable="" />
+            <Property Name="Deadband Color" Value="180" Variable="" />
+            <Property Name="Deadband Bar Range" Value="-999;-40" Variable="" />
+            <Property Name="Negative Bar Color" Value="102" Variable="" />
+            <Property Name="Negative Bar Range" Value="-40;40" Variable="" />
+            <Property Name="Positive Bar Color" Value="180" Variable="" />
+            <Property Name="Positive Bar Range" Value="40;999" Variable="" />
+            <Property Name="Center Line Color" Value="66" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="510" Y="10" Width="70" Height="35" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-250" Variable="" />
+            <Property Name="Maximum Range" Value="250" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="ROT_VIS" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="30" Variable="V_OPTION7_TEXT_COLOR" />
+            <Property Name="Low Color" Value="30" Variable="" />
+            <Property Name="Normal Color" Value="30" Variable="" />
+            <Property Name="High Color" Value="30" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="2" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="510" Y="190" Width="70" Height="35" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="-40" Variable="" />
+            <Property Name="Maximum Range" Value="40" Variable="" />
+            <Property Name="Current Value" Value="0" Variable="V_RUD_IND" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="30" Variable="" />
+            <Property Name="Low Color" Value="30" Variable="" />
+            <Property Name="Normal Color" Value="30" Variable="" />
+            <Property Name="High Color" Value="30" Variable="" />
+            <Property Name="Font Size" Value="C-20" Variable="" />
+            <Property Name="Horizontal Alignment" Value="2" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+      </Objects>
+    </Display>
+    <Display Name="13_CHART" Width="800" Height="600">
+      <Objects>
+        <Object Name="Scalable Trend" FullName="CPVis.Objects.Trends:Scalable Trend" X="120" Y="70" Width="560" Height="480" IsUpdatable="True">
+          <Properties>
+            <Property Name="Trend value 1" Value="" Variable="TREND1_1" />
+            <Property Name="Trend value 2" Value="" Variable="TREND1_2" />
+            <Property Name="Trend value 3" Value="" Variable="TREND1_3" />
+            <Property Name="Trend value 4" Value="" Variable="TREND1_4" />
+            <Property Name="Current time" Value="" Variable="CURRENT_TIME" />
+            <Property Name="Time interval" Value="1" Variable="" />
+            <Property Name="Sample count" Value="10000" Variable="" />
+            <Property Name="Range X Min" Value="" Variable="V_CHART_X_MIN" />
+            <Property Name="Range X Max" Value="" Variable="V_CHART_X_MAX" />
+            <Property Name="Range Y Min" Value="" Variable="V_CHART_Y_MIN" />
+            <Property Name="Range Y Max" Value="" Variable="V_CHART_Y_MAX" />
+            <Property Name="Axis X divisions" Value="" Variable="V_X_DIVISIONS" />
+            <Property Name="Axis Y divisions" Value="10" Variable="V_Y_DIVISIONS" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="MAIN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B1_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B2_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value=" " Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE0_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="X SIZE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE1_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Y MOVE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE2_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="0" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="Y SIZE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE3_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="50" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="UP" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B7_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="140" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="DOWN" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B8_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="230" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="WRAP" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_MODE4_BUTTON_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="320" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="ADJUST" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B10_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="410" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="TUNE" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B11_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="RoundedButton" FullName="CPVis.Objects.Autopilot:RoundedButton" X="690" Y="500" Width="110" Height="60" IsUpdatable="True">
+          <Properties>
+            <Property Name="Text" Value="SIMUL" Variable="" />
+            <Property Name="Font" Value="C-20" Variable="" />
+            <Property Name="Location" Value="1" Variable="" />
+            <Property Name="Box Color" Value="" Variable="V_B12_COLOR" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="120" Y="550" Width="90" Height="20" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="SET_HEAD" Variable="" />
+            <Property Name="Font" Value="C-14" Variable="" />
+            <Property Name="Text Color" Value="66" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="120" Y="20" Width="520" Height="50" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="TREND" Variable="" />
+            <Property Name="Font" Value="C-32" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="210" Y="550" Width="70" Height="20" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="10" Variable="" />
+            <Property Name="Maximum Range" Value="200" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="TREND1_1" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-14" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="280" Y="550" Width="60" Height="20" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="GYRO" Variable="" />
+            <Property Name="Font" Value="C-14" Variable="" />
+            <Property Name="Text Color" Value="186" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="340" Y="550" Width="70" Height="20" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="10" Variable="" />
+            <Property Name="Maximum Range" Value="200" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="TREND1_2" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-14" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="410" Y="550" Width="90" Height="20" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="RUD_IND" Variable="" />
+            <Property Name="Font" Value="C-14" Variable="" />
+            <Property Name="Text Color" Value="4" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="500" Y="550" Width="70" Height="20" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="10" Variable="" />
+            <Property Name="Maximum Range" Value="200" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="TREND1_3" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-14" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Text Box" FullName="CPVis.Objects.Basic:Text Box" X="570" Y="550" Width="50" Height="20" IsUpdatable="False">
+          <Properties>
+            <Property Name="Text" Value="ROT" Variable="" />
+            <Property Name="Font" Value="C-14" Variable="" />
+            <Property Name="Text Color" Value="0" Variable="" />
+            <Property Name="Horizontal Alignment" Value="0" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+            <Property Name="Background Color" Value="215" Variable="" />
+          </Properties>
+        </Object>
+        <Object Name="Process Value" FullName="CPVis.Objects.Basic:Process Value" X="620" Y="550" Width="70" Height="20" IsUpdatable="True">
+          <Properties>
+            <Property Name="Minimum Range" Value="10" Variable="" />
+            <Property Name="Maximum Range" Value="200" Variable="" />
+            <Property Name="Current Value" Value="35" Variable="TREND1_4" />
+            <Property Name="Decimals" Value="1" Variable="" />
+            <Property Name="Default Color" Value="215" Variable="" />
+            <Property Name="Low Color" Value="215" Variable="" />
+            <Property Name="Normal Color" Value="215" Variable="" />
+            <Property Name="High Color" Value="215" Variable="" />
+            <Property Name="Font Size" Value="C-14" Variable="" />
+            <Property Name="Horizontal Alignment" Value="1" Variable="" />
+            <Property Name="Vertical Alignment" Value="1" Variable="" />
+          </Properties>
+        </Object>
+      </Objects>
+    </Display>
+  </Displays>
+</Project>

@@ -1,0 +1,65 @@
+(*$LIBRARY benchmark2*)
+(*$IMPORT IEC_61131
+filename: 'C:\Program Files (x86)\CPDevFBD\Biblioteki\IEC 61131-3.lcp'
+version: '0.2.0.1'
+timestamp: '2020-01-18-11:51:22.648'
+fblks: CTD, CTU, CTUD, F_TRIG, R_TRIG, RS, SEMA, SR, TOF, TON, TP
+*)
+(* GLOBAL VARIABLES *)
+(* USER POUs *)
+(* Wyliczanie liczb pierwszych *)
+PROGRAM PRIME_NUMBERS
+ VAR CONSTANT
+  PN_BUF_SIZE : INT := 5; (* rozmiar bufora dla liczb pierwszych obliczonych jako ostatnie *)
+  MAX_NUM : DWORD := DWORD#1000; (* przedzia³ wyliczania liczb pierwszych 2..MAX_NUM *)
+ END_VAR
+
+ VAR
+  i,j,s:DWORD;
+  prime_numbers: ARRAY [0..9] OF DWORD;
+  buffer : ARRAY [0..19] OF DWORD;
+  start_time,stop_time : TIME;
+  k,l,wp,wn : INT;
+  czas_obliczen : DINT;
+     
+ END_VAR
+
+(* zasadnicza czêœæ testu - nie nale¿y modyfikowaæ *)
+ start_time:=CUR_TIME();
+
+ FOR i:=2 TO MAX_NUM DO 
+  j:=1;
+  wp:=0; wn:=1; buffer[wp]:=1; 
+  WHILE j<=i DO
+    IF(i MOD j)=DWORD#0 THEN 
+     buffer[wn]:=buffer[wp]*j;
+     wp:=wn; wn:=wn+1;
+     IF wn>19 THEN wn:=0; END_IF   
+    END_IF
+    j:=j+DWORD#1;
+  END_WHILE
+    
+  IF i=buffer[wp] THEN    
+    l:=PN_BUF_SIZE-1;
+    WHILE l>=1 DO
+     prime_numbers[l]:=prime_numbers[l-1];
+     l:=l-1;
+    END_WHILE 
+    prime_numbers[0]:=i;
+  END_IF      
+ END_FOR
+ stop_time:=CUR_TIME();
+(************************************************************)
+
+ czas_obliczen:=TIME_TO_DINT(stop_time - start_time);
+ (* trzeba jakos wyprowadziæ tê zmienn¹... *)
+
+END_PROGRAM
+
+(*$TASKS 
+.TASK TASK
+.LOOPPARAM 0 200
+PRIME_NUMBERS
+.END_TASK
+*)
+(*$END_LIBRARY*)

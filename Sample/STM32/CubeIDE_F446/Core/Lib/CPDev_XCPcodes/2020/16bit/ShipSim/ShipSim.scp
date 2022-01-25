@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CPSIM version="1.0">
+  <WINDOW>
+    <TREND type="TrendXY" location="0,1" name="XY plot">
+      <CHANNELS>
+        <CHANNEL name="X">
+          <VARIABLE constant="False">ShipSim.GPS_X</VARIABLE>
+          <STYLE line="Solid" />
+        </CHANNEL>
+        <CHANNEL name="Y">
+          <VARIABLE constant="False">ShipSim.GPS_Y</VARIABLE>
+          <STYLE line="None" />
+        </CHANNEL>
+        <CHANNEL name="Angle">
+          <VARIABLE constant="False">ShipSim.IMU_GYRO</VARIABLE>
+          <STYLE line="None" />
+        </CHANNEL>
+        <CHANNEL name="Length">
+          <VARIABLE constant="True">1</VARIABLE>
+          <STYLE line="None" />
+        </CHANNEL>
+      </CHANNELS>
+      <TrendXY xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <trendType>0</trendType>
+        <title />
+        <extFrameWidth>420</extFrameWidth>
+        <extFrameHeight>400</extFrameHeight>
+        <xz1>0</xz1>
+        <yz1>0</yz1>
+        <defaultLimits>
+          <xMin>-2000</xMin>
+          <xMax>2000</xMax>
+          <yMin>-2000</yMin>
+          <yMax>2000</yMax>
+        </defaultLimits>
+        <nAxisX>10</nAxisX>
+        <nAxisY>10</nAxisY>
+        <AxisXformat>0</AxisXformat>
+        <AxisYformat>0</AxisYformat>
+        <xw1>40</xw1>
+        <xw2>405</xw2>
+        <yw1>20</yw1>
+        <yw2>380</yw2>
+        <autoCenter>false</autoCenter>
+        <sampleInterval>1</sampleInterval>
+        <ZoomFactor>-1</ZoomFactor>
+        <indicatorLength>1</indicatorLength>
+      </TrendXY>
+    </TREND>
+    <TREND type="Trend4" location="2,442" name="4-channel trend">
+      <CHANNELS>
+        <CHANNEL name="Time">
+          <VARIABLE constant="False">ShipSim.TREND_TIME</VARIABLE>
+          <STYLE line="None" />
+        </CHANNEL>
+        <CHANNEL name="Ch1">
+          <VARIABLE constant="False">ShipSim.RUD_IND</VARIABLE>
+          <STYLE line="Solid" />
+        </CHANNEL>
+        <CHANNEL name="Ch2">
+          <VARIABLE constant="False">ShipSim.IMU_GYRO</VARIABLE>
+          <STYLE line="Solid" />
+        </CHANNEL>
+        <CHANNEL name="Ch3">
+          <VARIABLE constant="False">ShipSim.IMU_ROT</VARIABLE>
+          <STYLE line="Solid" />
+        </CHANNEL>
+        <CHANNEL name="Ch4">
+          <VARIABLE constant="False">ShipSim.SPL_SOGV</VARIABLE>
+          <STYLE line="Solid" />
+        </CHANNEL>
+      </CHANNELS>
+      <Trend4 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <trendType>0</trendType>
+        <title />
+        <extFrameWidth>800</extFrameWidth>
+        <extFrameHeight>162</extFrameHeight>
+        <xz1>0</xz1>
+        <yz1>0</yz1>
+        <defaultLimits>
+          <xMin>-338.3181</xMin>
+          <xMax>50</xMax>
+          <yMin>0</yMin>
+          <yMax>100</yMax>
+        </defaultLimits>
+        <nAxisX>10</nAxisX>
+        <nAxisY>5</nAxisY>
+        <AxisXformat>0</AxisXformat>
+        <AxisYformat>0.0</AxisYformat>
+        <xw1>40</xw1>
+        <xw2>785</xw2>
+        <yw1>20</yw1>
+        <yw2>142</yw2>
+        <autoCenter>false</autoCenter>
+        <sampleInterval>1</sampleInterval>
+        <ZoomFactor>-1</ZoomFactor>
+        <interval>10</interval>
+      </Trend4>
+    </TREND>
+    <PANEL name="Ship Control" location="609,2" size="173,108" type="list">
+      <WATCH type="REAL">ShipSim.SHP_SET_RUD</WATCH>
+      <WATCH type="REAL">ShipSim.SHP_SET_SHAFT</WATCH>
+    </PANEL>
+    <PANEL name="Environment" location="610,111" size="171,152" type="list">
+      <WATCH type="REAL">ShipSim.SEA_CR_DIR</WATCH>
+      <WATCH type="REAL">ShipSim.SEA_CR_SPD</WATCH>
+      <WATCH type="INT">ShipSim.WAVE_BF</WATCH>
+      <WATCH type="REAL">ShipSim.WAVE_PRD</WATCH>
+    </PANEL>
+    <PANEL name="Simulation Control" location="437,264" size="171,108" type="list">
+      <WATCH type="BOOL">ShipSim.SHP_INIT</WATCH>
+      <WATCH type="REAL">ShipSim.SIM_TIME</WATCH>
+    </PANEL>
+    <PANEL name="Measurements" location="437,2" size="170,262" type="list">
+      <WATCH type="REAL">ShipSim.GPS_X</WATCH>
+      <WATCH type="REAL">ShipSim.GPS_Y</WATCH>
+      <WATCH type="REAL">ShipSim.IMU_GYRO</WATCH>
+      <WATCH type="REAL">ShipSim.IMU_ROT</WATCH>
+      <WATCH type="REAL">ShipSim.RUD_IND</WATCH>
+      <WATCH type="REAL">ShipSim.SPL_SOGV</WATCH>
+      <WATCH type="REAL">ShipSim.SPL_SOGX</WATCH>
+      <WATCH type="REAL">ShipSim.SPL_SOGY</WATCH>
+      <WATCH type="REAL">ShipSim.SPL_SPEED</WATCH>
+    </PANEL>
+  </WINDOW>
+  <REFERENCES>
+    <FILE type="dcp" time="2018-12-06 02:42:24">ShipSim.dcp</FILE>
+  </REFERENCES>
+  <SETTINGS>
+    <CHECK UseInputFile="False" UseOutputFile="False" UseSystemTime="False" OutputFrequency="250" />
+    <VM_CONNECTION Type="CPWinController.CPTarget" />
+  </SETTINGS>
+  <STATE TIME="3492250">
+    <Connection>
+      <UseHTTP>false</UseHTTP>
+      <Controller>ShipSim</Controller>
+    </Connection>
+  </STATE>
+</CPSIM>

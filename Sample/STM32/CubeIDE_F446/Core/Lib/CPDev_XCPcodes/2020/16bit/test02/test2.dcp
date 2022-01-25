@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <TARGET RawCompilerVersion="00040e4d" StringCompilerVersion="0.4.14.77" CF="00000131" SF="000000b0" OP="00000005" LF="00000001" DC="0000000c">
+    <GLOBAL />
+    <VMACH>
+      <FILE_LOC>D:\Zlecone\hsvn_dev\CPDev_root\src\VM\vmspec\VM-Praxis.xml</FILE_LOC>
+    </VMACH>
+    <TASKS>
+      <TASK LName="TASK" PName="benchmark2.TASK" LoopType="0" Cycle="200" CycleUnit="ms" BodyCodeAddres="0006" TaskFlags="00000000" />
+    </TASKS>
+    <MEMORY_MAP Type="code">
+      <file LoadAddr="0" Size="581">test2.xcp</file>
+      <file_FullName>D:\Zlecone\Grant_FPGA\testy\2\test2.xcp</file_FullName>
+    </MEMORY_MAP>
+    <MEMORY_MAP Type="data">
+      <file LoadAddr="0" Size="224">#dummy</file>
+    </MEMORY_MAP>
+    <MNEMONIC_MAP Type="code">
+:0000|                                   | :?benchmark2.TASK?TSKSTR                                                        
+:0000| 1C16 0000 1000                    | $VMSYS.CALB #0000, :?benchmark2.PRIME_NUMBERS?INIT                              
+:0006|                                   | :?benchmark2.TASK?TSKLOOP                                                       
+:0006| 1C16 0000 B700                    | $VMSYS.CALB #0000, :?benchmark2.PRIME_NUMBERS?CODE                              
+:000c| 1C1D 0600                         | $VMSYS.TRML :?benchmark2.TASK?TSKLOOP                                           
+:0010|                                   | :?benchmark2.PRIME_NUMBERS?INIT                                                 
+:0010| 1C15 0000 02 0500                 | $VMSYS.MCD PN_BUF_SIZE, #02, #0500                                              
+:0017| 1C15 0400 04 E8030000             | $VMSYS.MCD MAX_NUM, #04, #E8030000                                              
+:0020| 1C15 0800 04 00000000             | $VMSYS.MCD I, #04, #00000000                                                    
+:0029| 1C15 0C00 04 00000000             | $VMSYS.MCD J, #04, #00000000                                                    
+:0032| 1C15 1000 04 00000000             | $VMSYS.MCD S, #04, #00000000                                                    
+:003b| 1C23 1400 00 28                   | $VMSYS.FPAT PRIME_NUMBERS, #00, #28                                             
+:0041| 1C23 3C00 00 50                   | $VMSYS.FPAT BUFFER, #00, #50                                                    
+:0047| 1C15 8C00 04 00000000             | $VMSYS.MCD START_TIME, #04, #00000000                                           
+:0050| 1C15 9000 04 00000000             | $VMSYS.MCD STOP_TIME, #04, #00000000                                            
+:0059| 1C15 0200 02 0000                 | $VMSYS.MCD K, #02, #0000                                                        
+:0060| 1C15 9400 02 0000                 | $VMSYS.MCD L, #02, #0000                                                        
+:0067| 1C15 9600 02 0000                 | $VMSYS.MCD WP, #02, #0000                                                       
+:006e| 1C15 9800 02 0000                 | $VMSYS.MCD WN, #02, #0000                                                       
+:0075| 1C15 9C00 04 00000000             | $VMSYS.MCD CZAS_OBLICZEN, #04, #00000000                                        
+:007e| 1C15 A000 04 01000000             | $VMSYS.MCD ?FOR_INC020B, #04, #01000000                                         
+:0087| 1C15 AA00 02 0000                 | $VMSYS.MCD ?L?CST0214, #02, #0000                                               
+:008e| 1C15 AC00 02 1300                 | $VMSYS.MCD ?L?CST0215, #02, #1300                                               
+:0095| 1C15 B000 04 00000000             | $VMSYS.MCD ?L?CST021A, #04, #00000000                                           
+:009e| 1C15 C200 02 0100                 | $VMSYS.MCD ?L?CST0224, #02, #0100                                               
+:00a5| 1C15 C400 04 01000000             | $VMSYS.MCD ?L?CST022A, #04, #01000000                                           
+:00ae| 1C15 D400 02 0900                 | $VMSYS.MCD ?L?CST0237, #02, #0900                                               
+:00b5| 1C13                              | $VMSYS.RETURN                                                                   
+:00b7|                                   | :?benchmark2.PRIME_NUMBERS?CODE                                                 
+;;;;;|                                   | {B:3!28!808}                                                                    
+;!!!!|                                   |  ■start_time:=CUR_TIME()■;                                                      
+:00b7| 1C17 8C00                         | $DEFAULT.CUR_TIME START_TIME                                                    
+;;;;;|                                   | {E:3!28!830}                                                                    
+:00bb| 1C15 0800 04 02000000             | $VMSYS.MCD I, #04, #02000000                                                    
+:00c4|                                   | :?benchmark2.PRIME_NUMBERSFOR?C020C                                             
+:00c4| 1307 9A00 0800 0400               | $DEFAULT.LE ?IF?CTL, I, MAX_NUM                                                 
+:00cc| 1C02 9A00 3102                    | $VMSYS.JZ ?IF?CTL, :?benchmark2.PRIME_NUMBERSFOR?L020D                          
+;;;;;|                                   | {B:3!31!863}                                                                    
+;!!!!|                                   |   ■j:=1■;                                                                       
+:00d2| 1C15 0C00 04 01000000             | $VMSYS.MCD J, #04, #01000000                                                    
+;;;;;|                                   | {E:3!31!867}                                                                    
+;;;;;|                                   | {B:3!32!872}                                                                    
+;!!!!|                                   |   ■wp:=0■; wn:=1; buffer[wp]:=1;                                                
+:00db| 1C15 9600 02 0000                 | $VMSYS.MCD WP, #02, #0000                                                       
+;;;;;|                                   | {E:3!32!877}                                                                    
+;;;;;|                                   | {B:3!32!879}                                                                    
+;!!!!|                                   |   wp:=0; ■wn:=1■; buffer[wp]:=1;                                                
+:00e2| 1C15 9800 02 0100                 | $VMSYS.MCD WN, #02, #0100                                                       
+;;;;;|                                   | {E:3!32!884}                                                                    
+;;;;;|                                   | {B:3!32!886}                                                                    
+;!!!!|                                   |   wp:=0; wn:=1; ■buffer[wp]:=1■;                                                
+:00e9| 1C15 A400 04 01000000             | $VMSYS.MCD ?TEMP?0212, #04, #01000000                                           
+:00f2| 1C1F A800 9600 0200               | $VMSYS.MEMCP ?LAC??TEMP?02120213, WP, #0200                                     
+:00fa| 1C2E A800 AA00 AC00               | $VMSYS.CEAC ?LAC??TEMP?02120213, ?L?CST0214, ?L?CST0215                         
+:0102| 1C2B A400 3C00 A800               | $VMSYS.AFWR ?TEMP?0212, BUFFER, ?LAC??TEMP?02120213                             
+;;;;;|                                   | {E:3!32!899}                                                                    
+;;;;;|                                   | {B:8!33!905}                                                                    
+;!!!!|                                   |   ■WHILE j&lt;=i ■DO                                                               
+:010a|                                   | :?benchmark2.PRIME_NUMBERSWHILE?C0216                                           
+:010a| 1307 9A00 0C00 0800               | $DEFAULT.LE ?IF?CTL, J, I                                                       
+;;;;;|                                   | {E:8!33!916}                                                                    
+;;;;;|                                   | {B:65544!34!924}                                                                
+:0112| 1C02 9A00 9701                    | $VMSYS.JZ ?IF?CTL, :?benchmark2.PRIME_NUMBERSWHILE?E0217                        
+;;;;;|                                   | {B:1!34!924}                                                                    
+;!!!!|                                   |     ■IF(i MOD j)=DWORD#0 THEN                                                   
+;!!!!|                                   |      ■buffer[wn]:=buffer[wp]*j;                                                 
+:0118| 0417 B400 0800 0C00               | $DEFAULT.MOD ?F?MOD021B, I, J                                                   
+:0120| 1207 9A00 B400 B000               | $DEFAULT.EQ ?IF?CTL, ?F?MOD021B, ?L?CST021A                                     
+:0128| 1C02 9A00 8B01                    | $VMSYS.JZ ?IF?CTL, :?benchmark2.PRIME_NUMBERSIF?B0219                           
+;;;;;|                                   | {E:1!35!956}                                                                    
+;;;;;|                                   | {B:65537!35!956}                                                                
+;;;;;|                                   | {B:3!35!956}                                                                    
+;!!!!|                                   |      ■buffer[wn]:=buffer[wp]*j■;                                                
+:012e| 1C1F AE00 9600 0200               | $VMSYS.MEMCP ?LAC?BUFFER021E, WP, #0200                                         
+:0136| 1C2E AE00 AA00 AC00               | $VMSYS.CEAC ?LAC?BUFFER021E, ?L?CST0214, ?L?CST0215                             
+:013e| 1C2A BC00 3C00 AE00               | $VMSYS.AFRD ?LRDA?BUFFER021F, BUFFER, ?LAC?BUFFER021E                           
+:0146| 0327 B800 BC00 0C00               | $DEFAULT.MUL ?TEMP?021D, ?LRDA?BUFFER021F, J                                    
+:014e| 1C1F C000 9800 0200               | $VMSYS.MEMCP ?LAC??TEMP?021D0221, WN, #0200                                     
+:0156| 1C2E C000 AA00 AC00               | $VMSYS.CEAC ?LAC??TEMP?021D0221, ?L?CST0214, ?L?CST0215                         
+:015e| 1C2B B800 3C00 C000               | $VMSYS.AFWR ?TEMP?021D, BUFFER, ?LAC??TEMP?021D0221                             
+;;;;;|                                   | {E:3!35!980}                                                                    
+;;;;;|                                   | {B:3!36!988}                                                                    
+;!!!!|                                   |      ■wp:=wn■; wn:=wn+1;                                                        
+:0166| 1C1F 9600 9800 0200               | $VMSYS.MEMCP WP, WN, #0200                                                      
+;;;;;|                                   | {E:3!36!994}                                                                    
+;;;;;|                                   | {B:3!36!996}                                                                    
+;!!!!|                                   |      wp:=wn; ■wn:=wn+1■;                                                        
+:016e| 0122 9800 9800 C200               | $DEFAULT.ADD WN, WN, ?L?CST0224                                                 
+;;;;;|                                   | {E:3!36!1004}                                                                   
+;;;;;|                                   | {B:1!37!1012}                                                                   
+;!!!!|                                   |      ■IF wn&gt;19 THEN ■wn:=0; END_IF                                              
+:0176| 1002 9A00 9800 AC00               | $DEFAULT.GT ?IF?CTL, WN, ?L?CST0215                                             
+:017e| 1C02 9A00 8B01                    | $VMSYS.JZ ?IF?CTL, :?benchmark2.PRIME_NUMBERSIF?B0226                           
+;;;;;|                                   | {E:1!37!1026}                                                                   
+;;;;;|                                   | {B:65537!37!1026}                                                               
+;;;;;|                                   | {B:3!37!1026}                                                                   
+;!!!!|                                   |      IF wn&gt;19 THEN ■wn:=0■; END_IF                                              
+:0184| 1C15 9800 02 0000                 | $VMSYS.MCD WN, #02, #0000                                                       
+;;;;;|                                   | {E:3!37!1031}                                                                   
+;;;;;|                                   | {E:65537!37!1033}                                                               
+:018b|                                   | :?benchmark2.PRIME_NUMBERSIF?B0226                                              
+;;;;;|                                   | {E:65537!38!1048}                                                               
+:018b|                                   | :?benchmark2.PRIME_NUMBERSIF?B0219                                              
+;;;;;|                                   | {B:3!39!1060}                                                                   
+;!!!!|                                   |     ■j:=j+DWORD#1■;                                                             
+:018b| 0127 0C00 0C00 C400               | $DEFAULT.ADD J, J, ?L?CST022A                                                   
+;;;;;|                                   | {E:3!39!1072}                                                                   
+:0193| 1C00 0A01                         | $VMSYS.JMP :?benchmark2.PRIME_NUMBERSWHILE?C0216                                
+:0197|                                   | :?benchmark2.PRIME_NUMBERSWHILE?E0217                                           
+;;;;;|                                   | {E:65544!42!1096}                                                               
+;;;;;|                                   | {B:1!42!1096}                                                                   
+;!!!!|                                   |   ■IF i=buffer[wp] THEN                                                         
+;!!!!|                                   |     ■l:=PN_BUF_SIZE-1;                                                          
+:0197| 1C1F C800 9600 0200               | $VMSYS.MEMCP ?LAC?BUFFER022D, WP, #0200                                         
+:019f| 1C2E C800 AA00 AC00               | $VMSYS.CEAC ?LAC?BUFFER022D, ?L?CST0214, ?L?CST0215                             
+:01a7| 1C2A CC00 3C00 C800               | $VMSYS.AFRD ?LRDA?BUFFER022E, BUFFER, ?LAC?BUFFER022D                           
+:01af| 1207 9A00 0800 CC00               | $DEFAULT.EQ ?IF?CTL, I, ?LRDA?BUFFER022E                                        
+:01b7| 1C02 9A00 2502                    | $VMSYS.JZ ?IF?CTL, :?benchmark2.PRIME_NUMBERSIF?B022C                           
+;;;;;|                                   | {E:1!43!1126}                                                                   
+;;;;;|                                   | {B:65537!43!1126}                                                               
+;;;;;|                                   | {B:3!43!1126}                                                                   
+;!!!!|                                   |     ■l:=PN_BUF_SIZE-1■;                                                         
+:01bd| 1C15 9400 02 0400                 | $VMSYS.MCD L, #02, #0400                                                        
+;;;;;|                                   | {E:3!43!1142}                                                                   
+;;;;;|                                   | {B:8!44!1149}                                                                   
+;!!!!|                                   |     ■WHILE l&gt;=1 ■DO                                                             
+:01c4|                                   | :?benchmark2.PRIME_NUMBERSWHILE?C0231                                           
+:01c4| 1102 9A00 9400 C200               | $DEFAULT.GE ?IF?CTL, L, ?L?CST0224                                              
+;;;;;|                                   | {E:8!44!1160}                                                                   
+;;;;;|                                   | {B:65544!45!1169}                                                               
+:01cc| 1C02 9A00 0E02                    | $VMSYS.JZ ?IF?CTL, :?benchmark2.PRIME_NUMBERSWHILE?E0232                        
+;;;;;|                                   | {B:3!45!1169}                                                                   
+;!!!!|                                   |      ■prime_numbers[l]:=prime_numbers[l-1]■;                                    
+:01d2| 0202 CA00 9400 C200               | $DEFAULT.SUB ?LAC?PRIME_NUMBERS0236, L, ?L?CST0224                              
+:01da| 1C2E CA00 AA00 D400               | $VMSYS.CEAC ?LAC?PRIME_NUMBERS0236, ?L?CST0214, ?L?CST0237                      
+:01e2| 1C2A D000 1400 CA00               | $VMSYS.AFRD ?TEMP?0234, PRIME_NUMBERS, ?LAC?PRIME_NUMBERS0236                   
+:01ea| 1C1F D600 9400 0200               | $VMSYS.MEMCP ?LAC??TEMP?02340239, L, #0200                                      
+:01f2| 1C2E D600 AA00 D400               | $VMSYS.CEAC ?LAC??TEMP?02340239, ?L?CST0214, ?L?CST0237                         
+:01fa| 1C2B D000 1400 D600               | $VMSYS.AFWR ?TEMP?0234, PRIME_NUMBERS, ?LAC??TEMP?02340239                      
+;;;;;|                                   | {E:3!45!1205}                                                                   
+;;;;;|                                   | {B:3!46!1213}                                                                   
+;!!!!|                                   |      ■l:=l-1■;                                                                  
+:0202| 0202 9400 9400 C200               | $DEFAULT.SUB L, L, ?L?CST0224                                                   
+;;;;;|                                   | {E:3!46!1219}                                                                   
+:020a| 1C00 C401                         | $VMSYS.JMP :?benchmark2.PRIME_NUMBERSWHILE?C0231                                
+:020e|                                   | :?benchmark2.PRIME_NUMBERSWHILE?E0232                                           
+;;;;;|                                   | {E:65544!48!1242}                                                               
+;;;;;|                                   | {B:3!48!1242}                                                                   
+;!!!!|                                   |     ■prime_numbers[0]:=i■;                                                      
+:020e| 1C15 D800 02 0000                 | $VMSYS.MCD ?LAC?I023D, #02, #0000                                               
+:0215| 1C2E D800 AA00 D400               | $VMSYS.CEAC ?LAC?I023D, ?L?CST0214, ?L?CST0237                                  
+:021d| 1C2B 0800 1400 D800               | $VMSYS.AFWR I, PRIME_NUMBERS, ?LAC?I023D                                        
+;;;;;|                                   | {E:3!48!1261}                                                                   
+;;;;;|                                   | {E:65537!49!1266}                                                               
+:0225|                                   | :?benchmark2.PRIME_NUMBERSIF?B022C                                              
+:0225| 0127 0800 0800 A000               | $DEFAULT.ADD I, I, ?FOR_INC020B                                                 
+:022d| 1C00 C400                         | $VMSYS.JMP :?benchmark2.PRIME_NUMBERSFOR?C020C                                  
+:0231|                                   | :?benchmark2.PRIME_NUMBERSFOR?L020D                                             
+;;;;;|                                   | {B:3!51!1291}                                                                   
+;!!!!|                                   |  ■stop_time:=CUR_TIME()■;                                                       
+:0231| 1C17 9000                         | $DEFAULT.CUR_TIME STOP_TIME                                                     
+;;;;;|                                   | {E:3!51!1312}                                                                   
+;;;;;|                                   | {B:3!54!1382}                                                                   
+;!!!!|                                   |  ■czas_obliczen:=TIME_TO_DINT(stop_time - start_time)■;                         
+:0235| 020B DC00 9000 8C00               | $DEFAULT.SUB ?F?$DEFAULT_SUB0242, STOP_TIME, START_TIME                         
+:023d| 1902 9C00 DC00                    | $DEFAULT.TIME_TO_DINT CZAS_OBLICZEN, ?F?$DEFAULT_SUB0242                        
+;;;;;|                                   | {E:3!54!1433}                                                                   
+:0243| 1C13                              | $VMSYS.RETURN                                                                   
+:0245 
+</MNEMONIC_MAP>
+    <DATA_MAP>
+      <OBJ ObjType="TASK" LName="TASK" PName="benchmark2.TASK" Addr="0000" AdrType="gdlabel" Size="221">
+        <OBJ ObjType="VAR" LName="PRIME_NUMBERS_01" PName="benchmark2.TASK.PRIME_NUMBERS_01" Addr="0000" AdrType="rdlabel" CAddr="0000" CAdrType="gdlabel" Size="221" Type="PRIME_NUMBERS" PType="benchmark2.PRIME_NUMBERS" TypeStatus="program" VFlags="00000000">
+          <OBJ ObjType="VAR" LName="PN_BUF_SIZE" PName="benchmark2.TASK.PRIME_NUMBERS_01.PN_BUF_SIZE" Addr="0000" AdrType="rdlabel" CAddr="0000" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000004" ConstValue="5" />
+          <OBJ ObjType="VAR" LName="MAX_NUM" PName="benchmark2.TASK.PRIME_NUMBERS_01.MAX_NUM" Addr="0004" AdrType="rdlabel" CAddr="0004" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000004" ConstValue="DWORD#1000" />
+          <OBJ ObjType="VAR" LName="I" PName="benchmark2.TASK.PRIME_NUMBERS_01.I" Addr="0008" AdrType="rdlabel" CAddr="0008" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="J" PName="benchmark2.TASK.PRIME_NUMBERS_01.J" Addr="000c" AdrType="rdlabel" CAddr="000c" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="S" PName="benchmark2.TASK.PRIME_NUMBERS_01.S" Addr="0010" AdrType="rdlabel" CAddr="0010" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="PRIME_NUMBERS" PName="benchmark2.TASK.PRIME_NUMBERS_01.PRIME_NUMBERS" Addr="0014" AdrType="rdlabel" CAddr="0014" CAdrType="gdlabel" Size="40" Type="?PRIME_NUMBERS?ARRAY?0207" PType="benchmark2.PRIME_NUMBERS.?PRIME_NUMBERS?ARRAY?0207" TypeStatus="array" VFlags="00000000" ArrayBase="DWORD" ArrayBaseP="$DEFAULT.DWORD">
+            <DIMENSIONS>
+              <LEVEL No="0" LoBound="0" UpBound="9" />
+            </DIMENSIONS>
+            <OBJ ObjType="VAR" LName="?PRIME_NUMBERS?ARRAY?0207?LOW?00" PName="benchmark2.TASK.PRIME_NUMBERS_01.PRIME_NUMBERS.?PRIME_NUMBERS?ARRAY?0207?LOW?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="0" />
+            <OBJ ObjType="VAR" LName="?PRIME_NUMBERS?ARRAY?0207?UPR?00" PName="benchmark2.TASK.PRIME_NUMBERS_01.PRIME_NUMBERS.?PRIME_NUMBERS?ARRAY?0207?UPR?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="9" />
+          </OBJ>
+          <OBJ ObjType="VAR" LName="BUFFER" PName="benchmark2.TASK.PRIME_NUMBERS_01.BUFFER" Addr="003c" AdrType="rdlabel" CAddr="003c" CAdrType="gdlabel" Size="80" Type="?BUFFER?ARRAY?0208" PType="benchmark2.PRIME_NUMBERS.?BUFFER?ARRAY?0208" TypeStatus="array" VFlags="00000000" ArrayBase="DWORD" ArrayBaseP="$DEFAULT.DWORD">
+            <DIMENSIONS>
+              <LEVEL No="0" LoBound="0" UpBound="19" />
+            </DIMENSIONS>
+            <OBJ ObjType="VAR" LName="?BUFFER?ARRAY?0208?LOW?00" PName="benchmark2.TASK.PRIME_NUMBERS_01.BUFFER.?BUFFER?ARRAY?0208?LOW?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="0" />
+            <OBJ ObjType="VAR" LName="?BUFFER?ARRAY?0208?UPR?00" PName="benchmark2.TASK.PRIME_NUMBERS_01.BUFFER.?BUFFER?ARRAY?0208?UPR?00" Addr="#null" AdrType="rdlabel" CAddr="#null" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100004" ConstValue="19" />
+          </OBJ>
+          <OBJ ObjType="VAR" LName="START_TIME" PName="benchmark2.TASK.PRIME_NUMBERS_01.START_TIME" Addr="008c" AdrType="rdlabel" CAddr="008c" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="STOP_TIME" PName="benchmark2.TASK.PRIME_NUMBERS_01.STOP_TIME" Addr="0090" AdrType="rdlabel" CAddr="0090" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="K" PName="benchmark2.TASK.PRIME_NUMBERS_01.K" Addr="0002" AdrType="rdlabel" CAddr="0002" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="L" PName="benchmark2.TASK.PRIME_NUMBERS_01.L" Addr="0094" AdrType="rdlabel" CAddr="0094" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="WP" PName="benchmark2.TASK.PRIME_NUMBERS_01.WP" Addr="0096" AdrType="rdlabel" CAddr="0096" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="WN" PName="benchmark2.TASK.PRIME_NUMBERS_01.WN" Addr="0098" AdrType="rdlabel" CAddr="0098" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="CZAS_OBLICZEN" PName="benchmark2.TASK.PRIME_NUMBERS_01.CZAS_OBLICZEN" Addr="009c" AdrType="rdlabel" CAddr="009c" CAdrType="gdlabel" Size="4" Type="DINT" PType="$DEFAULT.DINT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?FOR_INC020B" PName="benchmark2.TASK.PRIME_NUMBERS_01.?FOR_INC020B" Addr="00a0" AdrType="rdlabel" CAddr="00a0" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100004" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?IF?CTL" PName="benchmark2.TASK.PRIME_NUMBERS_01.?IF?CTL" Addr="009a" AdrType="rdlabel" CAddr="009a" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?TEMP?0212" PName="benchmark2.TASK.PRIME_NUMBERS_01.?TEMP?0212" Addr="00a4" AdrType="rdlabel" CAddr="00a4" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?LAC??TEMP?02120213" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LAC??TEMP?02120213" Addr="00a8" AdrType="rdlabel" CAddr="00a8" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?L?CST0214" PName="benchmark2.TASK.PRIME_NUMBERS_01.?L?CST0214" Addr="00aa" AdrType="rdlabel" CAddr="00aa" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="0" />
+          <OBJ ObjType="VAR" LName="?L?CST0215" PName="benchmark2.TASK.PRIME_NUMBERS_01.?L?CST0215" Addr="00ac" AdrType="rdlabel" CAddr="00ac" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="19" />
+          <OBJ ObjType="VAR" LName="?L?CST021A" PName="benchmark2.TASK.PRIME_NUMBERS_01.?L?CST021A" Addr="00b0" AdrType="rdlabel" CAddr="00b0" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100000" ConstValue="DWORD#0" />
+          <OBJ ObjType="VAR" LName="?F?MOD021B" PName="benchmark2.TASK.PRIME_NUMBERS_01.?F?MOD021B" Addr="00b4" AdrType="rdlabel" CAddr="00b4" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?TEMP?021D" PName="benchmark2.TASK.PRIME_NUMBERS_01.?TEMP?021D" Addr="00b8" AdrType="rdlabel" CAddr="00b8" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?LAC?BUFFER021E" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LAC?BUFFER021E" Addr="00ae" AdrType="rdlabel" CAddr="00ae" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?LRDA?BUFFER021F" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LRDA?BUFFER021F" Addr="00bc" AdrType="rdlabel" CAddr="00bc" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?LAC??TEMP?021D0221" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LAC??TEMP?021D0221" Addr="00c0" AdrType="rdlabel" CAddr="00c0" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?L?CST0224" PName="benchmark2.TASK.PRIME_NUMBERS_01.?L?CST0224" Addr="00c2" AdrType="rdlabel" CAddr="00c2" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?L?CST022A" PName="benchmark2.TASK.PRIME_NUMBERS_01.?L?CST022A" Addr="00c4" AdrType="rdlabel" CAddr="00c4" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00100000" ConstValue="DWORD#1" />
+          <OBJ ObjType="VAR" LName="?LAC?BUFFER022D" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LAC?BUFFER022D" Addr="00c8" AdrType="rdlabel" CAddr="00c8" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?LRDA?BUFFER022E" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LRDA?BUFFER022E" Addr="00cc" AdrType="rdlabel" CAddr="00cc" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?TEMP?0234" PName="benchmark2.TASK.PRIME_NUMBERS_01.?TEMP?0234" Addr="00d0" AdrType="rdlabel" CAddr="00d0" CAdrType="gdlabel" Size="4" Type="DWORD" PType="$DEFAULT.DWORD" TypeStatus="build-in type" VFlags="00200000" />
+          <OBJ ObjType="VAR" LName="?LAC?PRIME_NUMBERS0236" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LAC?PRIME_NUMBERS0236" Addr="00ca" AdrType="rdlabel" CAddr="00ca" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?L?CST0237" PName="benchmark2.TASK.PRIME_NUMBERS_01.?L?CST0237" Addr="00d4" AdrType="rdlabel" CAddr="00d4" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" ConstValue="9" />
+          <OBJ ObjType="VAR" LName="?LAC??TEMP?02340239" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LAC??TEMP?02340239" Addr="00d6" AdrType="rdlabel" CAddr="00d6" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?LAC?I023D" PName="benchmark2.TASK.PRIME_NUMBERS_01.?LAC?I023D" Addr="00d8" AdrType="rdlabel" CAddr="00d8" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" />
+          <OBJ ObjType="VAR" LName="?F?$DEFAULT_SUB0242" PName="benchmark2.TASK.PRIME_NUMBERS_01.?F?$DEFAULT_SUB0242" Addr="00dc" AdrType="rdlabel" CAddr="00dc" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00200000" />
+        </OBJ>
+      </OBJ>
+    </DATA_MAP>
+    <INFO>
+      <DT_EXPORT year="2020" month="2" day="13" hour="9" minutes="45" seconds="29" milisec="329" />
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2009" month="10" day="3" hour="16" minutes="42" seconds="9" milisec="281" />
+      <PHYSVER value="68" />
+      <LAST_COMPILED year="2020" month="2" day="13" hour="9" minutes="45" seconds="29" milisec="140" />
+    </INFO>
+  </TARGET>
+</CPDEV>

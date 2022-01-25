@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <PROJECT name="benchmark3">
+    <METRIC>
+      <COMPANY><![CDATA[]]></COMPANY>
+      <MANAGER><![CDATA[]]></MANAGER>
+      <VERSION><![CDATA[]]></VERSION>
+      <CREATED year="2009" month="10" day="3" hour="16" minutes="42" seconds="9" milisec="281" />
+    </METRIC>
+    <OPTIONS>
+      <PV value="00000075" />
+      <II value="00000038" />
+      <LC year="2010" month="3" day="10" hour="22" minutes="28" seconds="36" milisec="0" />
+      <LCF>
+        <ABSOLUTE>C:\Program Files\CPDev\VM\VM-FPGA.xml</ABSOLUTE>
+        <APPVARS>$VMsDir\VM-FPGA.xml</APPVARS>
+        <ENVVARS>%ProgramFiles%\CPDev\VM\VM-FPGA.xml</ENVVARS>
+      </LCF>
+    </OPTIONS>
+    <LIBRARY>
+      <PKG name="IEC_61131" version="131072" filename="C:\Program Files\CPDev\Biblioteki\IEC 61131-3.lcp">
+        <CREATED year="2010" month="1" day="28" hour="11" minutes="51" seconds="36" milisec="500" />
+        <APPVARS>$LibDir\IEC 61131-3.lcp</APPVARS>
+        <ENVVARS>%ProgramFiles%\CPDev\Biblioteki\IEC 61131-3.lcp</ENVVARS>
+        <IMP name="CTD" type="FBLK" />
+        <IMP name="CTU" type="FBLK" />
+        <IMP name="CTUD" type="FBLK" />
+        <IMP name="F_TRIG" type="FBLK" />
+        <IMP name="R_TRIG" type="FBLK" />
+        <IMP name="RS" type="FBLK" />
+        <IMP name="SEMA" type="FBLK" />
+        <IMP name="SR" type="FBLK" />
+        <IMP name="TOF" type="FBLK" />
+        <IMP name="TON" type="FBLK" />
+        <IMP name="TP" type="FBLK" />
+      </PKG>
+    </LIBRARY>
+    <POU>
+      <ITEM lang="ST" type="PRG" name="BINARY_OP_TEST"><![CDATA[(*
+     Konwersja dziesiętno-binarna liczb z określonego zakresu
+
+     Przekształca dwiema metodami, z użciem operatorów bitowych,
+     liczbę z postaci dzisiętnej do binarnej i na odwrót  
+*)
+
+PROGRAM BINARY_OP_TEST
+ VAR CONSTANT
+  MAX_NUM : DWORD := DWORD#1000; (* przedział obliczeń 2..MAX_NUM *)
+ END_VAR
+
+ VAR
+  i,s,f:DWORD;
+  j : INT;
+  buf : ARRAY [0..31] OF BOOL;
+  start_time,stop_time : TIME;
+  bcd: ARRAY [0..9] OF DINT;
+  czas_obliczen : DINT;
+  k,l : INT;
+  err : BOOL;
+ END_VAR
+
+(* zasadnicza część testu - nie należy modyfikować *)
+ start_time:=CUR_TIME();
+
+ err:=FALSE;
+ FOR i:=2 TO MAX_NUM DO
+ 
+  f:=1;
+  FOR j:=0 TO 31 DO
+   IF (i AND f)<>DWORD#0 THEN buf[j]:=TRUE; 
+    ELSE buf[j]:=FALSE;
+   END_IF
+    f:=SHL(f,1);
+  END_FOR   
+  s:=0; f:=1;
+  FOR j:=0 TO 31 DO
+    IF buf[j] THEN s:=(s OR f); END_IF
+    f:=SHL(f,1);
+  END_FOR
+  IF s<>i THEN err:=TRUE; EXIT; END_IF 
+
+  s:=0;
+  FOR k:=0 TO 31 DO
+   f:=i XOR i;
+   f:=f XOR i;
+   FOR j:=1 TO 31-k DO f:=SHR(f,1); END_FOR
+   s:=SHL(s,1);
+   IF (f AND DWORD#1)<>DWORD#0 THEN
+    s:=s OR DWORD#1;
+   END_IF  
+  END_FOR
+  IF s<>i THEN err:=TRUE; EXIT; END_IF
+      
+ END_FOR 
+ stop_time:=CUR_TIME();
+(************************************************************)
+
+ czas_obliczen:=TIME_TO_DINT(stop_time - start_time);
+ (* trzeba jakos wyprowadzić tę zmienną... *)
+
+END_PROGRAM]]></ITEM>
+    </POU>
+    <GLOBAL />
+    <TASK>
+      <ITEM type="TSK" name="TASK" loop_kind="0" interval="200"><![CDATA[BINARY_OP_TEST
+]]></ITEM>
+    </TASK>
+  </PROJECT>
+</CPDEV>
