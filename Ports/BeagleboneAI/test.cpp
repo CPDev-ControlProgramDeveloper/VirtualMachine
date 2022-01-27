@@ -37,21 +37,21 @@ int main(int argc, char** argv) {
 
 	char *ext = dcp + strlen(dcp);
 
-    while (*ext != '.' && ext > xcp)
+    while (*ext != '.' && ext > dcp)
 	{
         --ext;
     }
 
 	if (strcmp(ext,".xcp"))
 	{
-		printf("Bad xcp filename: %s\n", xcp);
+		printf("Bad xcp filename: %s\n", dcp);
 		return -2;
 	}
 	strncpy(ext,".dcp",3);
 
 	if (!dcpInfo.Load(dcp))
 	{
-		printf("%s loaded\n", dcp);
+		printf("\n%s loaded\n", dcp);
 		out0 = dcpInfo.InitVariable("OUT0");
 		out1 = dcpInfo.InitVariable("OUT1");
 		out2 = dcpInfo.InitVariable("OUT2");
