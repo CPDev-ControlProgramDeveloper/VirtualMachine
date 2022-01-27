@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <conio.h>
 
 #include <sys/resource.h>
 
@@ -65,7 +64,7 @@ int main(int argc, char** argv) {
 		return -2;
 	}
 
-#if 0
+#if 1
 		FILE* trigger0 = fopen("/sys/class/leds/beaglebone:green:usr0/trigger", "w");
 		FILE* trigger1 = fopen("/sys/class/leds/beaglebone:green:usr1/trigger", "w");
 		FILE* trigger2 = fopen("/sys/class/leds/beaglebone:green:usr2/trigger", "w");
@@ -76,10 +75,14 @@ int main(int argc, char** argv) {
 		brightness2 = fopen("/sys/class/leds/beaglebone:green:usr2/brightness", "w");
 		brightness3 = fopen("/sys/class/leds/beaglebone:green:usr3/brightness", "w");
 
-		fprintf(trigger0, "none\n");
-		fprintf(trigger1, "none\n");
-		fprintf(trigger2, "none\n");
-		fprintf(trigger3, "none\n");
+		if (trigger0)
+			fprintf(trigger0, "none\n");
+		if (trigger1)
+			fprintf(trigger1, "none\n");
+		if (trigger2)
+			fprintf(trigger2, "none\n");
+		if (trigger3)
+			fprintf(trigger3, "none\n");
 #endif
 
 	cpdev.task_cycle = 200;
