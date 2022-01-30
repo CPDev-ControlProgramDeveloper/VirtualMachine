@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CPDEV version="1.0">
+  <TARGET RawCompilerVersion="00041109" StringCompilerVersion="0.4.17.9" CF="00000131" SF="000000b0" OP="00000005" LF="00000001" DC="0000000c">
+    <GLOBAL>
+      <VAR LName="OUT0" PName="WWJ.OUT0" Addr="0000" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" VarFlags="00004008" TypeCRC="D275EFCD" />
+      <VAR LName="OUT1" PName="WWJ.OUT1" Addr="0001" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" VarFlags="00004008" TypeCRC="D275EFCD" />
+      <VAR LName="OUT2" PName="WWJ.OUT2" Addr="0002" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" VarFlags="00004008" TypeCRC="D275EFCD" />
+      <VAR LName="OUT3" PName="WWJ.OUT3" Addr="0003" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" VarFlags="00004008" TypeCRC="D275EFCD" />
+      <VAR LName="ONOF" PName="WWJ.ONOF" Addr="0004" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" VarFlags="00004008" TypeCRC="D275EFCD" />
+    </GLOBAL>
+    <VMACH>
+      <FILE_LOC>VM\VM-Praxis.xml</FILE_LOC>
+    </VMACH>
+    <TASKS>
+      <TASK LName="Task0001" PName="WWJ.Task0001" LoopType="0" Cycle="200" CycleUnit="ms" BodyCodeAddres="0024" TaskFlags="00000000" />
+    </TASKS>
+    <MEMORY_MAP Type="code">
+      <file LoadAddr="0" Size="306">WeJeStSt.xcp</file>
+      <file_FullName>D:\Zlecone\Test\WeJeStSt\WeJeStSt.xcp</file_FullName>
+    </MEMORY_MAP>
+    <MEMORY_MAP Type="data">
+      <file LoadAddr="0" Size="38">#dummy</file>
+    </MEMORY_MAP>
+    <MNEMONIC_MAP Type="code">
+:0000| 1C15 0000 01 00                   | $VMSYS.MCD WWJ.OUT0, #01, #00                                                   
+:0006| 1C15 0100 01 00                   | $VMSYS.MCD WWJ.OUT1, #01, #00                                                   
+:000c| 1C15 0200 01 00                   | $VMSYS.MCD WWJ.OUT2, #01, #00                                                   
+:0012| 1C15 0300 01 00                   | $VMSYS.MCD WWJ.OUT3, #01, #00                                                   
+:0018| 1C15 0400 01 00                   | $VMSYS.MCD WWJ.ONOF, #01, #00                                                   
+:001e|                                   | :?WWJ.Task0001?TSKSTR                                                           
+:001e| 1C16 0000 2E00                    | $VMSYS.CALB #0000, :?WWJ.GLOWNY?INIT                                            
+:0024|                                   | :?WWJ.Task0001?TSKLOOP                                                          
+:0024| 1C16 0000 7800                    | $VMSYS.CALB #0000, :?WWJ.GLOWNY?CODE                                            
+:002a| 1C1D 2400                         | $VMSYS.TRML :?WWJ.Task0001?TSKLOOP                                              
+:002e|                                   | :?WWJ.GLOWNY?INIT                                                               
+:002e| 1C15 0600 02 0000                 | $VMSYS.MCD LICZNIK, #02, #0000                                                  
+:0035| 1C15 0800 04 00000000             | $VMSYS.MCD STIME, #04, #00000000                                                
+:003e| 1C15 0500 01 01                   | $VMSYS.MCD PONOF, #01, #01                                                      
+:0044| 1C15 0C00 01 01                   | $VMSYS.MCD BCOUNT, #01, #01                                                     
+:004a| 1C15 1000 02 0000                 | $VMSYS.MCD ?L?CST0044, #02, #0000                                               
+:0051| 1C15 1400 04 D0070000             | $VMSYS.MCD ?L?CST004A, #04, #D0070000                                           
+:005a| 1C15 1200 02 0800                 | $VMSYS.MCD ?L?CST0051, #02, #0800                                               
+:0061| 1C15 2000 02 0200                 | $VMSYS.MCD ?L?CST0054, #02, #0200                                               
+:0068| 1C15 2200 02 0100                 | $VMSYS.MCD ?L?CST0059, #02, #0100                                               
+:006f| 1C15 2400 02 0400                 | $VMSYS.MCD ?L?CST005E, #02, #0400                                               
+:0076| 1C13                              | $VMSYS.RETURN                                                                   
+:0078|                                   | :?WWJ.GLOWNY?CODE                                                               
+;;;;;|                                   | {B:1!40!796}                                                                    
+;!!!!|                                   | ■IF ONOF AND NOT pONOF THEN ■bCOUNT := NOT bCOUNT; END_IF;                      
+:0078| 1C02 0400 9400                    | $VMSYS.JZ ONOF, :?WWJ.GLOWNY?AND0039                                            
+:007e| 0510 0E00 0500                    | $DEFAULT.NOT ?LR?ANDA003A, PONOF                                                
+:0084| 1C02 0E00 9400                    | $VMSYS.JZ ?LR?ANDA003A, :?WWJ.GLOWNY?AND0039                                    
+:008a| 1C15 0D00 01 01                   | $VMSYS.MCD ?IF?CTL, #01, #01                                                    
+:0090| 1C00 9A00                         | $VMSYS.JMP :?WWJ.GLOWNY?EAND003D                                                
+:0094|                                   | :?WWJ.GLOWNY?AND0039                                                            
+:0094| 1C15 0D00 01 00                   | $VMSYS.MCD ?IF?CTL, #01, #00                                                    
+:009a|                                   | :?WWJ.GLOWNY?EAND003D                                                           
+:009a| 1C02 0D00 A600                    | $VMSYS.JZ ?IF?CTL, :?WWJ.GLOWNYIF?B0038                                         
+;;;;;|                                   | {E:1!40!823}                                                                    
+;;;;;|                                   | {B:65537!40!823}                                                                
+;;;;;|                                   | {B:3!40!823}                                                                    
+;!!!!|                                   | IF ONOF AND NOT pONOF THEN ■bCOUNT := NOT bCOUNT■; END_IF;                      
+:00a0| 0510 0C00 0C00                    | $DEFAULT.NOT BCOUNT, BCOUNT                                                     
+;;;;;|                                   | {E:3!40!843}                                                                    
+;;;;;|                                   | {E:65537!40!845}                                                                
+:00a6|                                   | :?WWJ.GLOWNYIF?B0038                                                            
+:00a6| 0000                              | $VMSYS.NOP                                                                      
+;;;;;|                                   | {B:3!41!854}                                                                    
+;!!!!|                                   | ■pONOF := ONOF■;                                                                
+:00a8| 1C1F 0500 0400 0100               | $VMSYS.MEMCP PONOF, ONOF, #0100                                                 
+;;;;;|                                   | {E:3!41!867}                                                                    
+;;;;;|                                   | {B:1!43!872}                                                                    
+;!!!!|                                   | ■IF bCOUNT THEN                                                                 
+;!!!!|                                   | ■IF Licznik = 0 THEN                 (* Pierwszy cykl obliczeniowy    *)        
+:00b0| 1C02 0C00 0E01                    | $VMSYS.JZ BCOUNT, :?WWJ.GLOWNYIF?B0042                                          
+;;;;;|                                   | {E:1!44!888}                                                                    
+;;;;;|                                   | {B:65537!44!888}                                                                
+;;;;;|                                   | {B:1!44!888}                                                                    
+;!!!!|                                   | ■IF Licznik = 0 THEN                 (* Pierwszy cykl obliczeniowy    *)        
+;!!!!|                                   |     ■sTime := CUR_TIME();            (* Zapamiętaj czas systemowy     *)        
+:00b6| 1202 0D00 0600 1000               | $DEFAULT.EQ ?IF?CTL, LICZNIK, ?L?CST0044                                        
+:00be| 1C02 0D00 CF00                    | $VMSYS.JZ ?IF?CTL, :?WWJ.GLOWNYIF?B0043                                         
+;;;;;|                                   | {E:1!45!965}                                                                    
+;;;;;|                                   | {B:65537!45!965}                                                                
+;;;;;|                                   | {B:3!45!965}                                                                    
+;!!!!|                                   |     ■sTime := CUR_TIME()■;            (* Zapamiętaj czas systemowy     *)       
+:00c4| 1C17 0800                         | $DEFAULT.CUR_TIME STIME                                                         
+;;;;;|                                   | {E:3!45!984}                                                                    
+;;;;;|                                   | {B:3!46!1038}                                                                   
+;!!!!|                                   |     ■Licznik := 1■;                   (* Aktywacja wyjścia             *)       
+:00c8| 1C15 0600 02 0100                 | $VMSYS.MCD LICZNIK, #02, #0100                                                  
+;;;;;|                                   | {E:3!46!1050}                                                                   
+;;;;;|                                   | {E:65537!47!1107}                                                               
+:00cf|                                   | :?WWJ.GLOWNYIF?B0043                                                            
+;;;;;|                                   | {B:1!48!1115}                                                                   
+;!!!!|                                   | ■IF CUR_TIME()-sTime &gt;= t#2s THEN    (* Jeśli upłynął zadany czas     *)        
+;!!!!|                                   |     ■sTime := CUR_TIME();            (* Czas początkowy               *)        
+:00cf| 1C17 1800                         | $DEFAULT.CUR_TIME ?F?CUR_TIME004B                                               
+:00d3| 020B 1C00 1800 0800               | $DEFAULT.SUB ?F?$DEFAULT_SUB004C, ?F?CUR_TIME004B, STIME                        
+:00db| 110B 0D00 1C00 1400               | $DEFAULT.GE ?IF?CTL, ?F?$DEFAULT_SUB004C, ?L?CST004A                            
+:00e3| 1C02 0D00 0E01                    | $VMSYS.JZ ?IF?CTL, :?WWJ.GLOWNYIF?B0049                                         
+;;;;;|                                   | {E:1!49!1192}                                                                   
+;;;;;|                                   | {B:65537!49!1192}                                                               
+;;;;;|                                   | {B:3!49!1192}                                                                   
+;!!!!|                                   |     ■sTime := CUR_TIME()■;            (* Czas początkowy               *)       
+:00e9| 1C17 0800                         | $DEFAULT.CUR_TIME STIME                                                         
+;;;;;|                                   | {E:3!49!1211}                                                                   
+;;;;;|                                   | {B:1!50!1265}                                                                   
+;!!!!|                                   |     ■IF Licznik &lt; 8 THEN             (* Jeśli nie czwarty bit         *)        
+;!!!!|                                   |         ■Licznik := Licznik * 2;     (*   to ustaw następny           *)        
+:00ed| 1402 0D00 0600 1200               | $DEFAULT.LT ?IF?CTL, LICZNIK, ?L?CST0051                                        
+:00f5| 1C02 0D00 0701                    | $VMSYS.JZ ?IF?CTL, :?WWJ.GLOWNYIF?B0050                                         
+;;;;;|                                   | {E:1!51!1342}                                                                   
+;;;;;|                                   | {B:65537!51!1342}                                                               
+;;;;;|                                   | {B:3!51!1342}                                                                   
+;!!!!|                                   |         ■Licznik := Licznik * 2■;     (*   to ustaw następny           *)       
+:00fb| 0322 0600 0600 2000               | $DEFAULT.MUL LICZNIK, LICZNIK, ?L?CST0054                                       
+;;;;;|                                   | {E:3!51!1364}                                                                   
+;;;;;|                                   | {E:65537!52!1411}                                                               
+:0103| 1C00 0E01                         | $VMSYS.JMP :?WWJ.GLOWNYIF?E0056                                                 
+:0107|                                   | :?WWJ.GLOWNYIF?B0050                                                            
+;;;;;|                                   | {B:131073!53!1488}                                                              
+;;;;;|                                   | {B:3!53!1488}                                                                   
+;!!!!|                                   |         ■Licznik := 1■;               (*   ustaw najmłodszy bit        *)       
+:0107| 1C15 0600 02 0100                 | $VMSYS.MCD LICZNIK, #02, #0100                                                  
+;;;;;|                                   | {E:3!53!1500}                                                                   
+;;;;;|                                   | {E:131073!54!1557}                                                              
+:010e|                                   | :?WWJ.GLOWNYIF?E0056                                                            
+;;;;;|                                   | {E:65537!55!1565}                                                               
+:010e|                                   | :?WWJ.GLOWNYIF?B0049                                                            
+;;;;;|                                   | {E:65537!56!1573}                                                               
+:010e|                                   | :?WWJ.GLOWNYIF?B0042                                                            
+:010e| 0000                              | $VMSYS.NOP                                                                      
+;;;;;|                                   | {B:3!58!1584}                                                                   
+;!!!!|                                   | ■OUT0 := Licznik = 1■;                                                          
+:0110| 1202 0000 0600 2200               | $DEFAULT.EQ OUT0, LICZNIK, ?L?CST0059                                           
+;;;;;|                                   | {E:3!58!1603}                                                                   
+;;;;;|                                   | {B:3!59!1606}                                                                   
+;!!!!|                                   | ■OUT1 := Licznik = 2■;                                                          
+:0118| 1202 0100 0600 2000               | $DEFAULT.EQ OUT1, LICZNIK, ?L?CST0054                                           
+;;;;;|                                   | {E:3!59!1625}                                                                   
+;;;;;|                                   | {B:3!60!1628}                                                                   
+;!!!!|                                   | ■OUT2 := Licznik = 4■;                                                          
+:0120| 1202 0200 0600 2400               | $DEFAULT.EQ OUT2, LICZNIK, ?L?CST005E                                           
+;;;;;|                                   | {E:3!60!1647}                                                                   
+;;;;;|                                   | {B:3!61!1650}                                                                   
+;!!!!|                                   | ■OUT3 := Licznik = 8■;                                                          
+:0128| 1202 0300 0600 1200               | $DEFAULT.EQ OUT3, LICZNIK, ?L?CST0051                                           
+;;;;;|                                   | {E:3!61!1669}                                                                   
+:0130| 1C13                              | $VMSYS.RETURN                                                                   
+:0132 
+</MNEMONIC_MAP>
+    <DATA_MAP>
+      <OBJ ObjType="VAR" LName="OUT0" PName="WWJ.OUT0" Addr="0000" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00004008" TypeCRC="D275EFCD">
+        <COMMENT><![CDATA[Wyjście diody 0]]></COMMENT>
+      </OBJ>
+      <OBJ ObjType="VAR" LName="OUT1" PName="WWJ.OUT1" Addr="0001" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00004008" TypeCRC="D275EFCD">
+        <COMMENT><![CDATA[Wyjście diody 1]]></COMMENT>
+      </OBJ>
+      <OBJ ObjType="VAR" LName="OUT2" PName="WWJ.OUT2" Addr="0002" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00004008" TypeCRC="D275EFCD">
+        <COMMENT><![CDATA[Wyjście diody 2]]></COMMENT>
+      </OBJ>
+      <OBJ ObjType="VAR" LName="OUT3" PName="WWJ.OUT3" Addr="0003" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00004008" TypeCRC="D275EFCD">
+        <COMMENT><![CDATA[Wyjście diody 3]]></COMMENT>
+      </OBJ>
+      <OBJ ObjType="VAR" LName="ONOF" PName="WWJ.ONOF" Addr="0004" AdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00004008" TypeCRC="D275EFCD">
+        <COMMENT><![CDATA[Wejście przełącznika]]></COMMENT>
+      </OBJ>
+      <OBJ ObjType="TASK" LName="Task0001" PName="WWJ.Task0001" Addr="0000" AdrType="gdlabel" Size="37">
+        <OBJ ObjType="VAR" LName="GLOWNY_01" PName="WWJ.Task0001.GLOWNY_01" Addr="0000" AdrType="rdlabel" CAddr="0000" CAdrType="gdlabel" Size="37" Type="GLOWNY" PType="WWJ.GLOWNY" TypeStatus="program" VFlags="00000000" TypeCRC="76922F4D">
+          <OBJ ObjType="VAR" LName="LICZNIK" PName="WWJ.Task0001.GLOWNY_01.LICZNIK" Addr="0006" AdrType="rdlabel" CAddr="0006" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00000000" TypeCRC="DC550720" />
+          <OBJ ObjType="VAR" LName="STIME" PName="WWJ.Task0001.GLOWNY_01.STIME" Addr="0008" AdrType="rdlabel" CAddr="0008" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00000000" TypeCRC="C0025210" />
+          <OBJ ObjType="VAR" LName="PONOF" PName="WWJ.Task0001.GLOWNY_01.PONOF" Addr="0005" AdrType="rdlabel" CAddr="0005" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" TypeCRC="D275EFCD" />
+          <OBJ ObjType="VAR" LName="BCOUNT" PName="WWJ.Task0001.GLOWNY_01.BCOUNT" Addr="000c" AdrType="rdlabel" CAddr="000c" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" TypeCRC="D275EFCD" />
+          <OBJ ObjType="VAR" LName="?IF?CTL" PName="WWJ.Task0001.GLOWNY_01.?IF?CTL" Addr="000d" AdrType="rdlabel" CAddr="000d" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" TypeCRC="D275EFCD" />
+          <OBJ ObjType="VAR" LName="?LR?ANDA003A" PName="WWJ.Task0001.GLOWNY_01.?LR?ANDA003A" Addr="000e" AdrType="rdlabel" CAddr="000e" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00200000" TypeCRC="D275EFCD" />
+          <OBJ ObjType="VAR" LName="?L?CST0044" PName="WWJ.Task0001.GLOWNY_01.?L?CST0044" Addr="0010" AdrType="rdlabel" CAddr="0010" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="0" />
+          <OBJ ObjType="VAR" LName="?L?CST004A" PName="WWJ.Task0001.GLOWNY_01.?L?CST004A" Addr="0014" AdrType="rdlabel" CAddr="0014" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00100000" TypeCRC="C0025210" ConstValue="t#2s" />
+          <OBJ ObjType="VAR" LName="?F?CUR_TIME004B" PName="WWJ.Task0001.GLOWNY_01.?F?CUR_TIME004B" Addr="0018" AdrType="rdlabel" CAddr="0018" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C0025210" />
+          <OBJ ObjType="VAR" LName="?F?$DEFAULT_SUB004C" PName="WWJ.Task0001.GLOWNY_01.?F?$DEFAULT_SUB004C" Addr="001c" AdrType="rdlabel" CAddr="001c" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C0025210" />
+          <OBJ ObjType="VAR" LName="?L?CST0051" PName="WWJ.Task0001.GLOWNY_01.?L?CST0051" Addr="0012" AdrType="rdlabel" CAddr="0012" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="8" />
+          <OBJ ObjType="VAR" LName="?L?CST0054" PName="WWJ.Task0001.GLOWNY_01.?L?CST0054" Addr="0020" AdrType="rdlabel" CAddr="0020" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="2" />
+          <OBJ ObjType="VAR" LName="?L?CST0059" PName="WWJ.Task0001.GLOWNY_01.?L?CST0059" Addr="0022" AdrType="rdlabel" CAddr="0022" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="1" />
+          <OBJ ObjType="VAR" LName="?L?CST005E" PName="WWJ.Task0001.GLOWNY_01.?L?CST005E" Addr="0024" AdrType="rdlabel" CAddr="0024" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="4" />
+        </OBJ>
+      </OBJ>
+    </DATA_MAP>
+    <INFO>
+      <DT_EXPORT year="2021" month="10" day="19" hour="17" minutes="5" seconds="26" milisec="420" />
+      <COMPANY><![CDATA[Politechnika Rzeszowska / Katedra Informatyki i Automatyki]]></COMPANY>
+      <MANAGER><![CDATA[prof. dr hab. inż. Leszek Trybus, dr hab. inż. Zbigniew Świder prof. PRz]]></MANAGER>
+      <VERSION><![CDATA[1.0]]></VERSION>
+      <CREATED year="2007" month="12" day="7" hour="10" minutes="51" seconds="31" milisec="849" />
+      <PHYSVER value="6" />
+      <LAST_COMPILED year="2021" month="10" day="19" hour="17" minutes="5" seconds="26" milisec="226" />
+    </INFO>
+  </TARGET>
+</CPDEV>
