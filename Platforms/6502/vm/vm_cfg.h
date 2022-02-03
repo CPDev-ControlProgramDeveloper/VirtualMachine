@@ -46,5 +46,8 @@
 //enable support for native blocks 
 //#define VM_HWBLOCK_SUPPORT
 
-// enable support for flash functions
+//enable support for flash functions
 //#define VM_FLASH_SUPPORT
+
+//check WM type sizes during compilation
+#define CHECK_WM_TYPES 

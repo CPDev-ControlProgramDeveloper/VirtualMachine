@@ -300,3 +300,37 @@ int VMCLASS_PREFIX WM_SetData(WM_ADDRESS address, WM_BYTE len, WM_BYTE* buf)
 	return len;
 }
 
+#ifdef CHECK_WM_TYPES
+void WM_CheckTypes()
+{
+
+#define WM_CHECK_SIZE(type, size) ((void)sizeof(char[1 - 2*!!(sizeof(type) - size)]))
+
+WM_CHECK_SIZE(WM_BOOL, 1);
+WM_CHECK_SIZE(WM_BYTE, 1);
+WM_CHECK_SIZE(WM_INT, 2);
+WM_CHECK_SIZE(WM_DINT, 4);
+WM_CHECK_SIZE(WM_WORD, 2);
+WM_CHECK_SIZE(WM_DWORD, 4);
+
+#ifdef VM_LONG_SUPPORT
+WM_CHECK_SIZE(WM_LWORD, 8);
+WM_CHECK_SIZE(WM_LINT, 8);
+#endif
+
+#ifdef VM_REAL_SUPPORT
+WM_CHECK_SIZE(WM_REAL, 4);
+#endif
+
+#ifdef VM_LREAL_SUPPORT
+WM_CHECK_SIZE(WM_LREAL, 4);
+#endif
+
+#ifdef WM_DATETIME_SUPPORT
+WM_CHECK_SIZE(WM_DATE, 8);
+WM_CHECK_SIZE(WM_TIME_OF_DAY, 8);
+WM_CHECK_SIZE(WM_DATE_AND_TIME, 8);
+#endif
+
+}
+#endif
