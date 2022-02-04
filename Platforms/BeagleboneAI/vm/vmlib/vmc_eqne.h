@@ -30,12 +30,16 @@ void VMCLASS_PREFIX WMC_EQ(WM_BYTE opt)
 			EQ_TYPE(SINT);
 			EQ_TYPE(INT);
 			EQ_TYPE(DINT);
-			EQ_TYPE(LINT);
 			EQ_TYPE(BYTE);
 			EQ_TYPE(WORD);
 			EQ_TYPE(DWORD);
+#ifdef VM_LONG_SUPPORT
+			EQ_TYPE(LINT);
 			EQ_TYPE(LWORD);
+#endif
+#ifdef VM_REAL_SUPPORT			
 			EQ_TYPE(REAL);
+#endif			
 #ifdef VM_LREAL_SUPPORT
 			EQ_TYPE(LREAL);
 #endif
@@ -50,6 +54,8 @@ void VMCLASS_PREFIX WMC_EQ(WM_BYTE opt)
 				setBOOL(wDst, wRes);
 			}
 			break;
+
+#ifdef VM_DATETIME_SUPPORT
 
 		case VMF_EQ_DATE_DATE & 0x000F:		/* INT ops */
 			{
@@ -93,6 +99,9 @@ void VMCLASS_PREFIX WMC_EQ(WM_BYTE opt)
 			}
 			break;
 
+#endif
+
+
 #ifdef VM_STRING_SUPPORT
 		case VMF_EQ_STRING_STRING & 0x000F:		/* INT ops */
 			{
@@ -123,12 +132,16 @@ void VMCLASS_PREFIX WMC_NE(WM_BYTE opt)
 			NE_TYPE(SINT);
 			NE_TYPE(INT);
 			NE_TYPE(DINT);
-			NE_TYPE(LINT);
 			NE_TYPE(BYTE);
 			NE_TYPE(WORD);
 			NE_TYPE(DWORD);
+#ifdef VM_LONG_SUPPORT
+			NE_TYPE(LINT);
 			NE_TYPE(LWORD);
+#endif
+#ifdef VM_REAL_SUPPORT			
 			NE_TYPE(REAL);
+#endif			
 #ifdef VM_LREAL_SUPPORT
 			NE_TYPE(LREAL);
 #endif
@@ -143,6 +156,8 @@ void VMCLASS_PREFIX WMC_NE(WM_BYTE opt)
 				setBOOL(wDst, wRes);
 			}
 			break;
+
+#ifdef VM_DATETIME_SUPPORT			
 
 		case VMF_NE_DATE_DATE & 0x000F:		/* INT ops */
 			{
@@ -185,6 +200,8 @@ void VMCLASS_PREFIX WMC_NE(WM_BYTE opt)
 				setBOOL(wDst, wRes);
 			}
 			break;
+
+#endif			
 
 #ifdef VM_STRING_SUPPORT
 		case VMF_NE_STRING_STRING & 0x000F:		/* INT ops */

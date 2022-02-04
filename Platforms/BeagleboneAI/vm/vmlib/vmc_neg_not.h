@@ -36,7 +36,9 @@ void VMCLASS_PREFIX WMC_NEG_NOT(WM_BYTE opt)
 			NOT_TYPE(BYTE)
 			NOT_TYPE(WORD)
 			NOT_TYPE(DWORD)
+#ifdef VM_LONG_SUPPORT				
 			NOT_TYPE(LWORD)
+#endif			
 
 			default:
 				bResult = WM_UNKNOWN;
@@ -50,8 +52,12 @@ void VMCLASS_PREFIX WMC_NEG_NOT(WM_BYTE opt)
 			NEG_TYPE(SINT)
 			NEG_TYPE(INT)
 			NEG_TYPE(DINT)
+#ifdef VM_LONG_SUPPORT				
 			NEG_TYPE(LINT)
+#endif
+#ifdef VM_REAL_SUPPORT			
 			NEG_TYPE(REAL)
+#endif			
 #ifdef VM_LREAL_SUPPORT
 			NEG_TYPE(LREAL)
 #endif

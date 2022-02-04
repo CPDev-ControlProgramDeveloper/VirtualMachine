@@ -1,6 +1,7 @@
 #ifndef INC_VM_H
 #define INC_VM_H
 
+#include <stdint.h>
 #include "vm_cfg.h"
 
 #define VMCLASS_PREFIX
@@ -23,6 +24,10 @@
 
 #endif
 
+#ifndef VM_REAL_SUPPORT
+#undef VM_LREAL_SUPPORT
+#endif
+
 /* VM start mode constants */
 #define WM_MODE_STOP    0x00
 #define WM_MODE_NORMAL  0x01
@@ -34,24 +39,29 @@
 #define WM_MODE_FIRST_START     0x40
 #define WM_MODE_RUNNING			0x80
 
-typedef unsigned char   WM_BOOL;                // change this, if the compiler supports bit data type
-typedef unsigned char   WM_BYTE;
-
 #if defined(__BORLANDC__)
-#define long64 __int64
-#else
-#define long64 long long
+#define int64_t __int64
 #endif
 
-                                               // dla AVR -> inaczej !!!!!!!!
-typedef unsigned short  WM_WORD;
-typedef unsigned long   WM_DWORD;
-typedef unsigned long64      WM_LWORD;
-typedef signed short    WM_INT;
-typedef signed char             WM_SINT;
-typedef signed long             WM_DINT;
-typedef signed long64                WM_LINT;
+/* Note: the fixed datatypes are available in C99 */
+typedef uint8_t   WM_BOOL;
+typedef uint8_t   WM_BYTE;
+typedef uint16_t  WM_WORD;
+typedef uint32_t  WM_DWORD;
+typedef int16_t   WM_INT;
+typedef int8_t    WM_SINT;
+typedef int32_t   WM_DINT;
+
+#ifdef VM_LONG_SUPPORT
+typedef uint64_t  WM_LWORD;
+typedef int64_t   WM_LINT;
+#else
+typedef WM_DWORD  WM_LWORD;
+#endif
+
+#ifdef VM_REAL_SUPPORT
 typedef float                   WM_REAL;
+#endif
 #ifdef VM_LREAL_SUPPORT
 typedef double                  WM_LREAL;
 #endif
@@ -72,6 +82,8 @@ typedef WM_DWORD WM_TIME;
 #else
 #define WM_ADDRESS WM_ADDRESS16
 #endif
+
+#ifdef VM_DATETIME_SUPPORT
 
 typedef union {
         struct {
@@ -98,6 +110,8 @@ typedef struct {
                 WM_TIME_OF_DAY tod;
                 WM_DATE date;
 } WM_DATE_AND_TIME;
+
+#endif
 
 #ifdef VM_STRING_SUPPORT
 
@@ -181,6 +195,9 @@ WM_ADDRESS pull_CallingStack(void);
 #include "vmplatform.h"
 
 /* common funtions */
+
+#ifdef VM_DATETIME_SUPPORT
+
 /* date and time functions */
 int dow(int m, int d, int y);
 
@@ -192,6 +209,8 @@ WM_BOOL lessTOD(WM_TOD t1, WM_TOD t2);
 
 WM_BOOL equDATE_AND_TIME(WM_DATE_AND_TIME dt1, WM_DATE_AND_TIME dt2);
 WM_BOOL lessDATE_AND_TIME(WM_DATE_AND_TIME dt1, WM_DATE_AND_TIME dt2);
+
+#endif
 
 #ifdef VM_STRING_SUPPORT
 WM_BOOL equSTRING(WM_STRING* s1, WM_STRING* s2);

@@ -1,6 +1,6 @@
 #include "../vm.h"
 #include "vm_data_access.h"
-#include "string.h"
+#include <string.h>
 
 /* Data access implementation functions */
 

@@ -23,8 +23,8 @@
 // compile VM as C++ class (instead of a set of C-functions)
 #define VMTASK_CLASS
 
-//enable support for STRING datatype
-#define VM_STRING_SUPPORT
+//enable support for REAL datatype
+#define VM_REAL_SUPPORT
 
 //enable support for LREAL datatype
 #define VM_LREAL_SUPPORT
@@ -35,24 +35,20 @@
 //enable support of functions EXPT,ABS,SQRT,LN,LOG,EXP,SIN,COS,TAN,ASIN,ACOS,ATAN,TRUNC,ROUND from math.h
 #define VM_MATH_SUPPORT
 
+//enable support for LWORD, LINT datatypes
+#define VM_LONG_SUPPORT
 
-#ifdef ARDUINO_AVR_UNO
+//enable support for DATE, DATETIME, TOD datatypes
+#define VM_DATETIME_SUPPORT
 
-// default size of data area (pgmData)
-#undef DEFAULT_DATA_SIZE
-#define DEFAULT_DATA_SIZE	128
+//enable support for native blocks 
+#define VM_HWBLOCK_SUPPORT
 
-// size of the calling stack
-#undef CALL_STACK_SIZE
-#define CALL_STACK_SIZE         128
-  
-// size of the data offset stack  
-#undef DATA_STACK_SIZE        
-#define DATA_STACK_SIZE         128 
+//enable support for flash functions
+#define VM_FLASH_SUPPORT
 
-// remove optional support to reduce code size
-#undef VM_STRING_SUPPORT
-#undef VM_LREAL_SUPPORT
-#undef VM_MATH_SUPPORT
+//enable support for STRING datatype
+#define VM_STRING_SUPPORT
 
-#endif
+//check WM type sizes during compilation
+#define CHECK_WM_TYPES 

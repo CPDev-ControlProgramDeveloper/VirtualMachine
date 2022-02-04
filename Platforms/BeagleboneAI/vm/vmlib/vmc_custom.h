@@ -422,14 +422,14 @@ WM_BYTE VMCLASS_PREFIX WMC_Custom(WM_BYTE opcode)
 #endif //#ifdef PRAXIS_VM
 
 #ifdef ASSERT_ON
-		case 0x80:		// SCNTF - powiadomienie MW o niespe³nieniu asercji
+		case 0x80:		// SCNTF - assertion failed
 			{
 				VMP_Assert(opcode, 0);
 				result = 0;
 			}
 			break;
-		case 0x81:		// SCRST - rozpoczêcie przetwarzania cyklu od pocz¹tku
-		case 0x82:		// SCHLT - przerwanie wykonywania programu (przejœcie do obs³ugi zapisu wyjœæ I/O sterownika)
+		case 0x81:		// SCRST - restart the cycle
+		case 0x82:		// SCHLT - halt the program
 			break;
 #endif
 		default:

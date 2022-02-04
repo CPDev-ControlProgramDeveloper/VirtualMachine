@@ -49,18 +49,7 @@ void VMCLASS_PREFIX WMC_SEL(WM_BYTE opt)
 				setDINT(wDst, wRes);
 			}
 			break;
-
-		case VMF_SEL_BOOL_LINT_LINT & 0x000F:		/* LINT ops */
-			{
-				WM_BOOL par1 = getBOOL(GetProgramAddress());
-				WM_LINT par2 = getLINT(GetProgramAddress());
-				WM_LINT par3 = getLINT(GetProgramAddress());
-				WM_LINT wRes = par1 ? par3 : par2;
-
-				setLINT(wDst, wRes);
-			}
-			break;
-
+		
 		case VMF_SEL_BOOL_BYTE_BYTE & 0x000F:		/* INT ops */
 			{
 				WM_BOOL par1 = getBOOL(GetProgramAddress());
@@ -94,6 +83,18 @@ void VMCLASS_PREFIX WMC_SEL(WM_BYTE opt)
 			}
 			break;
 
+#ifdef VM_LONG_SUPPORT	
+		case VMF_SEL_BOOL_LINT_LINT & 0x000F:		/* LINT ops */
+			{
+				WM_BOOL par1 = getBOOL(GetProgramAddress());
+				WM_LINT par2 = getLINT(GetProgramAddress());
+				WM_LINT par3 = getLINT(GetProgramAddress());
+				WM_LINT wRes = par1 ? par3 : par2;
+
+				setLINT(wDst, wRes);
+			}
+			break;
+
 		case VMF_SEL_BOOL_LWORD_LWORD & 0x000F:		/* INT ops */
 			{
 				WM_BOOL par1 = getBOOL(GetProgramAddress());
@@ -104,7 +105,9 @@ void VMCLASS_PREFIX WMC_SEL(WM_BYTE opt)
 				setLWORD(wDst, wRes);
 			}
 			break;
+#endif	
 
+#ifdef VM_REAL_SUPPORT
 		case VMF_SEL_BOOL_REAL_REAL & 0x000F:		/* REAL ops */
 			{
 				WM_BOOL par1 = getBOOL(GetProgramAddress());
@@ -115,6 +118,7 @@ void VMCLASS_PREFIX WMC_SEL(WM_BYTE opt)
 				setREAL(wDst, wRes);
 			}
 			break;
+#endif			
 
 #ifdef VM_LREAL_SUPPORT
 		case VMF_SEL_BOOL_LREAL_LREAL & 0x000F:		/* LREAL ops */
@@ -139,6 +143,7 @@ void VMCLASS_PREFIX WMC_SEL(WM_BYTE opt)
 			}
 			break;
 
+#ifdef VM_DATETIME_SUPPORT
 		case VMF_SEL_BOOL_DATE_DATE & 0x000F:		/* INT ops */
 			{
 				WM_BOOL par1 = getBOOL(GetProgramAddress());
@@ -183,6 +188,8 @@ void VMCLASS_PREFIX WMC_SEL(WM_BYTE opt)
 				setDATE_AND_TIME(wDst, wRes);
 			}
 			break;
+
+#endif			
 
 #ifdef VM_STRING_SUPPORT
 

@@ -29,9 +29,13 @@
 #include "vmc_mux.h"
 #include "vmc_conv.h"
 
+#ifdef VM_DATETIME_SUPPORT
 #include "vmc_datetime.h"
+#endif
 
+#ifdef VM_POINTER_SUPPORT
 #include "vmc_pointers.h"
+#endif
 
 #ifdef VM_STRING_SUPPORT
 #include "vmc_string.h"

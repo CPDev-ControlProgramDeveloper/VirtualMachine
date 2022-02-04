@@ -20,8 +20,8 @@
 #include "vmlib/vm_lib.h"
 #include "vmfunc/vm_stack.h"
 
-unsigned long VMCLASS_PREFIX WM_GetCycles(void) { return nCycles; };
-WM_WORD VMCLASS_PREFIX WM_GetStatus1(void) { return wStatus1; };
+unsigned long VMCLASS_PREFIX WM_GetCycles(void) { return nCycles; }
+WM_WORD VMCLASS_PREFIX WM_GetStatus1(void) { return wStatus1; }
 
 void VMCLASS_PREFIX WM_InitRegisters(void)
 {
@@ -31,7 +31,9 @@ void VMCLASS_PREFIX WM_InitRegisters(void)
 	wProgramCounter = 0;
 	wDataOfs = 0;
 	nCycles = 0;
+#ifdef VM_DATETIME_SUPPORT	
 	VMP_ReadRTC(&wm_rtc_value);
+#endif	
 	bResult = 0;
 	return;
 }
@@ -39,18 +41,20 @@ void VMCLASS_PREFIX WM_InitRegisters(void)
 
 int VMCLASS_PREFIX WM_RunCommand(void)
 {
+	WM_WORD wCmdCode;
+	WM_BYTE wCmd, wCmdOpt;
 
 	VMP_PreNextCommand();
 
 #ifndef ALIGN_4B	
-	WM_WORD wCmdCode = GetProgramWord();
+	wCmdCode = GetProgramWord();
 #else
-	WM_WORD wCmdCode = GetProgramWord();
+	wCmdCode = GetProgramWord();
 	wProgramCounter += 2;
 	//WM_WORD wCmdCode = GetProgramDWord();
 #endif
-	WM_BYTE wCmd = wCmdCode & 0x00FF;
-	WM_BYTE wCmdOpt = (wCmdCode & 0xFF00) >> 8;
+	wCmd = wCmdCode & 0x00FF;
+	wCmdOpt = (wCmdCode & 0xFF00) >> 8;
 
 	bResult = 0;
 
@@ -235,7 +239,10 @@ void VMCLASS_PREFIX WM_Initialize(int mode)
 
 void VMCLASS_PREFIX WM_RunCycle()
 {
+	
+#ifdef VM_DATETIME_SUPPORT		
 	VMP_ReadRTC(&wm_rtc_value);
+#endif
 
 	VMP_PreCycle();
 
@@ -293,3 +300,37 @@ int VMCLASS_PREFIX WM_SetData(WM_ADDRESS address, WM_BYTE len, WM_BYTE* buf)
 	return len;
 }
 
+#ifdef CHECK_WM_TYPES
+void WM_CheckTypes()
+{
+
+#define WM_CHECK_SIZE(type, size) ((void)sizeof(char[1 - 2*!!(sizeof(type) - size)]))
+
+WM_CHECK_SIZE(WM_BOOL, 1);
+WM_CHECK_SIZE(WM_BYTE, 1);
+WM_CHECK_SIZE(WM_INT, 2);
+WM_CHECK_SIZE(WM_DINT, 4);
+WM_CHECK_SIZE(WM_WORD, 2);
+WM_CHECK_SIZE(WM_DWORD, 4);
+
+#ifdef VM_LONG_SUPPORT
+WM_CHECK_SIZE(WM_LWORD, 8);
+WM_CHECK_SIZE(WM_LINT, 8);
+#endif
+
+#ifdef VM_REAL_SUPPORT
+WM_CHECK_SIZE(WM_REAL, 4);
+#endif
+
+#ifdef VM_LREAL_SUPPORT
+WM_CHECK_SIZE(WM_LREAL, 8);
+#endif
+
+#ifdef WM_DATETIME_SUPPORT
+WM_CHECK_SIZE(WM_DATE, 8);
+WM_CHECK_SIZE(WM_TIME_OF_DAY, 8);
+WM_CHECK_SIZE(WM_DATE_AND_TIME, 8);
+#endif
+
+}
+#endif

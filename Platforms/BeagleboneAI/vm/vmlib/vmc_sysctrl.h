@@ -67,9 +67,9 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 			sprintf(blkData, "CALB instPtr:0x%X funBlkAddr:0x%X oldDataOfs:0x%X oldPC:0x%X\n", wPar1, wPar2, wDataOfs, wProgramCounter);
 			DebugFileCall(blkData, 1);
 #endif
-			push_DataOfsStack(wDataOfs); //-- by³o wDataOffsetReg
+			push_DataOfsStack(wDataOfs); //-- byï¿½o wDataOffsetReg
 			push_CallingStack(wProgramCounter);
-			wDataOfs += wPar1;  //-- by³o wDataOffsetReg
+			wDataOfs += wPar1;  //-- byï¿½o wDataOffsetReg
 			wProgramCounter = wPar2;
 			}
 			break;
@@ -77,7 +77,7 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 		case VMF_RETURN & 0xFF:
 		case VMF_RETFB & 0xFF:		/* RETFB - return from a function block */
 			wProgramCounter = pull_CallingStack();
-			wDataOfs = pull_DataOfsStack(); //-- by³o wDataOffsetReg
+			wDataOfs = pull_DataOfsStack(); //-- byï¿½o wDataOffsetReg
 			break;
 
 		case VMF_MCD & 0xFF:		/* MCD - move from code -> data */
@@ -136,7 +136,7 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 			if (par2)
 			{
 				wProgramCounter = par3;
-				wDataOfs = par1; //-- by³o wDataOffsetReg
+				wDataOfs = par1; //-- byï¿½o wDataOffsetReg
 			}
 			}
 
@@ -413,6 +413,8 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 			}
 			break;
 
+#ifdef VM_DATETIME_SUPPORT
+
 		case VMF_READ_RTC & 0xFF:
 			{
 				WM_ADDRESS wPar1;
@@ -434,6 +436,10 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 			}
 			break;
 
+#endif
+
+#ifdef VM_REAL_SUPPORT
+
 		case VMF_RANDOML & 0xFF:
 			{
 				WM_ADDRESS wPar1;
@@ -443,6 +449,9 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 				setREAL(wPar1, VMP_GetRandom());
 			}
 			break;
+
+#endif
+
 		case VMF_GET_STATUS_WORD1 & 0xFF:
 			{
 				WM_ADDRESS wPar1;
@@ -452,6 +461,9 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 				
 			}
 			break;
+
+#ifdef VM_DATETIME_SUPPORT
+
 		case VMF_GET_TST_DATETIME & 0xFF:
 			{
 				WM_ADDRESS wPar1;
@@ -462,6 +474,9 @@ void VMCLASS_PREFIX WMC_SYSCTRL(WM_BYTE opt)
 
 			}
 			break;
+
+#endif
+
 		case VMF_TASK_CYCLE & 0xFF:
 			{
 				WM_ADDRESS wPar1;

@@ -5,17 +5,28 @@ extern void VMP_PreNextCommand(void);		// called before fetching next instructio
 extern void VMP_PreProgram(void);		// called before a program starts
 extern void VMP_PostProgram(void);		// called after a program finishes
 extern void VMP_Debug(WM_BYTE err, WM_WORD aux);		// called on errors and exeptions
+
+#ifdef VM_DATETIME_SUPPORT
 extern void VMP_ReadRTC(WM_DATE_AND_TIME *dt);		// to get the real-time clock value
 extern WM_BOOL VMP_WriteRTC(WM_DATE_AND_TIME *dt);		// to set the real-time clock value
-extern WM_TIME VMP_CurrentTime(void);		// to get the system clock
-extern WM_REAL VMP_GetRandom(void);		// to generate a random number
+#endif
 
+extern WM_TIME VMP_CurrentTime(void);		// to get the system clock
+
+#ifdef VM_REAL_SUPPORT
+extern WM_REAL VMP_GetRandom(void);		// to generate a random number
+#endif
+
+#ifdef VM_HWBLOCK_SUPPORT
 extern int VMP_ExecNativeBlock(WM_WORD fb_selector, WM_ADDRESS fb_instance);	// to execute a native block
 extern int VMP_InitNativeBlock(WM_WORD fb_selector, WM_ADDRESS fb_instance);	// to initialize a native block
+#endif
 
+#ifdef VM_FLASH_SUPPORT
 extern WM_BYTE VMP_FlashDataRead(WM_ADDRESS StartAddress, WM_WORD Size);
 extern WM_BYTE VMP_FlashDataWrite(WM_ADDRESS StartAddress, WM_WORD Size);
 extern WM_WORD VMP_FlashDataControl(WM_WORD Command);
+#endif
 
 #ifdef ASSERT_ON
 extern void VMP_Assert(WM_BYTE assert_type, WM_WORD error_code);

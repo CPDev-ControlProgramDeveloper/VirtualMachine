@@ -104,21 +104,21 @@ int main(int argc, char** argv) {
 		cpdev.WM_GetData(out2, &o2);
 		cpdev.WM_GetData(out3, &o3);
 		printf("Output: %d %d %d %d\n", o0, o1, o2, o3);
+
+#if 1
+		if (brightness0)
+			fwrite(o0 ? "1" : "0", sizeof(char), 1, brightness0);		
+		if (brightness1)
+			fwrite(o1 ? "1" : "0", sizeof(char), 1, brightness1);		
+		if (brightness2)
+			fwrite(o2 ? "1" : "0", sizeof(char), 1, brightness2);		
+		if (brightness3)
+			fwrite(o3 ? "1" : "0", sizeof(char), 1, brightness3);		
+#endif
+
+
 	}
 
-	/*
-	fprintf(trigger, "none\n");
-    
-	while(1) {
-		fprintf(brightness, "%d\n", on);
-		fflush(brightness);
-		if(!on) 
-			on = 1;
-		else 
-			on = 0;
-		usleep(500000);
-	}
-	*/
 
 	free(dcp);
 }

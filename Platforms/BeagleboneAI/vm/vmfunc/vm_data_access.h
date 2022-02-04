@@ -105,8 +105,8 @@ void setLWORD(WM_ADDRESS x, WM_LWORD val);
 //#define getLWORD getLINT
 //#define setLWORD setLINT
 
-#define getTIME	getDWORD
-#define setTIME setDWORD
+#define getTIME(x)	getDWORD(x)
+#define setTIME(x, val) setDWORD(x, val)
 
 #define getDATE(src,dst)	memcpy(&dst,(pgmData+src+wDataOfs),sizeof(WM_DATE))
 #define setDATE(dst,src)	memcpy((pgmData+dst+wDataOfs),&src,sizeof(WM_DATE))
@@ -136,12 +136,14 @@ void setSTRING(WM_ADDRESS dst, WM_STRING* src);	/* set string variable */
 #define GetProgramByte() (*getCodePtr(wProgramCounter++))
 
 /* get a WORD from code */
-//WM_WORD GetProgramWord(void);
+WM_WORD GetProgramWord(void);
+
+/* get a WORD from code */
+WM_DWORD GetProgramDWord(void);
+
 //#define GetProgramInt() (WM_INT)GetProgramWord()
 
-#ifdef VM_ADDRESSING_32
 /* get an address from code */
 WM_ADDRESS GetProgramAddress(void);
-#endif
 
 #endif /* _VM_DATA_ACCESS_ */

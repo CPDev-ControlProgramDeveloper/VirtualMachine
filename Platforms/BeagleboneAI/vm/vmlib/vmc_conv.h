@@ -6,6 +6,8 @@ void VMCLASS_PREFIX WMC_CONV(WM_BYTE opt)
 
 	switch(opt)
 	{
+
+#ifdef VM_REAL_SUPPORT		
 		case VMF_INT_TO_REAL & 0x00FF:
 			{
 				WM_REAL wRes = 0;
@@ -25,6 +27,7 @@ void VMCLASS_PREFIX WMC_CONV(WM_BYTE opt)
 				setREAL(wDst, wRes);
 			}
 			break;
+#endif			
 
 		case VMF_TIME_TO_DINT & 0x00FF:
 			{
@@ -46,6 +49,7 @@ void VMCLASS_PREFIX WMC_CONV(WM_BYTE opt)
 			}
 			break;
 
+#ifdef VM_REAL_SUPPORT
 		case VMF_TIME_TO_REAL & 0x00FF:
 			{
 				WM_REAL wRes = 0;
@@ -75,6 +79,7 @@ void VMCLASS_PREFIX WMC_CONV(WM_BYTE opt)
 				setINT(wDst, wRes);
 			}
 			break;	
+#endif
 
 		case VMF_INT_TO_BOOL & 0x00FF:
 			{
@@ -173,6 +178,8 @@ void VMCLASS_PREFIX WMC_CONV(WM_BYTE opt)
 			}
 			break;
 #endif
+
+#ifdef VM_REAL_SUPPORT
 		case VMF_DWORD_TO_REAL & 0x00FF:
 			{
 				WM_REAL wRes = 0;
@@ -192,6 +199,7 @@ void VMCLASS_PREFIX WMC_CONV(WM_BYTE opt)
 				setDWORD(wDst, wRes);
 			}
 			break;
+#endif			
 
 		default:
 			bResult = WM_UNKNOWN;

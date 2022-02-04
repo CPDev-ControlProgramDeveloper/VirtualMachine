@@ -17,7 +17,9 @@
 
 	WM_WORD task_cycle;		/* task cycle (ms) */
 
-	WM_DATE_AND_TIME wm_rtc_value;	/* czas astronomiczny odczytywany na pocz¹tku cyklu */
+#ifdef VM_DATETIME_SUPPORT
+	WM_DATE_AND_TIME wm_rtc_value;	/* czas astronomiczny odczytywany na poczï¿½tku cyklu */
+#endif
 
 	WM_BYTE *pgmCode;		// main pointer to the VM program area
 

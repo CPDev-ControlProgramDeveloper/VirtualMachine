@@ -50,17 +50,6 @@ void VMCLASS_PREFIX WMC_LIMIT(WM_BYTE opt)
 			}
 			break;
 
-		case VMF_LIMIT_LINT_LINT_LINT & 0x000F:		/* INT ops */
-			{
-				WM_LINT par1 = getLINT(GetProgramAddress());
-				WM_LINT par2 = getLINT(GetProgramAddress());
-				WM_LINT par3 = getLINT(GetProgramAddress());
-				WM_LINT wRes = par1<par2 ? par2 : (par1>par3 ? par3 : par1);
-
-				setLINT(wDst, wRes);
-			}
-			break;
-
 		case VMF_LIMIT_BYTE_BYTE_BYTE & 0x000F:		/* INT ops */
 			{
 				WM_BYTE par1 = getBYTE(GetProgramAddress());
@@ -94,6 +83,19 @@ void VMCLASS_PREFIX WMC_LIMIT(WM_BYTE opt)
 			}
 			break;
 
+#ifdef VM_LONG_SUPPORT
+
+		case VMF_LIMIT_LINT_LINT_LINT & 0x000F:		/* INT ops */
+			{
+				WM_LINT par1 = getLINT(GetProgramAddress());
+				WM_LINT par2 = getLINT(GetProgramAddress());
+				WM_LINT par3 = getLINT(GetProgramAddress());
+				WM_LINT wRes = par1<par2 ? par2 : (par1>par3 ? par3 : par1);
+
+				setLINT(wDst, wRes);
+			}
+			break;
+
 		case VMF_LIMIT_LWORD_LWORD_LWORD & 0x000F:		/* INT ops */
 			{
 				WM_LWORD par1 = getLWORD(GetProgramAddress());
@@ -105,6 +107,10 @@ void VMCLASS_PREFIX WMC_LIMIT(WM_BYTE opt)
 			}
 			break;
 
+#endif
+
+#ifdef VM_REAL_SUPPORT
+
 		case VMF_LIMIT_REAL_REAL_REAL & 0x000F:		/* INT ops */
 			{
 				WM_REAL par1 = getREAL(GetProgramAddress());
@@ -115,6 +121,7 @@ void VMCLASS_PREFIX WMC_LIMIT(WM_BYTE opt)
 				setREAL(wDst, wRes);
 			}
 			break;
+#endif
 
 #ifdef VM_LREAL_SUPPORT
 		case VMF_LIMIT_LREAL_LREAL_LREAL & 0x000F:		/* LREAL ops */
@@ -138,6 +145,8 @@ void VMCLASS_PREFIX WMC_LIMIT(WM_BYTE opt)
 				setTIME(wDst, wRes);
 			}
 			break;
+
+#ifdef VM_DATETIME_SUPPORT			
 
 		case VMF_LIMIT_DATE_DATE_DATE & 0x000F:		/* INT ops */
 			{
@@ -186,6 +195,8 @@ void VMCLASS_PREFIX WMC_LIMIT(WM_BYTE opt)
 				setDATE_AND_TIME(wDst, wRes);
 			}
 			break;
+
+#endif			
 
 #ifdef VM_STRING_SUPPORT
 
