@@ -1,0 +1,16 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.31.94'
+  Validating architecture
+  Validating architecture
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Application Type\Linux\1.0\Linux.targets(202,5): warning : Current project architecture 'x64' is incompatible with the remote system architecture 'ARM' ('armv7l'). Please switch the project architecture to 'ARM' in Configuration Manager. If you are cross-compiling you can ignore this warning.
+  Starting remote build
+  Compiling sources:
+  test.cpp
+D:\github\VirtualMachine\Platforms\BeagleboneAI\test.cpp(29,48): warning : suggest parentheses around assignment used as truth value [-Wparentheses]
+D:\github\VirtualMachine\Platforms\BeagleboneAI\test.cpp(29,48): warning :   if (result = cpdev.VMP_LoadProgramAndData(xcp))
+D:\github\VirtualMachine\Platforms\BeagleboneAI\test.cpp(29,48): warning :                                                 ^
+D:\github\VirtualMachine\Platforms\BeagleboneAI\test.cpp(91,10): warning : unused variable ‘button’ [-Wunused-variable]
+D:\github\VirtualMachine\Platforms\BeagleboneAI\test.cpp(91,10): warning :   WM_BOOL button = 0;
+D:\github\VirtualMachine\Platforms\BeagleboneAI\test.cpp(91,10): warning :           ^~~~~~
+  Linking objects
+  test.vcxproj -> D:\github\VirtualMachine\Platforms\BeagleboneAI\bin\x64\Debug\test.out

@@ -1,0 +1,43 @@
+D:\github\VirtualMachine\Platforms\BeagleboneAI\test.cpp|637795737196536735|/home/debian/projects/test/||g++ -c -x c++ /home/debian/projects/test/test.cpp -g2 -gdwarf-2 -o "/home/debian/projects/test/obj/x64/Debug/test.o" -Wall -Wswitch -W"no-deprecated-declarations" -W"empty-body" -Wconversion -W"return-type" -Wparentheses -W"no-format" -Wuninitialized -W"unreachable-code" -W"unused-function" -W"unused-value" -W"unused-variable" -O0 -fno-strict-aliasing -fno-omit-frame-pointer -fthreadsafe-statics -fexceptions -frtti -std=c++11
+D:\github\VirtualMachine\Platforms\BeagleboneAI\tinyxml2\tinyxml2.cpp|637795717116698143|/home/debian/projects/test/||g++ -c -x c++ /home/debian/projects/test/tinyxml2/tinyxml2.cpp -g2 -gdwarf-2 -o "/home/debian/projects/test/obj/x64/Debug/tinyxml2.o" -Wall -Wswitch -W"no-deprecated-declarations" -W"empty-body" -Wconversion -W"return-type" -Wparentheses -W"no-format" -Wuninitialized -W"unreachable-code" -W"unused-function" -W"unused-value" -W"unused-variable" -O0 -fno-strict-aliasing -fno-omit-frame-pointer -fthreadsafe-statics -fexceptions -frtti -std=c++11
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vm.cpp|637795717116708397|/home/debian/projects/test/||g++ -c -x c++ /home/debian/projects/test/vm/vm.cpp -g2 -gdwarf-2 -o "/home/debian/projects/test/obj/x64/Debug/vm.o" -Wall -Wswitch -W"no-deprecated-declarations" -W"empty-body" -Wconversion -W"return-type" -Wparentheses -W"no-format" -Wuninitialized -W"unreachable-code" -W"unused-function" -W"unused-value" -W"unused-variable" -O0 -fno-strict-aliasing -fno-omit-frame-pointer -fthreadsafe-statics -fexceptions -frtti -std=c++11
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmfunc\vm_data_access.cpp|637795717116718137|/home/debian/projects/test/||g++ -c -x c++ /home/debian/projects/test/vm/vmfunc/vm_data_access.cpp -g2 -gdwarf-2 -o "/home/debian/projects/test/obj/x64/Debug/vm_data_access.o" -Wall -Wswitch -W"no-deprecated-declarations" -W"empty-body" -Wconversion -W"return-type" -Wparentheses -W"no-format" -Wuninitialized -W"unreachable-code" -W"unused-function" -W"unused-value" -W"unused-variable" -O0 -fno-strict-aliasing -fno-omit-frame-pointer -fthreadsafe-statics -fexceptions -frtti -std=c++11
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm_linux.cpp|637795717116778269|/home/debian/projects/test/||g++ -c -x c++ /home/debian/projects/test/vm_linux.cpp -g2 -gdwarf-2 -o "/home/debian/projects/test/obj/x64/Debug/vm_linux.o" -Wall -Wswitch -W"no-deprecated-declarations" -W"empty-body" -Wconversion -W"return-type" -Wparentheses -W"no-format" -Wuninitialized -W"unreachable-code" -W"unused-function" -W"unused-value" -W"unused-variable" -O0 -fno-strict-aliasing -fno-omit-frame-pointer -fthreadsafe-statics -fexceptions -frtti -std=c++11
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm_variable.cpp|637795717116778269|/home/debian/projects/test/||g++ -c -x c++ /home/debian/projects/test/vm_variable.cpp -g2 -gdwarf-2 -o "/home/debian/projects/test/obj/x64/Debug/vm_variable.o" -Wall -Wswitch -W"no-deprecated-declarations" -W"empty-body" -Wconversion -W"return-type" -Wparentheses -W"no-format" -Wuninitialized -W"unreachable-code" -W"unused-function" -W"unused-value" -W"unused-variable" -O0 -fno-strict-aliasing -fno-omit-frame-pointer -fthreadsafe-statics -fexceptions -frtti -std=c++11
+D:\github\VirtualMachine\Platforms\BeagleboneAI\tinyxml2\tinyxml2.h|637795717116708397|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vm.h|637795717116708397|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmfunc\vm_data_access.h|637795717116718137|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmfunc\vm_stack.h|637795717116718137|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_add.h|637795717116718137|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_and.h|637795717116727059|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_conv.h|637795717116728140|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_custom.h|637795717116728140|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_datetime.h|637795717116728140|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_div_mod.h|637795717116728140|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_eqne.h|637795717116728140|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_exp_abs.h|637795717116738135|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_gtge.h|637795717116738135|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_limit.h|637795717116738135|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_ltle.h|637795717116738135|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_max.h|637795717116746114|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_min.h|637795717116748136|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_mul.h|637795717116748136|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_mux.h|637795717116748136|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_neg_not.h|637795717116748136|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_or.h|637795717116748136|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_pointers.h|637795717116748136|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_sel.h|637795717116748136|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_shi_rot.h|637795717116759478|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_string.h|637795717116759478|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_sub.h|637795717116759478|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_sysctrl.h|637795717116759478|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_sysmem.h|637795717116768164|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vmc_xor.h|637795717116768164|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmlib\vm_lib.h|637795717116718137|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmplatform.h|637795717116768164|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmregisters.h|637795717116768164|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmspec\vmdef.h|637795717116778269|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vmtaskclass.h|637795717116778269|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm\vm_cfg.h|637795717116708397|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm_linux.h|637795717116778269|/home/debian/projects/test/|| 
+D:\github\VirtualMachine\Platforms\BeagleboneAI\vm_variable.h|637795717116778269|/home/debian/projects/test/|| 

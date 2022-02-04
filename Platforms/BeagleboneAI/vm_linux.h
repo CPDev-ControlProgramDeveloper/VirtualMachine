@@ -1,17 +1,6 @@
 // enable loading XCP from SD card (not for UNO, too large)
 #define USE_SD_XCP
 
-#ifdef ARDUINO_AVR_UNO
-#ifdef USE_SD_XCP
-#undef USE_SD_XCP
-#error SD support is too much for UNO ! Disable it in vm_arduino.h
-#endif
-#endif
-
-#ifdef ESP32
-#define DCP_SUPPORT
-#endif
-
 #ifndef VM_LINUX_H
 #define VM_LINUX_H
 
