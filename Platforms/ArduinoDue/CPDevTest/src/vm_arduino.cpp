@@ -1,12 +1,12 @@
 #include "vm_arduino.h"
 
-#include <arduino.h>
+// Note: Due uses Serial1 (pins 18 and 19) for messages (Serial does not work)
 
 #ifdef USE_SD_XCP
 
 #include <SPI.h>
-//#include <SD.h>
-#include <SdFat.h>
+#include <SD.h>
+//#include <SdFat.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -17,17 +17,17 @@ int VMArduino::VMP_LoadProgramAndData(const char* file, int datasize)
 #ifdef USE_SD_XCP
 	long len;
 
-	SdFat SD;
+	//SdFat SD;
 
 	if (!SD.begin(4)) {
-		Serial.println("SD init failed!");
+		HWSerial->println("SD init failed!");
 		while (1);
 	}
-	Serial.println("SD init ok.");
+	HWSerial->println("SD init ok.");
 
 	// open binary file
-  	Serial.print("Loading: ");
-  	Serial.println(file);
+  	HWSerial->print("Loading: ");
+  	HWSerial->println(file);
 
 	File fileXCP = SD.open(file);
 
@@ -67,7 +67,7 @@ int VMArduino::VMP_LoadProgramAndData(const char* file, int datasize)
 
 	return 0;	// success
 #else
-	Serial.println("SD not available !");
+	HWSerial->println("SD not available !");
 	return -1;
 
 #endif
@@ -88,17 +88,17 @@ int VMArduino::VMP_LoadProgramFromArray(const unsigned char* code, int datasize)
 	// clear cycle counter
 	nCycles = 0;
 
-	Serial.println("Code set to array");
+	HWSerial->println("Code set to array");
 
 	return 0;	// success
 }
 
 void VMArduino::VMP_Debug(WM_BYTE err, WM_WORD aux)
 {
-  Serial.print("Runtime error ");
-  Serial.print(err, aux);  
-  Serial.print(" near ");
-  Serial.println(wProgramCounter);  
+	HWSerial->print("Runtime error ");
+ 	HWSerial->print(err, aux);  
+  	HWSerial->print(" near ");
+  	HWSerial->println(wProgramCounter);  
 	bRunMode = 0;
 }
 
@@ -139,7 +139,7 @@ void VMArduino::VMP_PreProgram(void)
 
 void VMArduino::VMP_PreNextCommand(void)
 {
-	//Serial.println(wProgramCounter);
+	//HWSerial.println(wProgramCounter);
 }
 
 void VMArduino::VMP_ReadRTC(WM_DATE_AND_TIME *dt)

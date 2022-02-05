@@ -1,6 +1,6 @@
 
 // default size of data area (pgmData)
-#define DEFAULT_DATA_SIZE	65536
+#define DEFAULT_DATA_SIZE	    256
 
 // size of the calling stack
 #define CALL_STACK_SIZE         256
@@ -12,7 +12,7 @@
 #define BYTE_ACCESS
 
 // use byte-by-byte VM memory access to handle unaligned pointers
-#define MEMCPY_ACCESS
+//#define MEMCPY_ACCESS
 
 //use 32-bit address size (16-bit is default)
 //#define VM_ADDRESSING_32
@@ -42,10 +42,10 @@
 #define VM_DATETIME_SUPPORT
 
 //enable support for native blocks 
-#define VM_HWBLOCK_SUPPORT
+//#define VM_HWBLOCK_SUPPORT
 
 //enable support for flash functions
-#define VM_FLASH_SUPPORT
+//#define VM_FLASH_SUPPORT
 
 //enable support for STRING datatype
 #define VM_STRING_SUPPORT

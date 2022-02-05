@@ -11,6 +11,7 @@
 #if defined(__arm__)
 #define BYTE_ACCESS
 #endif
+#include <Arduino.h>
 
 #include "vm/vmtaskclass.h"
 #include "vm_variable.h"
@@ -29,6 +30,8 @@ public:
 
 	unsigned long long int calcTime;			// calculation time for testing
 
+	HardwareSerial* HWSerial;
+
 private:
 	void VMP_PostCycle(void);
 	void VMP_PreCycle(void);
@@ -45,6 +48,7 @@ private:
 	unsigned long long int cStartTime;			// cycle starting time (for constant cycle calculation)
 
 	WM_BYTE pgmDataDefault[DEFAULT_DATA_SIZE];
+
 };
 
 #endif
