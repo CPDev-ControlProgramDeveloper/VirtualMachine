@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<CPWIN>
-  <IOMAPPINGS>
-    <IOMAP Variable="Blinking_light.ONOFF" Adapter="Arduino_x0020_Firmdata_x0020_Adapter" IOName="PIN_6" IO="6" IOType="BinaryInput" />
-    <IOMAP Variable="Blinking_light.LIGHT" Adapter="Arduino_x0020_Firmdata_x0020_Adapter" IOName="PIN_2" IO="2" IOType="BinaryOutput" />
-    <IOMAP Variable="Blinking_light.LIGHT" Adapter="Keyboard_x0020_Led_x0020_Adapter" IOName="Scroll" IO="0" IOType="BinaryOutput" />
-  </IOMAPPINGS>
-</CPWIN>
