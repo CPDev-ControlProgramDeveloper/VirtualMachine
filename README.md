@@ -3,14 +3,22 @@
 The repository contains public sources of the CPDev (Control Program Developer) virtual machine runtime (VM).
 The environment is available for download at https://cpdev.kia.prz.edu.pl/instructions/ 
 
-## Arduino and ESP32 library
+## Platforms
 
-To use CPDev VM with Arduino use the included CPDevVM.zip or create the CPDevVM.zip file by yourself from the CPDevVM folder.
-In the Arduino IDE, navigate to Sketch -> Include Library -> Add .ZIP Library and use CPDevVM.zip.
+The CPDev virtual machine is portable to multiple platforms. The repository contains simple machine ports for selected targets, such as:
+* Arduino AVR-based boards (e.g. Mega)
+* Arduino Due (ARM)
+* Beaglebone AI (Linux OS)
+* ESP32-based boards (FreeRTOS)
+* M5Stack (with Azure MQTT communication)
+* STM32 (uses timer interrupt for timing accuracy)
+* Small Device C Compiler (Z80, 8051, 68HC08, STM8, etc.)
+* CC65 (6502/65C02)
+* others.
 
-See the SampleArduino or SampleESP32 to learn how to invoke the library functions.
+The ports are implemented in C ++ where possible, or in C in other cases. Some platforms require limited functionality due to memory shortage. Enabling or disabling these functions is available using the vm_cfg.h file.
 
-Note that the smallest Arduino boards (i.e. Uno) provide only the limited functionality of the VM due to the ROM shortage.
+Note that since CPDev VM is not based on any particular communication standard, you will have to implement the one that suits your needs. See the M5StackAzure folder for an example of the MQTT protocol usage.
 
 ## Custom target platforms
 
