@@ -16,9 +16,9 @@ The CPDev virtual machine is portable to multiple platforms. The repository cont
 * CC65 (6502/65C02)
 * others.
 
-The ports are implemented in C ++ where possible, or in C in other cases. Some platforms require limited functionality due to memory shortage. Enabling or disabling these functions is done using the vm_cfg.h file.
+The ports are implemented in C ++ where possible, or in C in other cases. Some platforms require limited functionality due to memory shortage. In particular, support for some types of IEC 61131-3 had to be disabled. Enabling or disabling these functions is done using the vm_cfg.h file. 
 
-Note that since CPDev VM is not based on any particular communication standard, you will have to implement the one that suits your needs. See the M5StackAzure folder for an example of the MQTT protocol usage.
+Note that since CPDev VM does not rely on any particular communication standard, you will have to implement the one that suits your needs. For example, see the M5StackAzure folder for an example of the MQTT protocol usage.
 
 ## Custom target platforms
 
