@@ -2,3 +2,4 @@
 *.o
 *.bak
 Ports/BeagleboneAI/.vscode/launch.json
+*.tlog

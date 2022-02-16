@@ -13,11 +13,11 @@ WM_BOOL onof = 0;
 WM_BOOL o0, o1, o2, o3; 
 
 // Note: For Due use Serial1 (pins 18 and 19) or Serial2 for messages (Serial does not work)
-HardwareSerial& HWSerial = Serial;
+HardwareSerial& HWSerial = Serial1;
 
 void setup()
 {
-  HWSerial.begin(115200);
+  HWSerial.begin(9600);
   while(!HWSerial);
 
   HWSerial.println("CPDev test");
