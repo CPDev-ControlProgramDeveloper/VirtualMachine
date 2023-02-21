@@ -14,6 +14,7 @@ The CPDev virtual machine is portable to multiple platforms. The repository cont
 * STM32 (uses timer interrupt for timing accuracy)
 * Small Device C Compiler (Z80, 8051, 68HC08, STM8, etc.)
 * CC65 (6502/65C02)
+* iOS (ARM)
 * others.
 
 The ports are implemented in C ++ where possible, or in C in other cases. Some platforms require limited functionality due to memory shortage. In particular, support for some types of IEC 61131-3 had to be disabled. Enabling or disabling these functions is done using the vm_cfg.h file. 
