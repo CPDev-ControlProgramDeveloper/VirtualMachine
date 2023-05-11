@@ -80,7 +80,7 @@ void VMCLASS_PREFIX WMC_CONV(WM_BYTE opt)
 			{
 				WM_BOOL wRes = 0;
 
-				wRes = ((WM_BOOL)(getINT(GetProgramAddress())) > 0);
+				wRes = ((WM_BOOL)(getINT(GetProgramAddress())) != 0);
 
 				setBOOL(wDst, wRes);
 			}
