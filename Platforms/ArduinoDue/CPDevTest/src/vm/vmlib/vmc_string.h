@@ -90,8 +90,8 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				getSTRING(wDst, &wRes);
 				getSTRING(GetProgramAddress(), &par1);
 		
-				len = getINT(GetProgramAddress());
 				from = getINT(GetProgramAddress()) - 1;  // 1-based index
+				len = getINT(GetProgramAddress());				
 
 				midSTRING(&wRes, &par1, from, len);
 
