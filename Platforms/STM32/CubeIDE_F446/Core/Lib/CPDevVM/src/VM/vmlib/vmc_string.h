@@ -90,8 +90,8 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				getSTRING(wDst, &wRes);
 				getSTRING(GetProgramAddress(), &par1);
 		
-				from = getINT(GetProgramAddress()) - 1;  // 1-based index
 				len = getINT(GetProgramAddress());
+				from = getINT(GetProgramAddress()) - 1;  // 1-based index
 
 				midSTRING(&wRes, &par1, from, len);
 
@@ -131,8 +131,8 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				getSTRING(wDst, &wRes);
 				getSTRING(GetProgramAddress(), &par1);
 		
-				from = getINT(GetProgramAddress()) - 1;
 				len = getINT(GetProgramAddress());
+				from = getINT(GetProgramAddress()) - 1;
 
 				if (from < 0)
 					from = 0;
@@ -189,12 +189,11 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 			{
 				WM_STRING src, replacement, wRes;
 				WM_INT search_offs, search_len;
-				WM_INT pos = -1;
 				getSTRING(GetProgramAddress(), &src);
 				getSTRING(GetProgramAddress(), &replacement);
 
-				search_offs = getINT(GetProgramAddress()) - 1;
 				search_len = getINT(GetProgramAddress());
+				search_offs = getINT(GetProgramAddress()) - 1;
 
 				setSTRING(wDst, &src);	/* first make a copy */
 				getSTRING(wDst, &wRes);		/* working output */
@@ -263,7 +262,7 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 
 				//WM_DWORD nan = 0xFFE00000;
 
-				WM_REAL wRes = 0;
+				WM_REAL wRes = NAN;//0;				
 				//memcpy(&wRes, &nan, sizeof(wRes));
 				WM_BOOL success = 0;
 
@@ -432,7 +431,7 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 
 				//WM_DWORD nan = 0xFFE00000;
 
-				WM_LREAL wRes = 0;//0;
+				WM_LREAL wRes = NAN;//0;
 				//memcpy(&wRes, &nan, sizeof(wRes));
 				WM_BOOL success = 0;
 
@@ -676,7 +675,7 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				WM_CHARACTER ch = 0;
 				getSTRING(GetProgramAddress(), &str);
 				pos = getINT(GetProgramAddress());
-				if ((pos >= 0) && (pos < str.length))
+				if ((pos > 0) && (pos <= str.length))
 					ch = str.chars[pos-1]; 
 
 				setBYTE(wDst, ch);
@@ -692,7 +691,7 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				getSTRING(GetProgramAddress(), &str);
 				pos = getINT(GetProgramAddress());
 				ch = getBYTE(GetProgramAddress());
-				if ((pos >= 0) && (pos < str.length))
+				if ((pos > 0) && (pos <= str.length))
 				{
 					str.chars[pos-1] = ch;
 					ret = pos;

@@ -90,8 +90,8 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				getSTRING(wDst, &wRes);
 				getSTRING(GetProgramAddress(), &par1);
 
-				from = getINT(GetProgramAddress()) - 1;  // 1-based index		
 				len = getINT(GetProgramAddress());
+				from = getINT(GetProgramAddress()) - 1;  // 1-based index
 
 				midSTRING(&wRes, &par1, from, len);
 
@@ -131,8 +131,8 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				getSTRING(wDst, &wRes);
 				getSTRING(GetProgramAddress(), &par1);
 		
-				from = getINT(GetProgramAddress()) - 1;
 				len = getINT(GetProgramAddress());
+				from = getINT(GetProgramAddress()) - 1;
 
 				if (from < 0)
 					from = 0;
@@ -189,12 +189,11 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 			{
 				WM_STRING src, replacement, wRes;
 				WM_INT search_offs, search_len;
-				WM_INT pos = -1;
 				getSTRING(GetProgramAddress(), &src);
 				getSTRING(GetProgramAddress(), &replacement);
 
-				search_offs = getINT(GetProgramAddress()) - 1;
 				search_len = getINT(GetProgramAddress());
+				search_offs = getINT(GetProgramAddress()) - 1;
 
 				setSTRING(wDst, &src);	/* first make a copy */
 				getSTRING(wDst, &wRes);		/* working output */
@@ -265,60 +264,20 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 
 				WM_REAL wRes = NAN;//0;				
 				//memcpy(&wRes, &nan, sizeof(wRes));
-				WM_BOOL success = 0;
-
-				WM_REAL div = 1;
 
 				getSTRING(GetProgramAddress(), &par1);		/* input */
-				WM_CHARACTER* s = par1.chars;
-
-				int i = 0;
-
-				while(*s == ' ') { i++; s++; };
-
-				if (*s == '-')
+				
+				if (!toVMReal(par1, wRes))
 				{
-					s++;
-					i++;
-					div = -1;
-				};
-
-				int has_dot = 0;
-
-				for (; i<par1.length; i++)
-				{
-					if ((*s == '.') && !has_dot)
-					{
-						has_dot = 1; 
-					}
-					else
-					{
-						int dig = *s - '0';
-						if (dig >= 0 && dig <= 9)
-						{
-							if (has_dot)
-								div /= 10.0f;
-
-							if (!success)
-							{
-								success = 1;
-								wRes = 0.0;
-							}
-							wRes = wRes * 10.0f + (WM_REAL)dig;
-						}
-						else
-							break;
-					}
-					s++;
-				};
-
-
-				if (!success)
 					wStatus1 |= WMSTAT_BADFORMAT;
+					wRes = NAN;
+#ifdef VM_ENABLE_EXCEPTION_TASK_HANDLER
+					WM_RaiseException(WMSTAT_BADFORMAT, 0x02);
+#endif
+				}
 				else
 					wStatus1 &= ~WMSTAT_BADFORMAT;
 
-				wRes = wRes * div;
 				setREAL(wDst, wRes);
 				break;
 			}
@@ -364,7 +323,12 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 
 
 				if (!success)
+				{
 					wStatus1 |= WMSTAT_BADFORMAT;
+#ifdef VM_ENABLE_EXCEPTION_TASK_HANDLER
+					WM_RaiseException(WMSTAT_BADFORMAT, 0x01);
+#endif
+				}
 				else
 					wStatus1 &= ~WMSTAT_BADFORMAT;
 
@@ -379,17 +343,18 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				WM_INT par1;
 				getSTRING(wDst, &wRes);
 				par1 = getINT(GetProgramAddress());
-				int buf_size = (wRes.chars_size+1)*sizeof(WM_CHARACTER);
+
+				int buf_size = (wRes.chars_size + 1) * sizeof(WM_CHARACTER);
 				WM_CHARACTER* buf = (WM_CHARACTER*)malloc(buf_size);
-				int len = VM_SNPRINTF(buf, wRes.chars_size+1, "%d", par1);
+				int len = VM_SNPRINTF(buf, wRes.chars_size + 1, VM_CONST("%d"), par1);
 				if (len == -1)
 					wRes.length = 0;		// does not fit
 				else
 				{
-					VM_COPY_CHARS(wRes.chars, buf, len);
-					wRes.length = len;
+					fromChars(&wRes, buf, len);
 				}
 				free(buf);
+
 				setSTRING(wDst, &wRes);
 				break;
 			}
@@ -676,7 +641,7 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				WM_CHARACTER ch = 0;
 				getSTRING(GetProgramAddress(), &str);
 				pos = getINT(GetProgramAddress());
-				if ((pos >= 0) && (pos < str.length))
+				if ((pos > 0) && (pos <= str.length))
 					ch = str.chars[pos-1]; 
 
 				setBYTE(wDst, ch);
@@ -692,7 +657,7 @@ void VMCLASS_PREFIX WMC_String(WM_BYTE opt)
 				getSTRING(GetProgramAddress(), &str);
 				pos = getINT(GetProgramAddress());
 				ch = getBYTE(GetProgramAddress());
-				if ((pos >= 0) && (pos < str.length))
+				if ((pos > 0) && (pos <= str.length))
 				{
 					str.chars[pos-1] = ch;
 					ret = pos;
