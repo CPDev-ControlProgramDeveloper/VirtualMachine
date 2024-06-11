@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "SemanModelCPDev", "SemanModelCPDev.fsproj", "{45640848-9323-429B-B883-6C55E031DB76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45640848-9323-429B-B883-6C55E031DB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45640848-9323-429B-B883-6C55E031DB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45640848-9323-429B-B883-6C55E031DB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45640848-9323-429B-B883-6C55E031DB76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1A4E344-FE31-40B7-A418-19A3D001746D}
+	EndGlobalSection
+EndGlobal
