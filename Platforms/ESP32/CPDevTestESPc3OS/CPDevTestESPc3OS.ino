@@ -1,22 +1,17 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-// Uses LittleFS filesystem to store XCP and DCP files
-// Install this plugin to upload XCP and DCP to the board from IDE: https://github.com/earlephilhower/arduino-littlefs-upload
-#define USE_LITTLEFS
+#define USE_SDIFFS
 
-// Use XCP converted to a C table instead of a filesystem
-//#define USE_C_XCP
-
-#ifdef USE_LITTLEFS
-#include "LittleFS.h"
+#ifdef USE_SDIFFS
+#include "SPIFFS.h"
 #endif
 
 #include "src/vm_arduino.h"
 #include "src/vm_variable.h"
 
-#ifdef USE_C_XCP
-#include "data/WeJeStSt.c"
+#ifndef USE_SD_XCP
+#include "xcp/WeJeStSt.c"
 #endif
 
 #define LED1PIN   3 // LED_BUILTIN
@@ -31,8 +26,8 @@ VMVariable *out0, *out1, *out2, *out3, *onof;
 WM_BYTE output;
 WM_BYTE button = 1;
 
-const char* ssid = "*******";
-const char* password = "*******";
+const char* ssid = "Bosmanet";
+const char* password = "anilorak";
 
 // Add your MQTT Broker IP address, example:
 const char* mqtt_server = "192.168.31.15";
@@ -43,21 +38,21 @@ long lastMsg = 0;
 
 void setup() {
 
-  Serial.begin(115200);
+  Serial.begin(9600);
   while(!Serial);
 
   Serial.println("CPDev test");
 
-#ifdef USE_C_XCP
-  if (cpdev.VMP_LoadProgramFromArray(WeJeStSt_xcp, DEFAULT_DATA_SIZE) != 0)    // note that SD library supports short (8+3) filenames only
+#ifdef USE_SD_XCP
+  if (cpdev.VMP_LoadProgramAndData("xcp/WeJeStSt.xcp") != 0)    // note that SD library supports short (8+3) filenames only
 #else
 
-  if(!LittleFS.begin(true)){
+  if(!SPIFFS.begin(true)){
     Serial.println("An Error has occurred while mounting SPIFFS");
     return;
   }
 
-  File file = LittleFS.open("/WeJeStSt.xcp", "r");
+  File file = SPIFFS.open("/WeJeStSt.xcp");
   if(!file){
     Serial.println("Failed to open XCP for reading");
     return;
@@ -83,9 +78,9 @@ void setup() {
     while (1);
   }
 
-#ifdef USE_LITTLEFS
+#ifdef USE_SDIFFS
 
-  File fileDCP = LittleFS.open("/WeJeStSt.dcp");
+  File fileDCP = SPIFFS.open("/WeJeStSt.dcp");
   if(!fileDCP){
     Serial.println("Failed to open DCP for reading");
     return;
