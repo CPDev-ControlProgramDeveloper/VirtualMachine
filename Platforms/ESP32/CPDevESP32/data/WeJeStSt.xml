@@ -10,10 +10,10 @@
       <CREATED year="2007" month="12" day="7" hour="10" minutes="51" seconds="31" milisec="849" />
     </METRIC>
     <OPTIONS>
-      <PV value="0000003A" />
+      <PV value="00000041" />
       <II value="0000003F" />
       <CPVis used="0" />
-      <LC year="2024" month="10" day="10" hour="11" minutes="38" seconds="29" milisec="845" />
+      <LC year="2024" month="10" day="21" hour="16" minutes="22" seconds="5" milisec="865" />
       <LCF>
         <ABSOLUTE>C:\Program Files (x86)\CPDev\VM\VM-Univ.xml</ABSOLUTE>
         <APPVARS>$VMsDir\VM-Univ.xml</APPVARS>
@@ -74,7 +74,7 @@ IF Licznik = 0 THEN                 (* Pierwszy cykl obliczeniowy    *)
     sTime := CUR_TIME();            (* Zapamiętaj czas systemowy     *)
     Licznik := 1;                   (* Aktywacja wyjścia             *)
 END_IF
-IF CUR_TIME()-sTime >= t#2s THEN    (* Jeśli upłynął zadany czas     *)
+IF CUR_TIME()-sTime >= t#500ms THEN    (* Jeśli upłynął zadany czas     *)
     sTime := CUR_TIME();            (* Czas początkowy               *)
     IF Licznik < 8 THEN             (* Jeśli nie czwarty bit         *)
         Licznik := Licznik * 2;     (*   to ustaw następny           *)

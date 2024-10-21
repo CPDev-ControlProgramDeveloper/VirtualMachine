@@ -69,7 +69,7 @@ void setup() {
 #else
 
   if(!LittleFS.begin(true)){
-    Serial.println("An Error has occurred while mounting SPIFFS");
+    Serial.println("An error has occurred while mounting FS");
     return;
   }
 
@@ -190,7 +190,7 @@ void cpdev_task(void * parameter)
   while (cpdev.bRunMode)
   {
     //button = digitalRead(BUTTONPIN);  // set to 1 if you dont have a pushbutton
-    cpdev.WM_SetData(onof->GetAddress(),onof->GetSize(), &button);
+    cpdev.WM_SetData(onof,&button);
     
     cpdev.WM_RunCycle();
 
