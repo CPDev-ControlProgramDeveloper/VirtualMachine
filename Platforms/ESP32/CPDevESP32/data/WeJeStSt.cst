@@ -45,7 +45,7 @@ IF Licznik = 0 THEN                 (* Pierwszy cykl obliczeniowy    *)
     sTime := CUR_TIME();            (* Zapamiêtaj czas systemowy     *)
     Licznik := 1;                   (* Aktywacja wyjœcia             *)
 END_IF
-IF CUR_TIME()-sTime >= t#500ms THEN    (* Jeœli up³yn¹³ zadany czas     *)
+IF CUR_TIME()-sTime >= t#250ms THEN    (* Jeœli up³yn¹³ zadany czas     *)
     sTime := CUR_TIME();            (* Czas pocz¹tkowy               *)
     IF Licznik < 8 THEN             (* Jeœli nie czwarty bit         *)
         Licznik := Licznik * 2;     (*   to ustaw nastêpny           *)

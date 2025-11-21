@@ -38,7 +38,7 @@
 :003e| 1C15 0500 01 01                   | $VMSYS.MCD PONOF, #01, #01                                                      
 :0044| 1C15 0C00 01 01                   | $VMSYS.MCD BCOUNT, #01, #01                                                     
 :004a| 1C15 1000 02 0000                 | $VMSYS.MCD ?L?CST000D, #02, #0000                                               
-:0051| 1C15 1400 04 F4010000             | $VMSYS.MCD ?L?CST0013, #04, #F4010000                                           
+:0051| 1C15 1400 04 FA000000             | $VMSYS.MCD ?L?CST0013, #04, #FA000000                                           
 :005a| 1C15 1200 02 0800                 | $VMSYS.MCD ?L?CST001A, #02, #0800                                               
 :0061| 1C15 2000 02 0200                 | $VMSYS.MCD ?L?CST001D, #02, #0200                                               
 :0068| 1C15 2200 02 0100                 | $VMSYS.MCD ?L?CST0022, #02, #0100                                               
@@ -92,7 +92,7 @@
 ;;;;;|                                   | {E:65537!47!1115}                                                               
 :00cd|                                   | :?WWJ.GLOWNYIF?B000C                                                            
 ;;;;;|                                   | {B:1!48!1123}                                                                   
-;!!!!|                                   | ■IF CUR_TIME()-sTime &gt;= t#500ms THEN    (* Jeśli upłynął zadany czas     *)     
+;!!!!|                                   | ■IF CUR_TIME()-sTime &gt;= t#250ms THEN    (* Jeśli upłynął zadany czas     *)     
 ;!!!!|                                   |     ■sTime := CUR_TIME();            (* Czas początkowy               *)        
 :00cd| 1C17 1800                         | $DEFAULT.CUR_TIME ?F?CUR_TIME0014                                               
 :00d1| 020B 1C00 1800 0800               | $DEFAULT.SUB ?F?$DEFAULT_SUB0015, ?F?CUR_TIME0014, STIME                        
@@ -173,7 +173,7 @@
           <OBJ ObjType="VAR" LName="?IF?CTL" PName="WWJ.Task0001.GLOWNY_01.?IF?CTL" Addr="000d" AdrType="rdlabel" CAddr="000d" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00000000" TypeCRC="D275EFCD" />
           <OBJ ObjType="VAR" LName="?LR?ANDA0003" PName="WWJ.Task0001.GLOWNY_01.?LR?ANDA0003" Addr="000e" AdrType="rdlabel" CAddr="000e" CAdrType="gdlabel" Size="1" Type="BOOL" PType="$DEFAULT.BOOL" TypeStatus="build-in type" VFlags="00200000" TypeCRC="D275EFCD" />
           <OBJ ObjType="VAR" LName="?L?CST000D" PName="WWJ.Task0001.GLOWNY_01.?L?CST000D" Addr="0010" AdrType="rdlabel" CAddr="0010" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="0" />
-          <OBJ ObjType="VAR" LName="?L?CST0013" PName="WWJ.Task0001.GLOWNY_01.?L?CST0013" Addr="0014" AdrType="rdlabel" CAddr="0014" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00100000" TypeCRC="C0025210" ConstValue="t#500ms" />
+          <OBJ ObjType="VAR" LName="?L?CST0013" PName="WWJ.Task0001.GLOWNY_01.?L?CST0013" Addr="0014" AdrType="rdlabel" CAddr="0014" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00100000" TypeCRC="C0025210" ConstValue="t#250ms" />
           <OBJ ObjType="VAR" LName="?F?CUR_TIME0014" PName="WWJ.Task0001.GLOWNY_01.?F?CUR_TIME0014" Addr="0018" AdrType="rdlabel" CAddr="0018" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C0025210" />
           <OBJ ObjType="VAR" LName="?F?$DEFAULT_SUB0015" PName="WWJ.Task0001.GLOWNY_01.?F?$DEFAULT_SUB0015" Addr="001c" AdrType="rdlabel" CAddr="001c" CAdrType="gdlabel" Size="4" Type="TIME" PType="$DEFAULT.TIME" TypeStatus="build-in type" VFlags="00200000" TypeCRC="C0025210" />
           <OBJ ObjType="VAR" LName="?L?CST001A" PName="WWJ.Task0001.GLOWNY_01.?L?CST001A" Addr="0012" AdrType="rdlabel" CAddr="0012" CAdrType="gdlabel" Size="2" Type="INT" PType="$DEFAULT.INT" TypeStatus="build-in type" VFlags="00100000" TypeCRC="DC550720" ConstValue="8" />
@@ -184,13 +184,13 @@
       </OBJ>
     </DATA_MAP>
     <INFO>
-      <DT_EXPORT year="2024" month="10" day="21" hour="16" minutes="22" seconds="5" milisec="991" />
+      <DT_EXPORT year="2025" month="10" day="27" hour="16" minutes="26" seconds="8" milisec="337" />
       <COMPANY><![CDATA[Politechnika Rzeszowska / Katedra Informatyki i Automatyki]]></COMPANY>
       <MANAGER><![CDATA[prof. dr hab. inż. Leszek Trybus, dr hab. inż. Zbigniew Świder prof. PRz]]></MANAGER>
       <VERSION><![CDATA[1.0]]></VERSION>
       <CREATED year="2007" month="12" day="7" hour="10" minutes="51" seconds="31" milisec="849" />
-      <PHYSVER value="65" />
-      <LAST_COMPILED year="2024" month="10" day="21" hour="16" minutes="22" seconds="5" milisec="865" />
+      <PHYSVER value="74" />
+      <LAST_COMPILED year="2025" month="10" day="27" hour="16" minutes="26" seconds="8" milisec="200" />
     </INFO>
   </TARGET>
 </CPDEV>

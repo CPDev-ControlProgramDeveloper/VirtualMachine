@@ -10,10 +10,10 @@
       <CREATED year="2007" month="12" day="7" hour="10" minutes="51" seconds="31" milisec="849" />
     </METRIC>
     <OPTIONS>
-      <PV value="00000041" />
+      <PV value="0000004A" />
       <II value="0000003F" />
       <CPVis used="0" />
-      <LC year="2024" month="10" day="21" hour="16" minutes="22" seconds="5" milisec="865" />
+      <LC year="2025" month="10" day="27" hour="16" minutes="26" seconds="8" milisec="200" />
       <LCF>
         <ABSOLUTE>C:\Program Files (x86)\CPDev\VM\VM-Univ.xml</ABSOLUTE>
         <APPVARS>$VMsDir\VM-Univ.xml</APPVARS>
@@ -21,26 +21,6 @@
       </LCF>
       <CREATOR>1.0</CREATOR>
       <LASTSAVEDWITH>1.2.5.4</LASTSAVEDWITH>
-      <DCP>
-        <ABSOLUTE>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.dcp</ABSOLUTE>
-        <APPVARS>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.dcp</APPVARS>
-        <ENVVARS>%USERPROFILE%\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.dcp</ENVVARS>
-      </DCP>
-      <XCP>
-        <ABSOLUTE>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.xcp</ABSOLUTE>
-        <APPVARS>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.xcp</APPVARS>
-        <ENVVARS>%USERPROFILE%\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.xcp</ENVVARS>
-      </XCP>
-      <HCP>
-        <ABSOLUTE>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.hcp</ABSOLUTE>
-        <APPVARS>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.hcp</APPVARS>
-        <ENVVARS>%USERPROFILE%\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.hcp</ENVVARS>
-      </HCP>
-      <CST>
-        <ABSOLUTE>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.cst</ABSOLUTE>
-        <APPVARS>C:\Users\bartek\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.cst</APPVARS>
-        <ENVVARS>%USERPROFILE%\source\GitHub\VirtualMachine\Platforms\ESP32\CPDevESP32\data\WeJeStSt.cst</ENVVARS>
-      </CST>
       <HCPFlags enabled="0" />
       <OverrideDefaultPaths enabled="0" />
       <COMPILER>
@@ -74,7 +54,7 @@ IF Licznik = 0 THEN                 (* Pierwszy cykl obliczeniowy    *)
     sTime := CUR_TIME();            (* Zapamiętaj czas systemowy     *)
     Licznik := 1;                   (* Aktywacja wyjścia             *)
 END_IF
-IF CUR_TIME()-sTime >= t#500ms THEN    (* Jeśli upłynął zadany czas     *)
+IF CUR_TIME()-sTime >= t#250ms THEN    (* Jeśli upłynął zadany czas     *)
     sTime := CUR_TIME();            (* Czas początkowy               *)
     IF Licznik < 8 THEN             (* Jeśli nie czwarty bit         *)
         Licznik := Licznik * 2;     (*   to ustaw następny           *)

@@ -24,6 +24,12 @@ Please provide the following before running the project:
 //#define USE_C_XCP
 #endif 
 
+// Adjust to the maximum XCP size
+#define XCP_MAXSIZE 2048
+
+// Adjust if you have stack canary exception
+#define TASK_STACK_SIZE 2000
+
 #ifdef USE_LITTLEFS
 #include "LittleFS.h"
 #endif
@@ -79,10 +85,10 @@ void setup() {
     return;
   }
 
-  static uint8_t buf[512];
+  static uint8_t buf[XCP_MAXSIZE];
   size_t len = file.size();
 
-  if (len > 512)
+  if (len > XCP_MAXSIZE)
   {
     Serial.print("XCP is too large !");
     while (1);
@@ -138,7 +144,7 @@ void setup() {
   xTaskCreate(
     cpdev_task,    // Function that should be called
     "CPDev task",   // Name of the task (for debugging)
-    1000,            // Stack size (bytes)
+    TASK_STACK_SIZE,            // Stack size (bytes)
     NULL,            // Parameter to pass
     1,               // Task priority
     NULL             // Task handle
@@ -159,6 +165,7 @@ void loop() {
 
   WM_BYTE out;
   long now = millis();
+
   if (now - lastMsg > 1000) {
     lastMsg = now;
        
